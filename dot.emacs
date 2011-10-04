@@ -4,10 +4,20 @@
 (normal-top-level-add-subdirs-to-load-path)
 
 (require 'tabbar)
+(tabbar-mode 1)
+(global-set-key (kbd "M-s-<right>") 'tabbar-forward-tab)
+(global-set-key (kbd "M-s-<left>") 'tabbar-backward-tab)
+(global-set-key (kbd "C-s-<right>") 'windmove-right)
+(global-set-key (kbd "C-s-<left>") 'windmove-left)
+(global-set-key (kbd "C-s-<up>") 'windmove-up)
+(global-set-key (kbd "C-s-<down>") 'windmove-down)
+
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-charcoal-black)
 (set-default 'truncate-lines t)
+
+(require 'magit)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
