@@ -3,6 +3,10 @@
 (let ((default-directory "/Users/dietrich/git/dot/elisp"))
   (normal-top-level-add-subdirs-to-load-path))
 
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-charcoal-black)
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -22,3 +26,8 @@
 (setq exec-path (cons "/usr/local/Cellar/erlang/R14B03/lib/erlang/bin" exec-path))
 (require 'erlang-start)
 
+(require 'scala-mode-auto)
+(add-hook 'scala-mode-hook
+	  '(lambda ()
+	     (scala-mode-feature-electric-mode)
+	     ))
