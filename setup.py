@@ -4,25 +4,31 @@
 from string import Template
 import os
 
-PATHS = dict({'dot.emacs':'${HOME}/.emacs', 
-              'dot.vimrc':'${HOME}/.vimrc',
-              'dot.Xdefaults':'${HOME}/.Xdefaults',
-              'dot.xmonad':'${HOME}/.xmonad',
-              'dot.screenrc':'${HOME}/.screenrc',
+PATHS = dict({'emacs':'${HOME}/.emacs', 
+              'vimrc':'${HOME}/.vimrc',
+              'zshrc':'${HOME}/.zshrc',
+              'Xdefaults':'${HOME}/.Xdefaults',
+              'xmonad':'${HOME}/.xmonad',
+              'screenrc':'${HOME}/.screenrc',
               'elisp':'${HOME}/elisp'})
 
 def setup_paths():
-    """Creates symlinks"""
+  """Creates symlinks"""
+  for origin, destination in PATHS.items():
+    home = os.environ['HOME']
+    dest_real = Template(destination).substitute(HOME=home)
+    if(os.path.lexists(dest_real)):
+      backup_path = dest_real + ".orig"
+      os.rename(dest_real, backup_path)
+      print dest_real + " already exists, backing up to " + backup_path
+    print origin + " => " + dest_real
+    os.symlink(os.path.realpath(origin), dest_real)
 
-    for origin, destination in PATHS.items():
-        home = os.environ['HOME']
-        dest_real = Template(destination).substitute(HOME=home)
-        if(os.path.lexists(dest_real)):
-            print dest_real + " already exists, skipping"
-            continue
 
-        print origin + " => " + dest_real
-        os.symlink(os.path.realpath(origin), dest_real)
+def setup_oh_my_zsh():
+  """Setup oh-my-zsh"""
+  os.system("curl -L https://github.com/dietrichf/oh-my-zsh/raw/master/tools/install.sh | sh")
 
 if __name__ == "__main__":
-    setup_paths()
+  setup_oh_my_zsh()
+  setup_paths()

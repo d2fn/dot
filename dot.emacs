@@ -21,6 +21,8 @@
   ;; If there is more than one, they won't work right.
  )
 
+(setq js-indent-level 2)
+
 (setq load-path (cons "/usr/local/Cellar/erlang/R14B03/lib/erlang/lib/tools-2.6.6.4/emacs" load-path))
 (setq erlang-root-dir "/usr/local/Cellar/erlang/R14B03/lib/erlang")
 (setq exec-path (cons "/usr/local/Cellar/erlang/R14B03/lib/erlang/bin" exec-path))
@@ -31,3 +33,5 @@
 	  '(lambda ()
 	     (scala-mode-feature-electric-mode)
 	     ))
+
+(desktop-save-mode 1)

@@ -2,10 +2,11 @@ set nobackup
 set backspace=indent,eol,start
 set nostartofline
 set ruler
+set number
 set showcmd
 set showmatch
 set showmode
-set tabstop=4
+set tabstop=2
 set shiftwidth=4
 set viminfo=
 "set background=dark
