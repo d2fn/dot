@@ -17,7 +17,11 @@ ZSH_THEME="adf"
 alias json='python -mjson.tool'
 alias psx='ps auwx'
 alias gitx='open . -a /Applications/GitX.app/'
-alias sort='gsort'
+
+if [[ `uname` = Darwin ]]; then
+  alias sort='gsort';
+fi
+
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
