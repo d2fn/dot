@@ -4,12 +4,12 @@
 from string import Template
 import os
 
-PATHS = dict({'emacs':'${HOME}/.emacs', 
-              'vimrc':'${HOME}/.vimrc',
-              'zshrc':'${HOME}/.zshrc',
-              'Xdefaults':'${HOME}/.Xdefaults',
-              'xmonad':'${HOME}/.xmonad',
-              'screenrc':'${HOME}/.screenrc',
+PATHS = dict({'dot.emacs':'${HOME}/.emacs', 
+              'dot.vimrc':'${HOME}/.vimrc',
+              'dot.zshrc':'${HOME}/.zshrc',
+              'dot.Xdefaults':'${HOME}/.Xdefaults',
+              'dot.xmonad':'${HOME}/.xmonad',
+              'dot.screenrc':'${HOME}/.screenrc',
               'elisp':'${HOME}/elisp'})
 
 def setup_paths():
