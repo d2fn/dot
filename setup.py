@@ -52,7 +52,7 @@ def setup_oh_my_zsh():
 	
 
 if __name__ == "__main__":
-	if(not os.path.lexists(binfile):
+	if(not os.path.lexists(binfile)):
 		os.mkdir(binfile)
 	if(not os.path.lexists(dotfile_backup)):
 		os.mkdir(dotfile_backup)
