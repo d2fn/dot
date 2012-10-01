@@ -8,6 +8,7 @@ home = os.environ['HOME']
 
 # backup for dotfiles moved out of the way by this script
 dotfile_backup = home + "/.dotfilebackup"
+binfile = home + "/bin"
 
 def symlink_dotfiles():
 	for dotfile in glob.glob("./dot.*"):
@@ -51,6 +52,8 @@ def setup_oh_my_zsh():
 	
 
 if __name__ == "__main__":
+	if(not os.path.lexists(binfile):
+		os.mkdir(binfile)
 	if(not os.path.lexists(dotfile_backup)):
 		os.mkdir(dotfile_backup)
 	setup_oh_my_zsh()
