@@ -11,7 +11,7 @@ set viminfo=
 "set background=dark
 syntax on
 
-au FileType perl,c,java,cpp,yaml,python,ruby set smartindent et
+au FileType perl,c,java,cpp,yaml,python,ruby set smartindent
 
 augroup Mail
 	au!
