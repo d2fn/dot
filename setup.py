@@ -44,7 +44,8 @@ def symlink_bin():
 def setup_oh_my_zsh():
 	"""Setup oh-my-zsh"""
 	if(os.path.lexists(home + "/.oh-my-zsh")):
-		print "Skipping oh-my-zsh setup, ~/.oh-my-zsh already exists"
+		print "Skipping oh-my-zsh clone, ~/.oh-my-zsh already exists. Rebasing repo on master."
+		os.system("cd ~/.oh-my-zsh && git pull --rebase origin master")
 	else:
 		os.system("curl -L https://github.com/dietrichf/oh-my-zsh/raw/master/tools/install.sh | sh")
 	
