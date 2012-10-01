@@ -22,7 +22,7 @@ def symlink_dotfiles():
 			elif(not os.path.islink(destfile)):
 				print "Backing up " + destfile + " to " + dotfile_backup + "/" + destname
 				os.rename(destfile, dotfile_backup + "/" + destname)
-		else:
+		if(not os.path.lexists(destfile)):
 			print "Creating symlink " + barename + " -> " + os.path.realpath(dotfile)
 			os.symlink(os.path.realpath(dotfile), destfile)
 
@@ -37,7 +37,7 @@ def symlink_bin():
 			elif(not os.path.islink(destfile)):
 				print "Backing up " + destfile + " to " + dotfile_backup + "/" + barename
 				os.rename(destfile, dotfile_backup + "/" + barename)
-		else:
+		if(not os.path.lexists(destfile)):	
 			print "Creating symlink ~/" + barename + " -> " + os.path.realpath(barename)
 			os.symlink(sourcefile, destfile)
 
