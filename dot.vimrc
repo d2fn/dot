@@ -8,10 +8,11 @@ set showmatch
 set showmode
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab ai
 set viminfo=
+set encoding=utf-8
 "set background=dark
 syntax on
 
-au FileType perl,c,java,cpp,yaml,python,ruby set smartindent
+au FileType perl,c,java,cpp,yaml,python,ruby,scala set smartindent
 
 augroup Mail
 	au!
