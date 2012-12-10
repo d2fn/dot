@@ -9,10 +9,11 @@ set showmode
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab ai
 set viminfo=
 set encoding=utf-8
+set visualbell t_vb=
 "set background=dark
 syntax on
 
-au FileType perl,c,java,cpp,yaml,python,ruby,scala set smartindent
+au FileType perl,c,java,yaml,cpp,python,ruby,scala set smartindent expandtab
 
 augroup Mail
 	au!
@@ -27,6 +28,12 @@ set listchars=tab:▸\ ,eol:¬
 "make invisible chars just visible
 highlight NonText guifg=#4a4a4a
 highlight SpecialKey guifg=#4a4a4a
+
+" It's 2012.
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
