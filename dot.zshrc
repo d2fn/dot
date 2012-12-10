@@ -17,6 +17,7 @@ ZSH_THEME="adf"
 alias json='python -mjson.tool'
 alias psx='ps auwx'
 alias gitx='open . -a /Applications/GitX.app/'
+alias arcd='arc diff --no-amend'
 
 if [[ `uname` = Darwin ]]; then
   alias sort='gsort';
