@@ -10,10 +10,10 @@ set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab ai
 set viminfo=
 set encoding=utf-8
 set visualbell t_vb=
-"set background=dark
 syntax on
+colorscheme darktango
 
-au FileType perl,c,java,yaml,cpp,python,ruby,scala set smartindent expandtab
+au FileType perl,c,java,yaml,cpp,ruby,scala,erl set smartindent expandtab
 
 augroup Mail
 	au!

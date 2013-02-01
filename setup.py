@@ -12,6 +12,7 @@ binfile = home + "/bin"
 
 def symlink_dotfiles():
 	for dotfile in glob.glob("./dot.*"):
+		print dotfile + "\n"
 		barename = dotfile[2:] 
 		destname = barename[3:]
 		destfile = home + "/" + destname
@@ -23,7 +24,7 @@ def symlink_dotfiles():
 				print "Backing up " + destfile + " to " + dotfile_backup + "/" + destname
 				os.rename(destfile, dotfile_backup + "/" + destname)
 		if(not os.path.lexists(destfile)):
-			print "Creating symlink " + barename + " -> " + os.path.realpath(dotfile)
+			print "Creating symlink " + destname + " -> " + os.path.realpath(dotfile)
 			os.symlink(os.path.realpath(dotfile), destfile)
 
 def symlink_bin():
@@ -40,7 +41,6 @@ def symlink_bin():
 		if(not os.path.lexists(destfile)):	
 			print "Creating symlink ~/" + barename + " -> " + os.path.realpath(barename)
 			os.symlink(sourcefile, destfile)
-
 
 def setup_oh_my_zsh():
 	"""Setup oh-my-zsh"""
@@ -59,3 +59,4 @@ if __name__ == "__main__":
 	setup_oh_my_zsh()
 	symlink_dotfiles()
 	symlink_bin()
+

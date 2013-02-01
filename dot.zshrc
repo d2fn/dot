@@ -11,6 +11,8 @@ ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="random"
 ZSH_THEME="adf"
 
+export VAGRANT_HOME="/Volumes/optibay/vagrant_home"
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -18,6 +20,7 @@ alias json='python -mjson.tool'
 alias psx='ps auwx'
 alias gitx='open . -a /Applications/GitX.app/'
 alias arcd='arc diff --no-amend'
+alias vmstat='vm_stat'
 
 if [[ `uname` = Darwin ]]; then
   alias sort='gsort';
@@ -47,4 +50,9 @@ plugins=(git brew cloudapp encode64 mvn vagrant)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:~/bin
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:~/bin
+export CLASSPATH=".:/usr/local/lib/antlr-4.0-complete.jar:$CLASSPATH"
+
+alias antlr4='java -jar /usr/local/lib/antlr-4.0-complete.jar'
+alias grun='java org.antlr.v4.runtime.misc.TestRig'
+
