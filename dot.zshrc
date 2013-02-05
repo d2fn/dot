@@ -50,9 +50,11 @@ plugins=(git brew cloudapp encode64 mvn vagrant)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:~/bin
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:~/bin:/usr/local/go/bin
 export CLASSPATH=".:/usr/local/lib/antlr-4.0-complete.jar:$CLASSPATH"
 
 alias antlr4='java -jar /usr/local/lib/antlr-4.0-complete.jar'
 alias grun='java org.antlr.v4.runtime.misc.TestRig'
 
+GOPATH=$HOME
+export GOPATH
