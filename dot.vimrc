@@ -35,6 +35,9 @@ noremap k gk
 noremap gj j
 noremap gk k
 
+:nmap <C-n> :bnext<CR>
+:nmap <C-p> :bprev<CR>
+
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
 function! Stab()
