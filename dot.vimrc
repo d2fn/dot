@@ -15,6 +15,8 @@ colorscheme darktango
 
 au FileType perl,c,java,yaml,cpp,ruby,scala,erl set smartindent expandtab
 
+au FileType go set makeprg go\ build
+
 augroup Mail
 	au!
 	au FileType mail set tw=68 fc=tcqr2 nomodeline et
