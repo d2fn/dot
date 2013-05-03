@@ -49,7 +49,13 @@ def setup_oh_my_zsh():
 		os.system("cd ~/.oh-my-zsh && git pull --rebase origin master")
 	else:
 		os.system("curl -L https://github.com/dietrichf/oh-my-zsh/raw/master/tools/install.sh | sh")
-	
+		
+
+def setup_vim():
+	"""setup vim stuff"""
+	if(not os.path.lexists(home + "/.vim/bundle")):
+		os.system("mkdir -p " + home + "/.vim/bundle")
+		os.system("git clone git://github.com/Shougo/neobundle.vim " + home + "/.vim/bundle/neobundle.vim")
 
 if __name__ == "__main__":
 	if(not os.path.lexists(binfile)):
@@ -59,4 +65,5 @@ if __name__ == "__main__":
 	setup_oh_my_zsh()
 	symlink_dotfiles()
 	symlink_bin()
+	setup_vim()
 
