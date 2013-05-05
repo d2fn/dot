@@ -58,6 +58,9 @@ alias grun='java org.antlr.v4.runtime.misc.TestRig'
 
 GOPATH=$HOME/.go
 export GOPATH
+GOROOT=$GOPATH
+export GOROOT
 
 source /opt/boxen/env.sh
+
 
