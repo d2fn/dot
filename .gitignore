@@ -3,4 +3,6 @@
 */xmonad.hi
 */xmonad.o
 .emacs.desktop
+.netrwhist
+dot.vim/bundle/
 
