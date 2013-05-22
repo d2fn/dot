@@ -22,6 +22,10 @@ alias gitx='open . -a /Applications/GitX.app/'
 alias arcd='arc diff --no-amend'
 alias vmstat='vm_stat'
 
+alias ss='script/server'
+alias sb='script/bootstrap'
+alias st='script/test'
+
 if [[ `uname` = Darwin ]]; then
   alias sort='gsort';
 fi
@@ -56,11 +60,14 @@ export CLASSPATH=".:/usr/local/lib/antlr-4.0-complete.jar:$CLASSPATH"
 alias antlr4='java -jar /usr/local/lib/antlr-4.0-complete.jar'
 alias grun='java org.antlr.v4.runtime.misc.TestRig'
 
-GOPATH=$HOME/.go
-export GOPATH
-GOROOT=$GOPATH
-export GOROOT
-
 source /opt/boxen/env.sh
 
+unalias gp
+
+GOPATH=$HOME/go
+export GOPATH
+# export GOROOT="/opt/boxen/homebrew/Cellar/go/1.1
+# export GOTOOLDIR="/opt/boxen/homebrew/Cellar/go/1.0.3/pkg/tool/darwin_amd64"
+
+export EDITOR=vim
 
