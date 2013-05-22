@@ -89,8 +89,8 @@ highlight SpecialKey guifg=#4a4a4a
 color desert
 
 " quickly move lines up and down
-nnoremap - ddp
-nnoremap _ ddkP
+nnoremap _ ddp
+nnoremap - ddkP
 
 " uppercase the current word
 nnoremap <c-u> viwU
