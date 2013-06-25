@@ -26,6 +26,8 @@ alias ss='script/server'
 alias sb='script/bootstrap'
 alias st='script/test'
 
+alias cctags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
+
 if [[ `uname` = Darwin ]]; then
   alias sort='gsort';
 fi
