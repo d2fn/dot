@@ -27,14 +27,14 @@ set number
 set showcmd
 set showmatch
 set showmode
-set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab ai
-set viminfo=
+set et
+set tabstop=4 softtabstop=4 shiftwidth=4 ai
 set encoding=utf-8
 set visualbell t_vb=
 syntax on
-colorscheme freya
 
-au FileType perl,c,java,yaml,cpp,ruby,scala,erl set expandtab
+autocmd Filetype ruby setlocal et ts=2 sts=2 sw=2
+autocmd Filetype java setlocal et ts=4 sts=4 sw=4
 
 augroup Mail
 	au!
@@ -56,16 +56,13 @@ noremap k gk
 noremap gj j
 noremap gk k
 
-:nmap <C-n> :bnext<CR>
-:nmap <C-p> :bprev<CR>
-
 set smartindent
 
 " nerdtree
 :nmap <leader>e :NERDTreeToggle<cr>
 
 " CtrlP
-nnoremap <c-t> :CtrlP<cr>
+nnoremap <c-p> :CtrlP<cr>
 
 " vim-fugitive
 nnoremap <leader>gb :Gblame<cr>
@@ -123,3 +120,5 @@ function! Stab()
   call SummarizeTabs()
 endfunction
   
+colorscheme af
+colors af
