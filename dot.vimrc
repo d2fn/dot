@@ -28,12 +28,15 @@ set showcmd
 set showmatch
 set showmode
 set et
-set tabstop=4 softtabstop=4 shiftwidth=4 ai
+set tabstop=2 softtabstop=2 shiftwidth=2 ai
 set encoding=utf-8
 set visualbell t_vb=
 syntax on
 
 autocmd Filetype ruby setlocal et ts=2 sts=2 sw=2
+autocmd Filetype c setlocal et ts=2 sts=2 sw=2
+autocmd Filetype cc setlocal et ts=2 sts=2 sw=2
+autocmd Filetype h setlocal et ts=2 sts=2 sw=2
 autocmd Filetype java setlocal et ts=4 sts=4 sw=4
 
 augroup Mail
