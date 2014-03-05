@@ -65,8 +65,6 @@ alias bison='/opt/boxen/homebrew/Cellar/bison/2.7.1/bin/bison'
 unsetopt correct_all
 unsetopt correct
 
-source /opt/boxen/env.sh
-
 unalias gp
 
 GOPATH=$HOME/go
