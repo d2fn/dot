@@ -19,6 +19,7 @@ export VAGRANT_HOME="/Volumes/optibay/vagrant_home"
 alias json='python -mjson.tool'
 alias psx='ps auwx'
 alias gitx='open . -a /Applications/GitX.app/'
+alias gpr='git pull --rebase origin master'
 alias arcd='arc diff --no-amend'
 alias vmstat='vm_stat'
 
@@ -57,9 +58,11 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:~/bin:/usr/local/go/bin
-export CLASSPATH=".:/usr/local/lib/antlr-4.0-complete.jar:$CLASSPATH"
 
-alias bison='/opt/boxen/homebrew/Cellar/bison/2.7.1/bin/bison'
+export PG_HOME=/Applications/Postgres.app/Contents/Versions/9.3
+export PG_CONFIG=$PG_HOME/bin/pg_config
+
+export PATH=$PATH:$PG_HOME/bin
 
 # don't correct me constantly
 unsetopt correct_all
@@ -69,8 +72,6 @@ unalias gp
 
 GOPATH=$HOME/go
 export GOPATH
-# export GOROOT="/opt/boxen/homebrew/Cellar/go/1.1
-# export GOTOOLDIR="/opt/boxen/homebrew/Cellar/go/1.0.3/pkg/tool/darwin_amd64"
 
 export EDITOR=vim
 
