@@ -41,43 +41,13 @@ binaries=(
 echo "installing binaries: ${binaries[@]}"
 brew install ${binaries[@]}
 
-# Apps
-apps=(
-  dropbox
-  slack
-  transmit
-  appcleaner
-  hazel
-  qlmarkdown
-  seil
-  spotify
-  arq
-  flash
-  iterm2
-  qlprettypatch
-  shiori
-  sublime-text3
-  virtualbox
-  atom
-  flux
-  mailbox
-  qlstephen
-  sketch
-  tower
-  vlc
-  cloudup
-  nvalt
-  quicklook-json
-  skype
-  transmission
-)
-
 echo "Installing homebrew cask"
 brew install caskroom/cask/brew-cask
 
 apps=(
+  emacs
   dropbox
-  sublime-text3
+  sublime-text
   adobe-creative-cloud
   rstudio
   shiori
@@ -92,6 +62,7 @@ apps=(
   tower
   cloudup
   nvalt
+  caffeine
 )
 
 # Install apps to /Applications

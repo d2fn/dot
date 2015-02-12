@@ -11,8 +11,6 @@ ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="random"
 ZSH_THEME="adf"
 
-export VAGRANT_HOME="/Volumes/optibay/vagrant_home"
-
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -22,17 +20,15 @@ alias gitx='open . -a /Applications/GitX.app/'
 alias gpr='git pull --rebase origin master'
 alias arcd='arc diff --no-amend'
 alias vmstat='vm_stat'
+alias mvndeploy='mvn clean javadoc:jar source:jar deploy'
 
 alias ss='script/server'
 alias sb='script/bootstrap'
 alias st='script/test'
 
+alias gsh='ssh -A -t remote.github.net ssh -A -t $1'
+
 alias cctags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
-
-if [[ `uname` = Darwin ]]; then
-  alias sort='gsort';
-fi
-
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -57,7 +53,7 @@ plugins=(git brew cloudapp encode64 mvn vagrant)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:~/bin:/usr/local/go/bin
+export PATH=~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 
 export PG_HOME=/Applications/Postgres.app/Contents/Versions/9.3
 export PG_CONFIG=$PG_HOME/bin/pg_config
@@ -68,10 +64,16 @@ export PATH=$PATH:$PG_HOME/bin
 unsetopt correct_all
 unsetopt correct
 
-unalias gp
-
-GOPATH=$HOME/go
-export GOPATH
-
 export EDITOR=vim
+
+eval "$(rbenv init -)"
+
+export BOXEN_SOCKET_DIR=/data/socket
+export GH_SOCKET_DIR=$BOXEN_SOCKET_DIR
+export BOXEN_POSTGRESQL_HOST=localhost
+export BOXEN_POSTGRESQL_PORT=5432
+
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+
+export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 
