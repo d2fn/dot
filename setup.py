@@ -48,7 +48,7 @@ def setup_oh_my_zsh():
 		print "Skipping oh-my-zsh clone, ~/.oh-my-zsh already exists. Rebasing repo on master."
 		os.system("cd ~/.oh-my-zsh && git pull --rebase origin master")
 	else:
-		os.system("curl -L https://github.com/d2fn/oh-my-zsh/raw/master/tools/install.sh | sh")
+		os.system("curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh")
 		
 
 def setup_vim():
