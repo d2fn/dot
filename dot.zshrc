@@ -51,14 +51,13 @@ alias cctags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
 plugins=(git brew cloudapp encode64 mvn vagrant)
 
 source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
-export PATH=~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+source /opt/boxen/env.sh
 
 export PG_HOME=/Applications/Postgres.app/Contents/Versions/9.3
 export PG_CONFIG=$PG_HOME/bin/pg_config
 
-export PATH=$PATH:$PG_HOME/bin
+# Customize to your needs...
+export PATH=$PATH:~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:$PG_HOME/bin
 
 # don't correct me constantly
 unsetopt correct_all
@@ -76,4 +75,5 @@ export BOXEN_POSTGRESQL_PORT=5432
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+
 
