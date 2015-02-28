@@ -28,7 +28,7 @@ alias st='script/test'
 
 alias gsh='ssh -A -t remote.github.net ssh -A -t $1'
 
-alias cctags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
+alias s3d2fn='s3cmd -c ~/.s3d2fn'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -49,12 +49,11 @@ alias cctags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git brew cloudapp encode64 mvn vagrant)
-
 source $ZSH/oh-my-zsh.sh
-source /opt/boxen/env.sh
 
-export PG_HOME=/Applications/Postgres.app/Contents/Versions/9.3
-export PG_CONFIG=$PG_HOME/bin/pg_config
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+
+source /opt/boxen/env.sh
 
 # Customize to your needs...
 export PATH=$PATH:~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:$PG_HOME/bin
@@ -67,12 +66,6 @@ export EDITOR=vim
 
 eval "$(rbenv init -)"
 
-export BOXEN_SOCKET_DIR=/data/socket
-export GH_SOCKET_DIR=$BOXEN_SOCKET_DIR
-export BOXEN_POSTGRESQL_HOST=localhost
-export BOXEN_POSTGRESQL_PORT=5432
-
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 
