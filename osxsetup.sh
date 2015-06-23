@@ -60,7 +60,6 @@ apps=(
   flux
   gitx
   tower
-  cloudup
   nvalt
   caffeine
 )

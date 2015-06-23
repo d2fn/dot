@@ -47,13 +47,10 @@ alias s3d2fn='s3cmd -c ~/.s3d2fn'
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew cloudapp encode64 mvn vagrant)
+plugins=(git brew encode64 mvn)
 source $ZSH/oh-my-zsh.sh
 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-
-source /opt/boxen/env.sh
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 
 # Customize to your needs...
 export PATH=$PATH:~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:$PG_HOME/bin
@@ -63,9 +60,6 @@ unsetopt correct_all
 unsetopt correct
 
 export EDITOR=vim
-
-eval "$(rbenv init -)"
-
 
 export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 
