@@ -1,7 +1,5 @@
 set nocompatible
 
-filetype plugin indent on
-
 set nobackup
 set backspace=indent,eol,start
 set nostartofline
@@ -22,12 +20,6 @@ autocmd Filetype cc setlocal et ts=2 sts=2 sw=2
 autocmd Filetype h setlocal et ts=2 sts=2 sw=2
 autocmd Filetype java setlocal et ts=4 sts=4 sw=4
 
-augroup Mail
-	au!
-	au FileType mail set tw=68 fc=tcqr2 nomodeline et
-	au FileType mail set comments+=n:\|
-augroup END
-
 "show/hide invisible chars with \l
 nmap <leader>l :set list!<CR>
 " set which chars show in place of tabs, eol, etc
@@ -43,12 +35,6 @@ noremap gj j
 noremap gk k
 
 set smartindent
-
-" nerdtree
-:nmap <leader>e :NERDTreeToggle<cr>
-
-" CtrlP
-nnoremap <c-p> :CtrlP<cr>
 
 " vim-fugitive
 nnoremap <leader>gb :Gblame<cr>
