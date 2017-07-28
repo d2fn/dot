@@ -23,6 +23,7 @@ alias vmstat='vm_stat'
 alias mvndeploy='mvn clean javadoc:jar source:jar deploy'
 alias pclean='sudo ~luna/bin/cleanPreviousInstall'
 alias pmount='~luna/bin/mountebuild'
+alias curl='curl --silent'
 
 alias s3d2fn='s3cmd -c ~/.s3d2fn'
 
