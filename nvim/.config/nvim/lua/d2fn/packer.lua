@@ -3,7 +3,8 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function(use)
+return require('packer')
+	.startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 	use {
@@ -18,6 +19,10 @@ return require('packer').startup(function(use)
 			vim.cmd('colorscheme rose-pine')
 		end
 	})
+	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+
+	use('nvim-treesitter/playground')
+
 end)
 
 
