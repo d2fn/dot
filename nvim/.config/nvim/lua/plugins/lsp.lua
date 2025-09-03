@@ -12,18 +12,6 @@ cmp.setup({
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lspconfig.pyright.setup({
-	capabilipies = capabilities,
-	settings = {
-		python = {
-			analysis = {
-				autoImportCompletions = true,
-				useLibraryCodeForTypes = true,
-			}
-		}
-	}
-})
-
 -- LSP keymaps when a server (Pyright) attaches
 local on_attach = function(_, bufnr)
   local map = function(mode, lhs, rhs, desc)
@@ -54,4 +42,26 @@ end
 require("lspconfig").pyright.setup({
   on_attach = on_attach,
   capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	settings = {
+		python = {
+			analysis = {
+				autoImportCompletions = true,
+				useLibraryCodeForTypes = true,
+			}
+		}
+	}
 })
+
+lspconfig.gopls.setup({
+	on_attach = on_attach,
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+				shadow = true,
+			},
+			staticcheck = true,
+		},
+	},
+})
+
