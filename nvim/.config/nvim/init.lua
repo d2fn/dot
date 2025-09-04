@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.cmd.colorscheme("rose-pine")
+vim.cmd.colorscheme("slate")
 
 local api = vim.api
 api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -9,9 +9,10 @@ api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
 require('plugins.obsidian')
+require('plugins.oil')
 require('plugins.telescope')
-require('plugins.lsp')
 require('keybindings')
+require('plugins.lsp')
 
 local o = vim.opt
 

@@ -2,7 +2,7 @@ local lspconfig = require('lspconfig')
 
 local cmp = require('cmp')
 cmp.setup({
-	snippet = { expand = function(args) require('luasnip').lsp_expand(args_body) end },
+	snippet = { expand = function(args) require('luasnip').lsp_expand(args.body) end },
 	mapping = {
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
 		['<C-Space>'] = cmp.mapping.complete(),
@@ -12,7 +12,7 @@ cmp.setup({
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- LSP keymaps when a server (Pyright) attaches
+-- LSP keymaps when a server attaches
 local on_attach = function(_, bufnr)
   local map = function(mode, lhs, rhs, desc)
     vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
@@ -38,10 +38,23 @@ local on_attach = function(_, bufnr)
   map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
 end
 
+lspconfig.gopls.setup({
+	on_attach = on_attach,
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+			},
+			staticcheck = true,
+			gofumpt = true,
+		},
+	},
+})
+
 -- Pass on_attach to pyright
-require("lspconfig").pyright.setup({
+lspconfig.pyright.setup({
   on_attach = on_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+  capabilities = capabilities,
 	settings = {
 		python = {
 			analysis = {
@@ -50,18 +63,5 @@ require("lspconfig").pyright.setup({
 			}
 		}
 	}
-})
-
-lspconfig.gopls.setup({
-	on_attach = on_attach,
-	settings = {
-		gopls = {
-			analyses = {
-				unusedparams = true,
-				shadow = true,
-			},
-			staticcheck = true,
-		},
-	},
 })
 

@@ -40,3 +40,10 @@ k.set("n", "<leader>ot", "<cmd>Obsidian today<CR>", { desc = "Today's daily note
 k.set("n", "<leader>ob", "<cmd>Obsidian backlinks<CR>", { desc = "Backlinks" })
 k.set("n", "<leader>of", "<cmd>ObsidianBridgeFollow<CR>", { desc = "Open in Obsidian" })
 
+vim.keymap.set("n", "<leader>l", function()
+  if vim.wo.list then
+    vim.wo.list = false
+  else
+    vim.wo.list = true
+  end
+end, { desc = "Toggle invisible chars" })
