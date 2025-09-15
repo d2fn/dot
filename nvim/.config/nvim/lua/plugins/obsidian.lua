@@ -7,8 +7,8 @@ require('obsidian').setup({
 	},
 	workspaces = {
 		{
-			name = "Netflix",
-			path = "~/git/obsidian",
+			name = "Base",
+			path = "~/Documents/Base"
 		},
 	},
 	legacy_commands = false,

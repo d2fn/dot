@@ -18,6 +18,13 @@ k.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
 k.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 k.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move down up" })
 
+-- list chars
+k.set('n', "<leader>l", function()
+	vim.opt.list = not vim.opt.list:get()
+end, { desc = "Toggle listchars" })
+-- set a subtle gray for listchars
+vim.api.nvim_set_hl(0, "Whitespace", { fg = "#5c6370" })
+
 -- Improved indenting in visual mode
 k.set("v", "<", "<gv", { desc = "Indent left, retain selection" })
 k.set("v", ">", ">gv", { desc = "Indent right, retain selection" })
@@ -35,15 +42,9 @@ k.set('n', '<leader>fg', telescope.live_grep, {})
 k.set('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', {})
 
 -- Obsidian
-k.set("n", "<leader>on", "<cmd>Obsidian new<CR>", { desc = "New note" })
-k.set("n", "<leader>ot", "<cmd>Obsidian today<CR>", { desc = "Today's daily note" })
-k.set("n", "<leader>ob", "<cmd>Obsidian backlinks<CR>", { desc = "Backlinks" })
+k.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "New note" })
+k.set("n", "<leader>ot", "<cmd>ObsidianToday<CR>", { desc = "Today's daily note" })
+k.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Backlinks" })
 k.set("n", "<leader>of", "<cmd>ObsidianBridgeFollow<CR>", { desc = "Open in Obsidian" })
 
-vim.keymap.set("n", "<leader>l", function()
-  if vim.wo.list then
-    vim.wo.list = false
-  else
-    vim.wo.list = true
-  end
-end, { desc = "Toggle invisible chars" })
+

@@ -9,8 +9,10 @@ api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
 require('plugins.obsidian')
+require('plugins.noice')
 require('plugins.oil')
 require('plugins.telescope')
+require('plugins.toggleterm')
 require('keybindings')
 require('plugins.lsp')
 
@@ -98,4 +100,14 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   command = "checktime",
 })
+
+vim.opt.list = true
+vim.opt.listchars = {
+	space = '·',   -- or '‧' or '-' for subtle dash
+	tab = '> ',    -- or '› ' or '>' for subtle arrow
+}
+
+-- set a subtle gray for listchars
+vim.api.nvim_set_hl(0, "Whitespace", { fg = "#333333" })
+
 
