@@ -42,9 +42,8 @@ k.set('n', '<leader>fg', telescope.live_grep, {})
 k.set('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', {})
 
 -- Obsidian
-k.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "New note" })
-k.set("n", "<leader>ot", "<cmd>ObsidianToday<CR>", { desc = "Today's daily note" })
-k.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Backlinks" })
-k.set("n", "<leader>of", "<cmd>ObsidianBridgeFollow<CR>", { desc = "Open in Obsidian" })
+k.set("n", "<leader>on", "<cmd>Obsidian new<CR>", { desc = "New note" })
+k.set("n", "<leader>ot", "<cmd>Obsidian today<CR>", { desc = "Today's daily note" })
+k.set("n", "<leader>ob", "<cmd>Obsidian backlinks<CR>", { desc = "Backlinks" })
 
 

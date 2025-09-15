@@ -8,7 +8,7 @@ require('obsidian').setup({
 	workspaces = {
 		{
 			name = "Base",
-			path = "~/Documents/Base"
+			path = "~/git/obsidian"
 		},
 	},
 	legacy_commands = false,
