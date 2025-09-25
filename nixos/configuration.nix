@@ -109,6 +109,7 @@
 		fzf
 		ripgrep
 		eza
+		jp2a
 	];
 
 	# Some programs need SUID wrappers, can be configured further or are
