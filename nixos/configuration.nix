@@ -105,6 +105,8 @@
      jetbrains.idea-community
      stow
      git
+     chromium
+     ripgrep
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
