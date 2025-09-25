@@ -1,0 +1,24 @@
+set visualbell
+set noerrorbells
+set timeoutlen=200
+
+let mapleader = " "
+
+"show/hide invisible chars with \l
+nmap <leader>l :set list!<CR>
+nmap <leader><leader> <C-^>
+
+inoremap kj <ESC>
+inoremap sd <ESC>
+
+" set which chars show in place of tabs, eol, etc
+set listchars=tab:▸\ ,eol:¬
+
+" It's 2012.
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
+
+set relativenumber
+
