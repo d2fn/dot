@@ -15,7 +15,6 @@ repos=(
   "https://github.com/nvim-lua/plenary.nvim"
   "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   "https://github.com/nvim-telescope/telescope.nvim"
-  "https://github.com/stevearc/oil.nvim"
   "https://github.com/nvim-tree/nvim-web-devicons"
   "https://github.com/akinsho/toggleterm.nvim"
 )
