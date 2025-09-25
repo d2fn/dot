@@ -1,5 +1,7 @@
 source ~/.config/bash/rc
 
+eval $(starship init bash)
+
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin
 export TERMINAl=ghostty

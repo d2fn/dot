@@ -91,9 +91,12 @@
 		];
 	};
 
-	fonts.packages = with pkgs; [
-		(nerdfonts.override { fonts = [ "InconsolataGo" "JetBrainsMono" "Hack" "AnonymicePro" ]; })
+	fonts.packages = [
+		pkgs.nerd-fonts.inconsolata-go
+		pkgs.nerd-fonts.jetbrains-mono
+		pkgs.nerd-fonts.hack
 	];
+
 
 	# Allow unfree packages
 	nixpkgs.config.allowUnfree = true;
@@ -110,7 +113,12 @@
 		ripgrep
 		eza
 		jp2a
+		starship
 	];
+
+	programs.starship = {
+		enable = true;
+	};
 
 	# Some programs need SUID wrappers, can be configured further or are
 	# started in user sessions.
@@ -145,10 +153,10 @@
 		enable = true;
 		plugins = [ pkgs.interception-tools-plugins.caps2esc ]; # we’ll use it in simple Ctrl mode
 		udevmonConfig = ''
-			- JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m caps2ctrl | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
-				DEVICE:
-					EVENTS:
-						EV_KEY: [ KEY_CAPSLOCK, KEY_LEFTCTRL ]
+  - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m caps2ctrl | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
+    DEVICE:
+      EVENTS:
+        EV_KEY: [ KEY_CAPSLOCK, KEY_LEFTCTRL ]
 		'';
 	};
 }
