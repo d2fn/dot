@@ -59,6 +59,12 @@
     options = "ctrl:nocaps";
   };
 
+  # Make GNOME honor Caps→Ctrl for your session
+  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+    [org.gnome.desktop.input-sources]
+    xkb-options=['ctrl:nocaps']
+  '';
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
