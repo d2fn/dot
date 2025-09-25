@@ -17,8 +17,6 @@ require('keybindings')
 
 local o = vim.opt
 
-
-
 -- Basic Settings
 o.number = true                          -- Line numbers
 o.relativenumber = true                  -- Relative line numbers
