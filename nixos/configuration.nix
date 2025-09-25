@@ -45,20 +45,34 @@
   
   console.useXkbConfig = true;
 
+  # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    # Enable the X11 windowing system.
-    enable = true;
     layout = "us";
     variant = "";
     options = "ctrl:nocaps";
   };
 
+
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  # Make GNOME honor Caps→Ctrl for your session
+  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+    [org.gnome.desktop.input-sources]
+    xkb-options=['ctrl:nocaps']
+  '';
+
+  # Ensure GNOME/IBus respects system XKB and remap Caps→Ctrl
+	services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+		[org.freedesktop.ibus.general]
+		use-system-keyboard-layout=true
+		[org.gnome.desktop.input-sources]
+		xkb-options=['ctrl:nocaps']
+	'';	
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -134,18 +148,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
-  # Map Caps to Control via interception-tools
-  services.interception-tools = {
-    enable = true;
-    plugins = [ pkgs.interception-tools-plugins.caps2esc ]; # we’ll use it in simple Ctrl mode
-    udevmonConfig = ''
-      - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m caps2ctrl | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
-        DEVICE:
-          EVENTS:
-            EV_KEY: [ KEY_CAPSLOCK, KEY_LEFTCTRL ]
-    '';
-  };
-
 
 }
