@@ -91,8 +91,9 @@
 		];
 	};
 
-	# Install firefox.
-	programs.firefox.enable = true;
+	fonts.packages = with pkgs; [
+		(nerdfonts.override { fonts = [ "InconsolataGo" "JetBrainsMono" "Hack" "AnonymicePro" ]; })
+	];
 
 	# Allow unfree packages
 	nixpkgs.config.allowUnfree = true;
@@ -107,6 +108,7 @@
 		git
 		fzf
 		ripgrep
+		eza
 	];
 
 	# Some programs need SUID wrappers, can be configured further or are
