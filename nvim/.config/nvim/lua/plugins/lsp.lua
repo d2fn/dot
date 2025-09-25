@@ -1,4 +1,4 @@
-local lspconfig = require('lspconfig')
+-- local lspconfig = require('lspconfig')
 
 local cmp = require('cmp')
 cmp.setup({
@@ -38,7 +38,7 @@ local on_attach = function(_, bufnr)
   map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
 end
 
-lspconfig.gopls.setup({
+vim.lsp.config['gopls'] = {
 	on_attach = on_attach,
 	settings = {
 		gopls = {
@@ -49,10 +49,10 @@ lspconfig.gopls.setup({
 			gofumpt = true,
 		},
 	},
-})
+}
 
 -- Pass on_attach to pyright
-lspconfig.pyright.setup({
+vim.lsp.config['pyright'] = {
   on_attach = on_attach,
   capabilities = capabilities,
 	settings = {
@@ -63,5 +63,5 @@ lspconfig.pyright.setup({
 			}
 		}
 	}
-})
+}
 
