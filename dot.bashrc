@@ -1,7 +1,7 @@
 source ~/.config/bash/rc
 
 eval $(starship init bash)
-eval $(fzf --bash)
+eval "$(fzf --bash)"
 
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin

@@ -115,6 +115,7 @@
 		eza
 		jp2a
 		starship
+		jdk24
 	];
 
 	programs.starship = {
