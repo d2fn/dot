@@ -17,7 +17,7 @@ for i in {1..9}; do
   gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-$i "['<Alt><Shift>$i']"
 done
 
-export OBSIDIAN_REST_API_KEY=bf67c1d38cc41c586b6ddc5089e603ea41067212ad43f0d74d221ff272cf3030
+export OBSIDIAN_REST_API_KEY=f396b7612ced139d37c5e45fe1a0962783c453eb80eb46b73362942244247721
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
