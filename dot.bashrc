@@ -6,6 +6,8 @@ eval "$(fzf --bash)"
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin
 export TERMINAl=ghostty
+export EDITOR=nvim
+export GIT_EDITOR=$EDITOR
 
 # GNOME keyboard shortcut hacks
 gsettings set org.gnome.mutter dynamic-workspaces false
