@@ -13,11 +13,10 @@
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 	# Bootloader.
-	boot.loader.grub.enable = true;
-	boot.loader.grub.device = "/dev/vda";
-	boot.loader.grub.useOSProber = true;
+	boot.loader.systemd-boot.enable = true;
+	boot.loader.efi.canTouchEfiVariables = true;
 
-	networking.hostName = "nixos"; # Define your hostname.
+	networking.hostName = "dfeatherston-p16s"; # Define your hostname.
 	# networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
 
 	# Configure network proxy if necessary
@@ -50,12 +49,7 @@
 	# Enable the X11 windowing system.
 	services.xserver.enable = true;
 
-	# Configure keymap in X11
-	services.xserver.xkb = {
-		layout = "us";
-		variant = "";
-		options = "ctrl:nocaps";
-	};
+	services.xserver.xkb.options = "ctrl:nocaps";
 
 	# Enable the GNOME Desktop Environment.
 	services.xserver.displayManager.gdm.enable = true;
@@ -108,11 +102,6 @@
 	environment.systemPackages = with pkgs; [
 		ghostty
 		neovim
-		ffmpeg
-		jetbrains.idea-ultimate
-		jetbrains-toolbox
-		python3
-		go
 		chromium
 		stow
 		git
@@ -121,6 +110,16 @@
 		eza
 		jp2a
 		starship
+		ffmpeg
+		go
+		obsidian
+
+		# nflx
+		slack
+		jetbrains.idea-ultimate
+		jetbrains-toolbox
+		python3
+		slack
 		jdk24
 	];
 
@@ -154,17 +153,4 @@
 	# Before changing this value read the documentation for this option
 	# (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 	system.stateVersion = "25.05"; # Did you read the comment?
-
-
-	# Map Caps to Control via interception-tools
-	services.interception-tools = {
-		enable = true;
-		plugins = [ pkgs.interception-tools-plugins.caps2esc ]; # we’ll use it in simple Ctrl mode
-		udevmonConfig = ''
-  - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m caps2ctrl | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
-    DEVICE:
-      EVENTS:
-        EV_KEY: [ KEY_CAPSLOCK, KEY_LEFTCTRL ]
-		'';
-	};
 }

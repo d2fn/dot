@@ -1,6 +1,6 @@
 -- Obsidian
 require('obsidian').setup({
-	dir = '~/git/obsidian',
+	dir = '~/Documents/Netflix',
 	daily_notes = {
 		foldes = "daily",
 	},
