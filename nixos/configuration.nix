@@ -107,7 +107,11 @@
 		ghostty
 		neovim
 		ffmpeg
-		jetbrains.idea-community
+		jetbrains.idea-ultimate
+		jetbrains-toolbox
+		python3
+		go
+		chromium
 		stow
 		git
 		fzf
