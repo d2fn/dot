@@ -43,6 +43,10 @@
 		LC_TELEPHONE = "en_US.UTF-8";
 		LC_TIME = "en_US.UTF-8";
 	};
+
+	systemd.tmpfiles.rules = [
+		"L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
+	];
 	
 	console.useXkbConfig = true;
 
@@ -54,6 +58,10 @@
 	# Enable the GNOME Desktop Environment.
 	services.xserver.displayManager.gdm.enable = true;
 	services.xserver.desktopManager.gnome.enable = true;
+	services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+    [org.gnome.desktop.interface]
+    enable-animations=false
+	'';
 
 	# Enable CUPS to print documents.
 	services.printing.enable = true;
@@ -102,7 +110,8 @@
 	environment.systemPackages = with pkgs; [
 		ghostty
 		neovim
-		chromium
+		obsidian
+		tmux
 		stow
 		git
 		fzf
@@ -111,21 +120,39 @@
 		jp2a
 		starship
 		ffmpeg
+		lsof
+		btop
+		dig
+		traceroute
+		zip
+		unzip
+
+		# language runtimes
 		go
-		obsidian
+		jdk24
+		protobuf
 
 		# nflx
-		slack
+		google-chrome
 		jetbrains.idea-ultimate
 		jetbrains-toolbox
 		python3
 		slack
-		jdk24
+		openssl
+		nss
+		nssTools
 	];
 
 	programs.starship = {
 		enable = true;
 	};
+
+	programs.nix-ld.enable = true;
+	programs.nix-ld.libraries = with pkgs; [
+		# Add any missing dynamic libraries for unpackaged programs
+		# here, NOT in environment.systemPackages
+		# for metatron
+	];
 
 	# Some programs need SUID wrappers, can be configured further or are
 	# started in user sessions.
