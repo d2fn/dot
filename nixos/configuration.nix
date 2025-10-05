@@ -129,6 +129,7 @@
 
 		# language runtimes
 		go
+		gopls
 		jdk24
 		protobuf
 
