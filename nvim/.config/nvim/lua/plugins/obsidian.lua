@@ -1,14 +1,13 @@
-
 -- Obsidian
 require('obsidian').setup({
-	dir = '~/git/obsidian',
+	dir = '~/Documents/Netflix',
 	daily_notes = {
-		foldes = "daily"
+		foldes = "daily",
 	},
 	workspaces = {
 		{
-			name = "Base",
-			path = "~/git/obsidian"
+			name = "Netflix",
+			path = "~/Documents/Netflix",
 		},
 	},
 	legacy_commands = false,

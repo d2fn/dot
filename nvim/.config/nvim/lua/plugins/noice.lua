@@ -22,5 +22,6 @@ require("noice").setup({
 	-- turn off notify
 	notify = {
 		enabled = false,
+		background_colour = "#000000"
 	},
 })
