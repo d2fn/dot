@@ -6,9 +6,9 @@ repos=(
   "https://github.com/hrsh7th/cmp-path"
   "https://github.com/L3MON4D3/LuaSnip"
   "https://github.com/hrsh7th/nvim-cmp"
-	"https://github.com/folke/noice.nvim"
-	"https://github.com/MunifTanjim/nui.nvim"
-	"https://github.com/rcarriga/nvim-notify"
+  "https://github.com/folke/noice.nvim"
+  "https://github.com/MunifTanjim/nui.nvim"
+  "https://github.com/rcarriga/nvim-notify"
   "https://github.com/neovim/nvim-lspconfig"
   "https://github.com/oflisback/obsidian-bridge.nvim"
   "https://github.com/obsidian-nvim/obsidian.nvim"
@@ -20,8 +20,8 @@ repos=(
 )
 
 for repo in "${repos[@]}"; do
-  git clone "$repo"
+  git -C ./start clone "$repo"
 done
 
-ls -d */ | xargs -I{} git -C {} pull
+find ./start -mindepth 1 -maxdepth 1 | xargs -I{} git -C {} pull
 

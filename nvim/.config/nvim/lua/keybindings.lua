@@ -11,6 +11,9 @@ k.set('n', 'j', 'gj', { noremap = true })
 k.set('n', 'k', 'gk', { noremap = true })
 k.set('n', 'gj', 'j', { noremap = true })
 k.set('n', 'gk', 'k', { noremap = true })
+k.set({'n', 'v', 'x'}, ';', ':')
+k.set({'n', 'v', 'x'}, ':', ';')
+
 
 -- move lines up/down
 k.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
