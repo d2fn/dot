@@ -126,6 +126,7 @@
 		traceroute
 		zip
 		unzip
+		xclip
 
 		# language runtimes
 		go
