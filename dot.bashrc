@@ -1,10 +1,12 @@
+#!/bin/bash
+
 source ~/.config/bash/rc
 
 eval $(starship init bash)
 eval "$(fzf --bash)"
 
 export GOPATH=~/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$HOME/bin:$PATH:$GOPATH/bin
 export TERMINAl=ghostty
 export EDITOR=nvim
 export GIT_EDITOR=$EDITOR

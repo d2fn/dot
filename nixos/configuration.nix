@@ -47,6 +47,9 @@
 	systemd.tmpfiles.rules = [
 		"L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
 	];
+
+  programs.ssh.startAgent = true;		  # start ssh-agent on login
+  programs.ssh.askPassword = "";		   # disable GUI askpass; use terminal prompt
 	
 	console.useXkbConfig = true;
 
@@ -119,6 +122,7 @@
 		eza
 		jp2a
 		starship
+		steam-run
 		ffmpeg
 		lsof
 		btop
@@ -127,6 +131,15 @@
 		zip
 		unzip
 		xclip
+
+		# reverse engineering
+		xxd
+		binutils
+		file
+		llvm
+		hexyl
+		rizin
+		ghidra
 
 		# language runtimes
 		go
@@ -143,9 +156,14 @@
 		openssl
 		nss
 		nssTools
+		udev
 	];
 
 	programs.starship = {
+		enable = true;
+	};
+
+	programs.hyprland = {
 		enable = true;
 	};
 
@@ -154,6 +172,39 @@
 		# Add any missing dynamic libraries for unpackaged programs
 		# here, NOT in environment.systemPackages
 		# for metatron
+
+		libglvnd
+
+		# X11 & XCB stack
+		xorg.libX11
+		xorg.libXext
+		xorg.libXrender
+		xorg.libXi
+		xorg.libSM
+		xorg.libICE
+		xorg.libXau
+		xorg.libXdmcp
+		xorg.libxcb
+		xorg.xcbutilimage
+		xorg.xcbutilkeysyms
+		xorg.xcbutilwm
+		xorg.xcbutilrenderutil
+
+		# Fonts/input
+		fontconfig
+		freetype
+		libxkbcommon
+
+		# Common deps
+		glib
+		zlib
+
+		# Mesa drivers (software GL fallback & vendor libs)
+		mesa
+
+		# nix couldn't find these
+		#xcbutilcursor  # libxcb-cursor.so.0, often needed by Qt’s xcb platform plugin
+
 	];
 
 	# Some programs need SUID wrappers, can be configured further or are
