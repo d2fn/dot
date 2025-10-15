@@ -131,6 +131,9 @@
 		zip
 		unzip
 		xclip
+		hyprsunset
+		playerctl
+		brave
 
 		# reverse engineering
 		xxd
