@@ -11,10 +11,14 @@ require('telescope').setup({
 		},
 
 		live_grep = {
-			hidden = true,
-			no_ignore = true,
-			follow = true,
-		},
+			additional_args = function(_)
+				return {
+					"--hidden",         -- include hidden files
+					"--no-ignore-vcs",  -- ignore .gitignore and friends
+					"--glob", "!.git/*" -- still skip .git itself
+				}
+			end,
+		}
 
 	}
 })
