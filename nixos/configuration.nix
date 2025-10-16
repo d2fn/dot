@@ -136,6 +136,7 @@
 		jq
 		kmod
 		alsa-utils
+		pavucontrol
 
 		# hyprland packages
 		hyprsunset
