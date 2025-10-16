@@ -133,11 +133,15 @@
 		xclip
 		playerctl
 		brave
+		jq
 
 		# hyprland packages
 		hyprsunset
 		hyprlock
 		swaynotificationcenter
+		waybar
+		brightnessctl
+		swayosd
 
 		# reverse engineering
 		xxd
