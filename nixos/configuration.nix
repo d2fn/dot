@@ -134,6 +134,8 @@
 		playerctl
 		brave
 		jq
+		kmod
+		alsa-utils
 
 		# hyprland packages
 		hyprsunset

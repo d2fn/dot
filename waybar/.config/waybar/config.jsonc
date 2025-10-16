@@ -17,22 +17,16 @@
 				"clock"
 		],
 		"modules-right": [
-				"mpd",
-				"idle_inhibitor",
-				"pulseaudio",
-				"network",
-				"power-profiles-daemon",
-				"cpu",
-				"memory",
-				"temperature",
-				"backlight",
-				"keyboard-state",
-				"sway/language",
-				"battery",
-				"battery#bat2",
-				"clock",
-				"tray",
-				"custom/power"
+			"idle_inhibitor",
+			"pulseaudio",
+			"network",
+			"power-profiles-daemon",
+			"cpu",
+			"memory",
+			"temperature",
+			"battery",
+			"tray",
+			"custom/power"
 		],
 
 		"hyprland/workspaces": {
@@ -67,6 +61,7 @@
 				"tooltip": true,
 				"tooltip-format": "{app}: {title}"
 		},
+
 		"mpd": {
 				"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
 				"format-disconnected": "Disconnected ",
@@ -93,6 +88,7 @@
 				"tooltip-format": "MPD (connected)",
 				"tooltip-format-disconnected": "MPD (disconnected)"
 		},
+
 		"idle_inhibitor": {
 				"format": "{icon}",
 				"format-icons": {
@@ -100,6 +96,7 @@
 						"deactivated": ""
 				}
 		},
+
 		"tray": {
 				// "icon-size": 21,
 				"spacing": 10,
@@ -108,46 +105,78 @@
 				//	 "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
 				// }
 		},
+
 		"clock": {
 				// "timezone": "America/New_York",
 				"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
 				"format-alt": "{:%Y-%m-%d}"
 		},
+
 		"cpu": {
 				"format": "{usage}% ",
 				"tooltip": false
 		},
+
 		"memory": {
 				"format": "{}% "
 		},
+
 		"temperature": {
 				// "thermal-zone": 2,
 				// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
 				"critical-threshold": 80,
 				// "format-critical": "{temperatureC}°C {icon}",
-				"format": "{temperatureC}°C {icon}",
+				"format": "{temperatureF}°F {icon}",
 				"format-icons": ["", "", ""]
 		},
+
 		"backlight": {
 				// "device": "acpi_video1",
 				"format": "{percent}% {icon}",
 				"format-icons": ["", "", "", "", "", "", "", "", ""]
 		},
+
 		"battery": {
-				"states": {
-						// "good": 95,
-						"warning": 30,
-						"critical": 15
+			"format": "{capacity}% {icon}",
+			"format-discharging": "{icon}",
+			"format-charging": "{icon}",
+			"format-plugged": "",
+				"format-icons": {
+					"charging": [
+						"󰢜",
+						"󰂆",
+						"󰂇",
+						"󰂈",
+						"󰢝",
+						"󰂉",
+						"󰢞",
+						"󰂊",
+						"󰂋",
+						"󰂅"
+					],
+					"default": [
+						"󰁺",
+						"󰁻",
+						"󰁼",
+						"󰁽",
+						"󰁾",
+						"󰁿",
+						"󰂀",
+						"󰂁",
+						"󰂂",
+						"󰁹"
+					]
 				},
-				"format": "{capacity}% {icon}",
-				"format-full": "{capacity}% {icon}",
-				"format-charging": "{capacity}% ",
-				"format-plugged": "{capacity}% ",
-				"format-alt": "{time} {icon}",
-				// "format-good": "", // An empty format will hide the module
-				// "format-full": "",
-				"format-icons": ["", "", "", "", ""]
+				"format-full": "󰂅",
+				"tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+				"tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+				"interval": 5,
+				"states": {
+				"warning": 20,
+				"critical": 10
+			}
 		},
+
 		"power-profiles-daemon": {
 			"format": "{icon}",
 			"tooltip-format": "Power profile: {profile}\nDriver: {driver}",
@@ -159,6 +188,7 @@
 				"power-saver": ""
 			}
 		},
+
 		"network": {
 				// "interface": "wlp2*", // (Optional) To force the use of this interface
 				"format-wifi": "{essid} ({signalStrength}%) ",
@@ -168,6 +198,7 @@
 				"format-disconnected": "Disconnected ⚠",
 				"format-alt": "{ifname}: {ipaddr}/{cidr}"
 		},
+
 		"pulseaudio": {
 				// "scroll-step": 1, // %, can be a float
 				"format": "{volume}% {icon} {format_source}",
@@ -187,6 +218,7 @@
 				},
 				"on-click": "pavucontrol"
 		},
+
 		"custom/media": {
 				"format": "{icon} {text}",
 				"return-type": "json",
@@ -199,6 +231,7 @@
 				"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
 				// "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
 		},
+
 		"custom/power": {
 			"format" : "⏻ ",
 			"tooltip": false,
@@ -211,4 +244,5 @@
 				"hibernate": "systemctl hibernate"
 			}
 		}
+
 }
