@@ -131,9 +131,13 @@
 		zip
 		unzip
 		xclip
-		hyprsunset
 		playerctl
 		brave
+
+		# hyprland packages
+		hyprsunset
+		hyprlock
+		swaynotificationcenter
 
 		# reverse engineering
 		xxd
