@@ -141,6 +141,7 @@
 		# hyprland packages
 		hyprsunset
 		hyprlock
+		hypridle
 		swaynotificationcenter
 		waybar
 		brightnessctl
