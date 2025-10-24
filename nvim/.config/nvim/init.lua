@@ -8,10 +8,10 @@ api.nvim_set_hl(0, "Normal", { bg = "none" })
 api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
-require('plugins.obsidian')
 require('plugins.telescope')
 require('plugins.toggleterm')
 require('plugins.lsp')
+require('plugins.obsidian')
 require('keybindings')
 
 local o = vim.opt

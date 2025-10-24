@@ -111,66 +111,72 @@
 	# List packages installed in system profile. To search, run:
 	# $ nix search wget
 	environment.systemPackages = with pkgs; [
-		ghostty
-		neovim
-		obsidian
-		tmux
-		stow
-		git
-		fzf
-		ripgrep
-		eza
-		jp2a
-		starship
-		steam-run
-		ffmpeg
-		lsof
+		alsa-utils
+		brave
 		btop
 		dig
-		traceroute
-		zip
-		unzip
-		xclip
-		playerctl
-		brave
+		eza
+		fd
+		ffmpeg
+		fzf
+		ghostty
+		git
+		jp2a
 		jq
 		kmod
-		alsa-utils
+		lsof
+		neovim
+		obsidian
 		pavucontrol
+		playerctl
+		ripgrep
+		starship
+		steam-run
+		stow
+		tmux
+		traceroute
+		unzip
+		wget
+		xclip
+		yazi
+		zip
 
 		# hyprland packages
-		hyprsunset
-		hyprlock
-		hypridle
-		swaynotificationcenter
-		waybar
 		brightnessctl
+		hypridle
+		hyprlock
+		hyprsunset
+		swaynotificationcenter
 		swayosd
+		waybar
 
 		# reverse engineering
-		xxd
 		binutils
 		file
-		llvm
-		hexyl
-		rizin
 		ghidra
+		hexyl
+		llvm
+		rizin
+		xxd
 
 		# language runtimes
 		go
 		gopls
 		jdk24
+		jdt-language-server
+		nodejs
 		protobuf
+		tree-sitter
 
 		# nflx
 		google-chrome
-		jetbrains.idea-ultimate
 		jetbrains-toolbox
-		python3
-		slack
-		openssl
+		jetbrains.idea-ultimate
 		nss
 		nssTools
+		openssl
+		python3
+		slack
 		udev
 	];
 
