@@ -1,6 +1,7 @@
 require('telescope').setup({
 	defaults = {
 		file_ignore_patterns = { "%.git/" },
+		path_display={"smart"},
 	},
 	pickers = {
 
@@ -8,6 +9,12 @@ require('telescope').setup({
 			hidden = true,
 			no_ignore = true,
 			follow = true,
+			theme = "dropdown",
+
+		},
+
+		git_files = {
+			theme = "dropdown"
 		},
 
 		live_grep = {
@@ -18,6 +25,7 @@ require('telescope').setup({
 					"--glob", "!.git/*" -- still skip .git itself
 				}
 			end,
+			theme = "dropdown",
 		}
 
 	}

@@ -39,10 +39,11 @@ k.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 
 -- Telescope
 local telescope = require('telescope.builtin')
+
 k.set('n', '<leader>sa', telescope.find_files, {})
 k.set('n', '<leader>sf', telescope.git_files, {})
 k.set('n', '<leader>gf', telescope.live_grep, {})
-k.set('n', '<leader>nfb', telescope.buffers, {})
+k.set('n', '<leader>bf', telescope.buffers, {})
 k.set('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', {})
 
 -- Obsidian

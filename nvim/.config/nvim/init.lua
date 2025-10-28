@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("evergarden")
 
 local api = vim.api
 api.nvim_set_hl(0, "Normal", { bg = "none" })

@@ -29,11 +29,14 @@ repos=(
 	# colors
 	"https://github.com/folke/tokyonight.nvim.git"
 	"https://github.com/catppuccin/nvim.git"
+	"https://github.com/everviolet/nvim.git"
 
 )
 
 for repo in "${repos[@]}"; do
-	git -C ./start clone "$repo"
+	# turn "https://github.com/d2fn/dot" into "github.com-d2fn-dot"
+	checkout_dir=$(echo "$repo" | awk -F '/' '{ print $(NF-2) "-" $(NF-1) "-" $(NF) }')
+	git -C ./start clone "$repo" $checkout_dir
 done
 
 find ./start -mindepth 1 -maxdepth 1 | xargs -I{} git -C {} pull
