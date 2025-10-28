@@ -2,7 +2,7 @@
 local k = vim.keymap
 
 -- Generic keybindings
-k.set({'n','i'}, '<C-s><C-s>', '<cmd>w<CR>', { noremap = true, desc = "Save" })
+k.set('n', '<leader>w', '<cmd>w<CR>', { noremap = true, desc = "Save" })
 k.set('n', '<leader>so', '<cmd>source ~/.config/nvim/init.lua<CR>', { noremap = true, desc = "Source" })
 k.set("n", "<leader><leader>", "<C-^>", { desc = "Switch to last file" })
 
@@ -39,8 +39,10 @@ k.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 
 -- Telescope
 local telescope = require('telescope.builtin')
-k.set('n', '<leader>ff', telescope.find_files, {})
-k.set('n', '<leader>fg', telescope.live_grep, {})
+k.set('n', '<leader>sa', telescope.find_files, {})
+k.set('n', '<leader>sf', telescope.git_files, {})
+k.set('n', '<leader>gf', telescope.live_grep, {})
+k.set('n', '<leader>nfb', telescope.buffers, {})
 k.set('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', {})
 
 -- Obsidian

@@ -35,6 +35,6 @@ alias gcam='git commit -a -m'
 alias gcad='git commit -a --amend'
 
 # clipboard
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+alias pbcopy='wl-copy'
+alias pbpaste='wl-paste'
 

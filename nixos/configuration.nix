@@ -138,6 +138,8 @@
 		unzip
 		wget
 		xclip
+		wl-clipboard
+		xsel
 		yazi
 		zip
 

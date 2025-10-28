@@ -1,16 +1,17 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.cmd.colorscheme("slate")
+vim.cmd.colorscheme("catppuccin")
 
 local api = vim.api
 api.nvim_set_hl(0, "Normal", { bg = "none" })
 api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
+require('plugins.harpoon')
 require('plugins.telescope')
-require('plugins.toggleterm')
 require('plugins.lsp')
+require('plugins.toggleterm')
 require('plugins.obsidian')
 require('keybindings')
 
