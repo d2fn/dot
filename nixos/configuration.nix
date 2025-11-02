@@ -66,6 +66,9 @@
     enable-animations=false
 	'';
 
+	services.gnome.gnome-keyring.enable = true;
+	security.pam.services.login.enableGnomeKeyring = true;
+
 	# Enable CUPS to print documents.
 	services.printing.enable = true;
 
@@ -111,7 +114,9 @@
 	# List packages installed in system profile. To search, run:
 	# $ nix search wget
 	environment.systemPackages = with pkgs; [
+
 		alsa-utils
+		bat
 		brave
 		btop
 		dig
@@ -126,6 +131,7 @@
 		kmod
 		lsof
 		neovim
+		nethogs
 		obsidian
 		pavucontrol
 		playerctl
@@ -137,8 +143,8 @@
 		traceroute
 		unzip
 		wget
-		xclip
 		wl-clipboard
+		xclip
 		xsel
 		yazi
 		zip
@@ -168,11 +174,11 @@
 		jdt-language-server
 		nodejs
 		protobuf
+		sqlite
 		tree-sitter
 
 		# nflx
 		google-chrome
-		jetbrains-toolbox
 		jetbrains.idea-ultimate
 		nss
 		nssTools
@@ -180,6 +186,7 @@
 		python3
 		slack
 		udev
+
 	];
 
 	programs.starship = {
