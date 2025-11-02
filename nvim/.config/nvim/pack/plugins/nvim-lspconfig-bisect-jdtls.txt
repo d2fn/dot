@@ -1,0 +1,18 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [64e0a1c6ba39417ee81a893ebbb4f8e4a949445c] feat(csharp_ls): run csharp-ls where sln, slnx or csproj file exists #4166
+git bisect bad 64e0a1c6ba39417ee81a893ebbb4f8e4a949445c
+# status: waiting for good commit(s), bad commit known
+# good: [f619467eb52061d6c59969ec15f7192fd22f56ce] fix: show backtrace from deprecate() call
+git bisect good f619467eb52061d6c59969ec15f7192fd22f56ce
+# bad: [3ddd55ac5eed414945ef51c5a65220996826f316] fix(julials): accomodate julia 1.12 #4148
+git bisect bad 3ddd55ac5eed414945ef51c5a65220996826f316
+# good: [ad9f25903086ad87f46ca9843c163c8a871709e5] fix(css_variables): wrong root dir if subdir has package.json #4127
+git bisect good ad9f25903086ad87f46ca9843c163c8a871709e5
+# bad: [0d90bb9bfb8e8b6b64f4a19b7dd3619f5d2788b5] feat: force-stop server with :LspStop! (bang) #4140
+git bisect bad 0d90bb9bfb8e8b6b64f4a19b7dd3619f5d2788b5
+# bad: [daeb18c3a646f93bebafffe350b6b0cf9659d784] fix(jdtls): swap settings.gradle, build.gradle in root markers #4142
+git bisect bad daeb18c3a646f93bebafffe350b6b0cf9659d784
+# good: [e5c61b02f33b5c6538be25b2696b33b4cc91e667] docs: update configs.md skip-checks: true
+git bisect good e5c61b02f33b5c6538be25b2696b33b4cc91e667
+# first bad commit: [daeb18c3a646f93bebafffe350b6b0cf9659d784] fix(jdtls): swap settings.gradle, build.gradle in root markers #4142

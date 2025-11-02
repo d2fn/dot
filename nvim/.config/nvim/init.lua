@@ -1,16 +1,16 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.cmd.colorscheme("evergarden")
+vim.cmd.colorscheme("sonokai")
 
 local api = vim.api
 api.nvim_set_hl(0, "Normal", { bg = "none" })
 api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
+require('plugins.lsp')
 require('plugins.harpoon')
 require('plugins.telescope')
-require('plugins.lsp')
 require('plugins.toggleterm')
 require('plugins.obsidian')
 require('keybindings')

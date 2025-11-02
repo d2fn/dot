@@ -30,12 +30,14 @@ repos=(
 	"https://github.com/folke/tokyonight.nvim.git"
 	"https://github.com/catppuccin/nvim.git"
 	"https://github.com/everviolet/nvim.git"
+	"https://github.com/sainnhe/sonokai.git"
 
 )
 
 for repo in "${repos[@]}"; do
 	# turn "https://github.com/d2fn/dot" into "github.com-d2fn-dot"
 	checkout_dir=$(echo "$repo" | awk -F '/' '{ print $(NF-2) "-" $(NF-1) "-" $(NF) }')
+	echo $checkout_dir
 	git -C ./start clone "$repo" $checkout_dir
 done
 

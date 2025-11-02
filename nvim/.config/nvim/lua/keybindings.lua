@@ -3,6 +3,9 @@ local k = vim.keymap
 
 -- Generic keybindings
 k.set('n', '<leader>w', '<cmd>w<CR>', { noremap = true, desc = "Save" })
+k.set('n', '<leader>q', '<cmd>q<CR>', { noremap = true, desc = "Close Buffer" })
+k.set('n', '<leader>sv', '<cmd>vsplit<CR>', { noremap = true, desc = "Vertical Split" })
+k.set('n', '<leader>sh', '<cmd>split<CR>', { noremap = true, desc = "Horizontal Split" })
 k.set('n', '<leader>so', '<cmd>source ~/.config/nvim/init.lua<CR>', { noremap = true, desc = "Source" })
 k.set("n", "<leader><leader>", "<C-^>", { desc = "Switch to last file" })
 
@@ -42,6 +45,7 @@ local telescope = require('telescope.builtin')
 
 k.set('n', '<leader>sa', telescope.find_files, {})
 k.set('n', '<leader>sf', telescope.git_files, {})
+k.set('n', '<leader>gs', telescope.git_status, {})
 k.set('n', '<leader>gf', telescope.live_grep, {})
 k.set('n', '<leader>bf', telescope.buffers, {})
 k.set('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', {})
