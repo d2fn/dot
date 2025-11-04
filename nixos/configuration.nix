@@ -46,6 +46,7 @@
 
 	systemd.tmpfiles.rules = [
 		"L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
+		"L+ /bin/cat - - - - ${pkgs.coreutils}/bin/cat"
 	];
 
   programs.ssh.startAgent = true;		  # start ssh-agent on login
@@ -91,11 +92,13 @@
   # 2) Declare the plugdev group and put your user in it
   users.groups.plugdev = { };
 
+	virtualisation.docker.enable = true;
+
 	# Define a user account. Don't forget to set a password with ‘passwd’.
 	users.users.d = {
 		isNormalUser = true;
 		description = "Dietrich Featherston";
-		extraGroups = [ "networkmanager" "wheel" "plugdev" ];
+		extraGroups = [ "networkmanager" "wheel" "plugdev" "docker"];
 		packages = with pkgs; [
 		#	thunderbird
 		];

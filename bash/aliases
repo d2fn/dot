@@ -38,3 +38,7 @@ alias gcad='git commit -a --amend'
 alias pbcopy='wl-copy'
 alias pbpaste='wl-paste'
 
+alias commercerefresh="./gradlew updateLock saveLock -PdependencyLock.updateDependencies=com.netflix.xdomain.commerce:xdomain-commerce-proto"
+alias noirrefresh="./gradlew updateLock saveLock -PdependencyLock.updateDependencies=com.netflix.page:noir-proto-definition && ./gradlew updateLock saveLock -PdependencyLock.updateDependencies=com.netflix.page:noir-page-proto-definition"
+
+alias newt-shell='nix shell mynewt-newt'
