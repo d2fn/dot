@@ -119,6 +119,7 @@
 		bat
 		brave
 		btop
+		copyq
 		dig
 		eza
 		fd
@@ -129,12 +130,14 @@
 		jp2a
 		jq
 		kmod
+		libnotify
 		lsof
 		neovim
 		nethogs
 		obsidian
 		pavucontrol
 		playerctl
+		pstree
 		ripgrep
 		starship
 		steam-run
@@ -148,12 +151,16 @@
 		xsel
 		yazi
 		zip
+		zoxide
 
 		# hyprland packages
 		brightnessctl
+		grim
 		hypridle
 		hyprlock
+		hyprpicker
 		hyprsunset
+		slurp
 		swaynotificationcenter
 		swayosd
 		waybar
@@ -168,6 +175,8 @@
 		xxd
 
 		# language runtimes
+		gcc
+		clang
 		go
 		gopls
 		jdk24
@@ -179,7 +188,7 @@
 
 		# nflx
 		google-chrome
-		jetbrains.idea-ultimate
+		jetbrains-toolbox
 		nss
 		nssTools
 		openssl

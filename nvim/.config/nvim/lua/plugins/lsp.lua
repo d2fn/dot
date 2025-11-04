@@ -3,6 +3,7 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 vim.lsp.config['gopls'] = {
+	capabilities = capabilities,
 	settings = {
 		gopls = {
 			analyses = {
@@ -10,6 +11,7 @@ vim.lsp.config['gopls'] = {
 			},
 			staticcheck = true,
 			gofumpt = true,
+			semanticTokens = true,
 		},
 	},
 }

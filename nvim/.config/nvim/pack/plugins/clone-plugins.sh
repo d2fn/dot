@@ -31,6 +31,7 @@ repos=(
 	"https://github.com/catppuccin/nvim.git"
 	"https://github.com/everviolet/nvim.git"
 	"https://github.com/sainnhe/sonokai.git"
+	"https://github.com/rose-pine/neovim.git"
 
 )
 

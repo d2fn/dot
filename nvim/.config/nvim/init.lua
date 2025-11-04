@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.cmd.colorscheme("sonokai")
+vim.cmd.colorscheme("rose-pine")
 
 local api = vim.api
 api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -12,6 +12,7 @@ require('plugins.lsp')
 require('plugins.harpoon')
 require('plugins.telescope')
 require('plugins.toggleterm')
+require('plugins.treesitter')
 require('plugins.obsidian')
 require('keybindings')
 
