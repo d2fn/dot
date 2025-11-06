@@ -142,6 +142,7 @@
 		playerctl
 		pstree
 		ripgrep
+		rofi
 		starship
 		steam-run
 		stow
@@ -178,14 +179,18 @@
 		xxd
 
 		# language runtimes
-		gcc
+		cargo
 		clang
+		clippy
+		gcc
 		go
 		gopls
 		jdk24
 		jdt-language-server
 		nodejs
 		protobuf
+		rustc
+		rustfmt
 		sqlite
 		tree-sitter
 
