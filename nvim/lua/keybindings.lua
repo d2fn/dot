@@ -9,6 +9,9 @@ k.set('n', '<leader>sh', '<cmd>split<CR>', { noremap = true, desc = "Horizontal 
 k.set('n', '<leader>so', '<cmd>source ~/.config/nvim/init.lua<CR>', { noremap = true, desc = "Source" })
 k.set("n", "<leader><leader>", "<C-^>", { desc = "Switch to last file" })
 
+k.set({'n','t'}, '<C-_>', '<cmd>ToggleTerm<CR>', {silent=true})
+k.set({'n','t'}, '<C-/>', '<cmd>ToggleTerm<CR>', {silent=true})
+
 -- improved navigation of text wrapping
 k.set('n', 'j', 'gj', { noremap = true })
 k.set('n', 'k', 'gk', { noremap = true })
