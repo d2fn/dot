@@ -146,6 +146,7 @@
 		starship
 		steam-run
 		stow
+		speedtest-cli
 		tmux
 		traceroute
 		unzip
