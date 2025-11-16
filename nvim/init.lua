@@ -110,4 +110,3 @@ vim.opt.listchars = {
 -- set a subtle gray for listchars
 vim.api.nvim_set_hl(0, "Whitespace", { fg = "#333333" })
 
-

@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
 
 		map("n", "gr", telescope.lsp_references, "Go to type definition")
+		map("n", "gm", telescope.lsp_document_symbols, "List symbols in document")
 		-- map("n", "gr", vim.lsp.buf.references, "Find references")
 
 		map("n", "gy", vim.lsp.buf.type_definition, "Go to type definition")
@@ -36,7 +37,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.tabstop = 2                            -- Tab width
 		vim.opt_local.shiftwidth = 2                         -- Indent width
 		vim.opt_local.softtabstop = 2                        -- Soft tab stop
-		vim.opt_local.expandtab = false                      -- Use spaces instead of tabs
+		vim.opt_local.expandtab = true                       -- Use spaces instead of tabs
 		require('lsp.jdtls').setup()
   end,
 })

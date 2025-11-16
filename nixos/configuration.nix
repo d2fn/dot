@@ -188,6 +188,7 @@
 		gopls
 		jdk24
 		jdt-language-server
+		lua-language-server
 		nodejs
 		protobuf
 		rustc

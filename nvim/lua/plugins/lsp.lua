@@ -29,3 +29,20 @@ vim.lsp.config['pyright'] = {
 	}
 }
 
+vim.lsp.config['lua_ls'] = {
+	settings = {
+		Lua = {
+			runtime = {
+				version = 'LuaJIT', -- Neovim uses LuaJIT
+			},
+			diagnostics = {
+				globals = { 'vim' }, -- stop "undefined global 'vim'" errors
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false, -- disable annoying prompts
+			},
+			telemetry = { enable = false },
+		}
+	}
+}
