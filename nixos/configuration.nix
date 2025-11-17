@@ -122,6 +122,7 @@
 		bat
 		brave
 		btop
+		cmatrix
 		copyq
 		dig
 		eza
