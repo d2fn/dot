@@ -14,6 +14,7 @@
 					./t480-hardware-configuration.nix
 					./home/configuration.nix
 					./home/git.nix
+					./home/greetd.nix
 				];
 			};
 			nflx = nixpkgs.lib.nixosSystem {

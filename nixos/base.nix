@@ -38,11 +38,6 @@
 		LC_TIME = "en_US.UTF-8";
 	};
 
-	console.useXkbConfig = true;
-
-	services.xserver.enable = true;
-	services.xserver.xkb.options = "ctrl:nocaps";
-
 	services.printing.enable = true;
 
 	services.pulseaudio.enable = false;
