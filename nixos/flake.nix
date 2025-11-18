@@ -21,10 +21,13 @@
 				modules = [
 					./base.nix
 					./p16s-hardware-configuration.nix
+					./nflx/code.nix
 					./nflx/configuration.nix
 					./nflx/git.nix
-					./nflx/code.nix
+					./nflx/gnome.nix
 					./nflx/nix-ld.nix
+					./nflx/packages.nix
+					./nflx/slack.nix
 				];
 			};
 		};
