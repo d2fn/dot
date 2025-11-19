@@ -24,5 +24,4 @@
   services.gnome.evolution-data-server.enable = false;
   services.gnome.tinysparql.enable = false;
   services.gnome.localsearch.enable = false;
-  programs.dconf.enable = false;
 }

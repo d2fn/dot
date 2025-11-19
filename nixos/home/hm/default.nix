@@ -8,7 +8,9 @@
   programs.home-manager.enable = true;
 
   imports = [
+    ./gtk.nix
     ./hyprland.nix
     ./waybar.nix
   ];
+
 }
