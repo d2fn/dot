@@ -2,16 +2,6 @@
 
 {
 
-	imports = [
-		./modules/bin-synlinks.nix
-		./modules/code.nix
-		./modules/core-packages.nix
-		./modules/fonts.nix
-		./modules/hyprland.nix
-		./modules/reverse-eng.nix
-		./modules/zsa.nix
-	];
-
 	system.stateVersion = "25.05";
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
