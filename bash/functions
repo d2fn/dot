@@ -40,5 +40,20 @@ fkill() {
     awk '{print $1}' |
     xargs -r kill "$@"
 }
-# usage: fkill         → kill normal
-#         fkill -9     → force kill
+
+# i like to run this after changing hyprland config or re-running home manager
+# to ensure that a closed laptop lid doesn't steal workspaces
+hypr_checklid() {
+	local lid
+	lid=$(ls /proc/acpi/button/lid 2>/dev/null | head -n1)
+	[ -z "$lid" ] && return 1  # no lid device found
+
+	local state
+	state=$(awk '{print $2}' "/proc/acpi/button/lid/$lid/state")
+
+	if [ "$state" = "closed" ]; then
+		hyprctl keyword monitor "eDP-1, disable"
+		hyprctl dispatch workspace 1
+	fi
+}
+

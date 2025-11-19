@@ -7,6 +7,10 @@
 
   programs.home-manager.enable = true;
 
+  home.packages = with pkgs; [
+		jetbrains-toolbox
+	];
+
   imports = [
     ../../hm/gtk.nix
     ./hyprland.nix

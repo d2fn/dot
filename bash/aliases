@@ -1,6 +1,6 @@
 # File system
-alias ls='eza -lh --group-directories-first --icons=auto'
-alias lsa='ls -a'
+alias lsl='eza -lh --group-directories-first --icons=auto'
+alias lsa='lsl -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
@@ -44,3 +44,4 @@ alias commercerefresh="./gradlew updateLock saveLock -PdependencyLock.updateDepe
 alias noirrefresh="./gradlew updateLock saveLock -PdependencyLock.updateDependencies=com.netflix.page:noir-proto-definition && ./gradlew updateLock saveLock -PdependencyLock.updateDependencies=com.netflix.page:noir-page-proto-definition"
 
 alias newt-shell='nix shell mynewt-newt'
+
