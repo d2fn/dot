@@ -26,12 +26,15 @@
       ################
       ### MONITORS ###
       ################
-      monitor = [
-        "eDP-1,preferred,auto,1"
-        "desc:BNQ BenQ RD280U L8R0071401Q,preferred,auto,2"
-        "desc:Dell Inc. DELL U3421WE 376L653,preferred,auto,1"
-        ",preferred,auto,1"
-      ];
+
+			monitor = [
+				# See https://wiki.hyprland.org/Configuring/Monitors/
+				"desc:Samsung Display Corp. 0x4165,preferred,auto,2"
+				"desc:BNQ BenQ RD280U L8R0071401Q,preferred,auto,2"
+				"desc:Dell Inc. DELL U3421WE 376L653,preferred,auto,1"
+				"eDP-1,preferred,auto,2"
+				",preferred,auto,1"
+			];
 
       #########################
       ### AUTOSTART / ENV   ###
@@ -140,8 +143,12 @@
       ];
 
       windowrulev2 = [
-        "workspace 2, class:^(brave-browser)$"
-        "workspace 3, class:^(obsidian)$"
+				"workspace 2, class:^(brave-browser)$"
+				"workspace 3, class:^(Slack)$"
+				"workspace 4, class:^(google-chrome)$"
+				"workspace 5, class:^(jetbrains-idea)$"
+				"workspace 6, class:^(jetbrains-gateway)$"
+				"workspace 6, class:^(jetbrains-toolbox)$"
       ];
     };
 
@@ -159,8 +166,7 @@
       $menu = rofi -show drun
 
       $mainMod = ALT
-      $obsidian = $scripts/obsidian.sh
-      $launcher = $scripts/launcher.sh
+      $hyper = SUPER CTRL ALT SHIFT
 
       ################
       ### MONITORS ###
@@ -264,5 +270,6 @@
       bind = CTRL SUPER SHIFT, H, exec, hyprpicker --autocopy --format=hex && notify-send "Color copied"
     '';
   };
+
 }
 

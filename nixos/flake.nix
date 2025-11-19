@@ -20,11 +20,12 @@
 					./t480-hardware-configuration.nix
 					./home/configuration.nix
 					./home/git.nix
-					./home/greetd.nix
 					./modules/bin-symlinks.nix
 					./modules/code.nix
 					./modules/core-packages.nix
 					./modules/fonts.nix
+					./modules/greetd.nix
+					./modules/obsidian.nix
 					./modules/reverse-eng.nix
 					./modules/zsa.nix
 					home-manager.nixosModules.home-manager
@@ -43,7 +44,7 @@
 					./nflx/code.nix
 					./nflx/configuration.nix
 					./nflx/git.nix
-					./nflx/gnome.nix
+					./nflx/gnome-keyring.nix
 					./nflx/nix-ld.nix
 					./nflx/packages.nix
 					./nflx/slack.nix
@@ -51,9 +52,16 @@
 					./modules/code.nix
 					./modules/core-packages.nix
 					./modules/fonts.nix
-					./modules/hyprland.nix
+					./modules/greetd.nix
+					./modules/obsidian.nix
 					./modules/reverse-eng.nix
 					./modules/zsa.nix
+					home-manager.nixosModules.home-manager
+					{
+						home-manager.useGlobalPkgs = true;
+						home-manager.useUserPackages = true;
+						home-manager.users.d = import ./nflx/hm;
+					}
 				];
 			};
 		};

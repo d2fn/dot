@@ -26,7 +26,6 @@
 		lsof
 		neovim
 		nethogs
-		obsidian
 		openresolv
 		pavucontrol
 		playerctl
