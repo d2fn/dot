@@ -9,7 +9,7 @@
     hyprlock
     hyprpicker
     hyprsunset
-		wofi
+		rofi-wayland
     slurp
     swaynotificationcenter
     swayosd
@@ -163,7 +163,7 @@
       $chrome = google-chrome-stable
       $brave = brave
       $fileManager = nautilus
-      $menu = wofi --show drun
+      $menu = rofi -show drun
 
       $mainMod = ALT
       $hyper = SUPER CTRL ALT SHIFT
