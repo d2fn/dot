@@ -264,5 +264,8 @@
       bind = CTRL SUPER SHIFT, H, exec, hyprpicker --autocopy --format=hex && notify-send "Color copied"
     '';
   };
+
+	xdg.configFile."hypr/hypridle.conf".source = ./hypr/hypridle.conf;
+	xdg.configFile."hypr/hyprsunset.conf".source = ./hypr/hyprsunset.conf;
 }
 

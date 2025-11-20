@@ -9,7 +9,7 @@
     hyprlock
     hyprpicker
     hyprsunset
-    rofi
+		wofi
     slurp
     swaynotificationcenter
     swayosd
@@ -163,7 +163,7 @@
       $chrome = google-chrome-stable
       $brave = brave
       $fileManager = nautilus
-      $menu = rofi -show drun
+      $menu = wofi --show drun
 
       $mainMod = ALT
       $hyper = SUPER CTRL ALT SHIFT
@@ -188,7 +188,7 @@
       bind = $mainMod SHIFT, SPACE, exec, $terminal
       bind = $mainMod, SPACE, workspace, 1
       bind = $mainMod, A, workspace, 2
-      bind = $mainMod, S, workspace, 3
+      bind = $mainMod, S, exec, focus_or_launch "slack" "Slack"
       bind = $mainMod, D, workspace, 4
       bind = $mainMod, F, workspace, 5
       bind = $mainMod, E, exec, $fileManager
@@ -271,5 +271,7 @@
     '';
   };
 
+	xdg.configFile."hypr/hypridle.conf".source = ./hypr/hypridle.conf;
+	xdg.configFile."hypr/hyprsunset.conf".source = ./hypr/hyprsunset.conf;
 }
 

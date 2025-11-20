@@ -11,8 +11,13 @@
 		jetbrains-toolbox
 	];
 
+	home.sessionVariables = {
+		QT_QPA_PLATFORM = "wayland";
+	};
+
   imports = [
     ../../hm/gtk.nix
+		../../modules/focus_or_launch.nix
     ./hyprland.nix
     ./waybar.nix
   ];
