@@ -159,8 +159,6 @@
       $menu = rofi -show drun
 
       $mainMod = ALT
-      $obsidian = $scripts/obsidian.sh
-      $launcher = $scripts/launcher.sh
 
       ################
       ### MONITORS ###
@@ -185,6 +183,7 @@
       bind = $mainMod, S, workspace, 3
       bind = $mainMod, D, workspace, 4
       bind = $mainMod, F, workspace, 5
+      bind = $mainMod, O, exec, focus_or_launch "obsidian" "obsidian"
       bind = $mainMod, E, exec, $fileManager
 
       bind = $mainMod SHIFT, F, togglefloating,
