@@ -14,6 +14,7 @@
     swaynotificationcenter
     swayosd
     wl-clipboard
+		nautilus
   ];
 
   wayland.windowManager.hyprland = {
@@ -148,7 +149,7 @@
 				"workspace 4, class:^(google-chrome)$"
 				"workspace 5, class:^(jetbrains-idea)$"
 				"workspace 6, class:^(jetbrains-gateway)$"
-				"workspace 6, class:^(jetbrains-toolbox)$"
+				"workspace 7, class:^(obsidian)$"
       ];
     };
 
@@ -191,6 +192,7 @@
       bind = $mainMod, S, exec, focus_or_launch "slack" "Slack"
       bind = $mainMod, D, workspace, 4
       bind = $mainMod, F, workspace, 5
+      bind = $mainMod, O, exec, focus_or_launch "obsidian" "obsidian"
       bind = $mainMod, E, exec, $fileManager
 
       bind = $mainMod SHIFT, F, togglefloating,
