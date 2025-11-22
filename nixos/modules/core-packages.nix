@@ -24,6 +24,7 @@
 		kmod
 		libnotify
 		lsof
+		nautilus
 		neovim
 		nethogs
 		openresolv

@@ -39,6 +39,9 @@
 		pulse.enable = true;
 	};
 
-  programs.dconf.enable = true;
+	# support for auto mounting usb
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;
 
+  programs.dconf.enable = true;
 }
