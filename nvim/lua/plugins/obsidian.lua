@@ -1,6 +1,6 @@
 -- Obsidian
 require('obsidian').setup({
-	dir = '~/Documents/Netflix',
+	dir = '~/Documents/Base',
 	daily_notes = {
 		foldes = "daily",
 	},
@@ -8,6 +8,10 @@ require('obsidian').setup({
 		{
 			name = "Netflix",
 			path = "~/Documents/Netflix",
+		},
+		{
+			name = "Base",
+			path = "~/Documents/Base",
 		},
 	},
 	legacy_commands = false,

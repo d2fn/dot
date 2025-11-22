@@ -27,6 +27,7 @@
 		neovim
 		nethogs
 		openresolv
+		p7zip
 		pavucontrol
 		playerctl
 		pstree
