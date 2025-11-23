@@ -28,6 +28,7 @@
 		nethogs
 		openresolv
 		p7zip
+		pastel
 		pavucontrol
 		playerctl
 		pstree
