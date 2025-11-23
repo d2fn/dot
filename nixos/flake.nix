@@ -20,6 +20,7 @@
 					./t480-hardware-configuration.nix
 					./home/configuration.nix
 					./home/git.nix
+					./home/nordvpn.nix
 					./modules/bin-symlinks.nix
 					./modules/code.nix
 					./modules/core-packages.nix

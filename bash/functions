@@ -57,3 +57,39 @@ hypr_checklid() {
 	fi
 }
 
+flatten_aperture() {
+  local parent="$1"
+  if [ -z "$parent" ] || [ ! -d "$parent" ]; then
+    echo "usage: flatten_aperture /path/to/aperture_parent"
+    return 1
+  fi
+
+  # Normalize path and enter it
+  parent="$(cd "$parent" && pwd)"
+  cd "$parent" || return 1
+
+  for proj in *.approject; do
+    [ -d "$proj" ] || continue
+
+    echo "Processing '$proj'..."
+
+    # Flatten nested image files
+    find "$proj" -mindepth 2 -type f \
+      \( -iname '*.jpg'  -o -iname '*.jpeg' \
+         -o -iname '*.png' -o -iname '*.tif' -o -iname '*.tiff' \
+         -o -iname '*.heic' \
+         -o -iname '*.cr2' -o -iname '*.nef' -o -iname '*.arw' \
+         -o -iname '*.raf' -o -iname '*.dng' \
+      \) \
+      -exec mv -n {} "$proj"/ \;
+
+    # Strip suffix
+    local new="${proj%.approject}"
+    if [ "$proj" != "$new" ]; then
+      mv "$proj" "$new"
+      echo "Renamed '$proj' → '$new'"
+    fi
+
+    echo "Done."
+  done
+}

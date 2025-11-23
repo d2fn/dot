@@ -11,8 +11,8 @@
 	boot.loader.efi.canTouchEfiVariables = true;
 
 	networking.networkmanager.enable = true;
-  programs.ssh.startAgent = true;
-  programs.ssh.askPassword = "";
+	programs.ssh.startAgent = true;
+	programs.ssh.askPassword = "";
 	
 
 	i18n.defaultLocale = "en_US.UTF-8";
@@ -28,8 +28,6 @@
 		LC_TIME = "en_US.UTF-8";
 	};
 
-	services.printing.enable = true;
-
 	services.pulseaudio.enable = false;
 	security.rtkit.enable = true;
 	services.pipewire = {
@@ -40,8 +38,31 @@
 	};
 
 	# support for auto mounting usb
-  services.udisks2.enable = true;
-  services.gvfs.enable = true;
+	services.udisks2.enable = true;
+	services.gvfs.enable = true;
 
-  programs.dconf.enable = true;
+	programs.dconf.enable = true;
+
+
+	# airplay printing
+	services.avahi = {
+		enable = true;
+		nssmdns = true;
+		publish = {
+			enable = true;
+			addresses = true;
+			workstation = true;
+		};
+	};
+
+	services.printing = {
+		enable = true;
+		drivers = [ pkgs.hplip ];
+		browsing = true;
+		allowFrom = [ "all" ];
+		defaultShared = true;
+	};
+
+	networking.firewall.allowedTCPPorts = [ 631 ];
+	networking.firewall.allowedUDPPorts = [ 5353 ];
 }

@@ -1,12 +1,3 @@
-{ config, pkgs, ... }:
-
-{
-	environment.systemPackages = with pkgs; [
-		wgnord
-		wireguard-tools
-	];
-}
-
 { config, pkgs, lib, ... }:
 
 let
@@ -15,7 +6,7 @@ let
     # run:
     #   nix-prefetch-url https://raw.githubusercontent.com/phirecc/wgnord/master/template.conf
     # and paste the hash here:
-    sha256 = "sha256-04acb0a4d0e9df4ece03219c3e563843fa49fafd8a2d582506591b52f08315c2";
+		sha256 = "1hhmhgq546sr0qjmhbcazpx4kyj371b3x7110g74xpz9s2jb1b04";
   };
 in
 {

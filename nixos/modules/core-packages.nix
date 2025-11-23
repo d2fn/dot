@@ -42,8 +42,6 @@
 		traceroute
 		unzip
 		wget
-		wgnord
-		wireguard-tools
 		xclip
 		xsel
 		yazi
