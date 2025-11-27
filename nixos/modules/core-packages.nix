@@ -6,6 +6,7 @@
 	};
 
 	environment.systemPackages = with pkgs; [
+		sysstat
 		alsa-utils
 		bat
 		brave
@@ -29,6 +30,7 @@
 		openresolv
 		p7zip
 		pastel
+		parted
 		pavucontrol
 		playerctl
 		pstree

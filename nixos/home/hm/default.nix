@@ -14,6 +14,8 @@
 		packages = with pkgs; [
 			mpv
 			celluloid
+			veracrypt
+			digikam
 		];
 	};
 
@@ -32,6 +34,7 @@
 		./dropbox.nix
 		./hyprland.nix
 		./waybar.nix
+		./electronics.nix
 	];
 
 }

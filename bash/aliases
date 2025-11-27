@@ -36,12 +36,18 @@ alias gcm='git commit -m'
 alias gcam='git commit -a -m'
 alias gcad='git commit -a --amend'
 
+# veracrypt
+alias vc='veracrypt'
+alias vct='sudo veracrypt --text'
+
 # clipboard
 alias pbcopy='wl-copy'
 alias pbpaste='wl-paste'
 
+# nflx -- todo move all this into nix home manager
 alias commercerefresh="./gradlew updateLock saveLock -PdependencyLock.updateDependencies=com.netflix.xdomain.commerce:xdomain-commerce-proto"
 alias noirrefresh="./gradlew updateLock saveLock -PdependencyLock.updateDependencies=com.netflix.page:noir-proto-definition && ./gradlew updateLock saveLock -PdependencyLock.updateDependencies=com.netflix.page:noir-page-proto-definition"
-
 alias newt-shell='nix shell mynewt-newt'
+
+
 
