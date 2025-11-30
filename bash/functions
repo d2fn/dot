@@ -93,3 +93,10 @@ flatten_aperture() {
     echo "Done."
   done
 }
+
+dk() {
+  local folder="$1"
+  mkdir -p "$folder/.digikam-db"
+  digikam --database-directory "$folder/.digikam-db"
+}
+

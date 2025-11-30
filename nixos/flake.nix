@@ -29,7 +29,6 @@
 					./modules/greetd.nix
 					./modules/obsidian.nix
 					./modules/reverse-eng.nix
-					# ./modules/veracrypt.nix
 					./modules/zsa.nix
 					home-manager.nixosModules.home-manager
 					{

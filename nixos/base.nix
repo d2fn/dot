@@ -43,7 +43,6 @@
 
 	programs.dconf.enable = true;
 
-
 	# airplay printing
 	services.avahi = {
 		enable = true;
