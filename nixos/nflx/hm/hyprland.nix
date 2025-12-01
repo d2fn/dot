@@ -94,8 +94,8 @@
         gaps_out = 10;
         border_size = 2;
 
-        "col.active_border" = "rgba(8A1C1CEE) rgba(4F2B2BEE) 45deg";
-        "col.inactive_border" = "rgba(3A1A1Aaa)";
+        "col.active_border" = "rgba(8a1c1cee) rgba(4f2b2bee) 45deg";
+        "col.inactive_border" = "rgba(3a1a1aaa)";
 
         resize_on_border = false;
         allow_tearing = false;
