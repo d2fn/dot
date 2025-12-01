@@ -35,13 +35,13 @@
 			"format-icons": {
 				"default": "",
 				"1": "",
-				"2": "\uf488", // browser
+				"2": "\uee9c", // obsidian / brain
 				"3": "\ue8a4", // slack
 				"4": "",
 				"5": "\ue7b5", // intellij
 				"6": "6",
 				"7": "7",
-				"8": "8",
+				"8": "\uf488", // browser
 				"9": "9",
 				"active": "●"
 			},

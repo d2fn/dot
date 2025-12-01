@@ -9,7 +9,7 @@
     hyprlock
     hyprpicker
     hyprsunset
-    rofi
+		rofi-wayland
     slurp
     swaynotificationcenter
     swayosd
@@ -147,8 +147,6 @@
       windowrule = [
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-				"float,  match:class:^(digikam)$, match:modal:1"
-				"center, match:class:^(digikam)$, match:modal:1"
       ];
 
       windowrulev2 = [

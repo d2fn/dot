@@ -21,6 +21,43 @@
     enable = true;
 
     settings = {
+
+      ###################
+      ### VARIABLES   ###
+      ###################
+      "$osdclient" = "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
+
+			"$mainMod" = "ALT";
+
+      "$hyper" = "SUPER CTRL ALT SHIFT";
+
+      "$brave" = "brave";
+      "$fileManager" = "nautilus";
+      "$menu" = "rofi -show drun";
+
+			"$terminalKey" = "SPACE"; # shell
+      "$terminalCmd" = "ghostty";
+			"$terminalWorkspace" = "1";
+
+			"$obsidianKey" = "O";
+			"$obsidianCmd" = "focus_or_launch \"obsidian\" \"obsidian\"";
+			"$obsidianWorkspace" = "2";
+
+			"$slackKey" = "D";
+			"$slackCmd" = "focus_or_launch \"slack\" \"Slack\"";
+			"$slackWorkspace" = "3";
+
+      "$browserKey" = "A";
+			"$browserCmd" = "google-chrome-stable";
+			"$browserWorkspace" = "4";
+
+			"$jetbrainsIdeaKey" = "I";
+			"$jetbrainsIdeaWorkspace" = "5";
+
+			"$jetbrainsGatewayWorkspace" = "6";
+			"$jetbrainsToolboxWorkspace" = "6";
+			"$braveWorkspace" = "8";
+
       # top-level flags
       "debug:disable_logs" = false;
 
@@ -144,132 +181,129 @@
       ];
 
       windowrulev2 = [
-				"workspace 2, class:^(brave-browser)$"
-				"workspace 3, class:^(Slack)$"
-				"workspace 4, class:^(google-chrome)$"
-				"workspace 5, class:^(jetbrains-idea)$"
-				"workspace 6, class:^(jetbrains-gateway)$"
-				"workspace 7, class:^(obsidian)$"
+				"workspace $terminalWorkspace, class:^(ghostty)$"
+				"workspace $browserWorkspace, class:^(google-chrome)$"
+				"workspace $slackWorkspace, class:^(Slack)$"
+				"workspace $jetbrainsIdeaWorkspace, class:^(jetbrains-idea)$"
+				"workspace $jetbrainsGatewayWorkspace, class:^(jetbrains-gateway)$"
+				"workspace $jetbrainsToolboxWorkspace, class:^(jetbrains-toolbox)$"
+				# 6
+				# 7
+				"workspace $braveWorkspace, class:^(brave-browser)$"
+				"workspace $obsidianWorkspace, class:^(obsidian)$"
+				# 0
       ];
+
+      bindl = [
+				# Trigger when the switch is turning on.
+				", switch:on:Lid Switch, exec, hyprctl keyword monitor \"eDP-1,disable\""
+				# Trigger when the switch is turning off.
+				", switch:off:Lid Switch, exec, hyprctl keyword monitor \"desc:AU Optronics 0x103D,preferred,auto,1\"; hyprctl keyword monitor \"desc:Samsung Display Corp. 0x4165,preferred,auto,2\""
+				# play pause controls
+				", XF86AudioNext, exec, playerctl next"
+				", XF86AudioPause, exec, playerctl play-pause"
+				", XF86AudioPlay, exec, playerctl play-pause"
+				", XF86AudioPrev, exec, playerctl previous"
+			];
+
+			bind = [
+				# close / kill
+				"$hyper, L, exec, hyprlock"
+				"$hyper, Q, exit"
+				"$hyper, C, killactive,"
+				# launchers
+				"$mainMod, R, exec, $menu"
+
+				"$mainMod SHIFT, T, exec, $terminal"
+				"$mainMod, $terminalKey, workspace, $terminalWorkspace"
+				"$mainMod SHIFT, $terminalKey, movetoworkspace, $terminalWorkspace"
+
+				"$mainMod, $browserKey, workspace, $browserWorkspace"
+				"$mainMod SHIFT, $browserKey, movetoworkspace, $browserWorkspace"
+
+				"$mainMod, $slackKey, exec, focus_or_launch \"slack\" \"Slack\""
+				"$mainMod SHIFT, $slackKey, movetoworkspace, $slackWorkspace"
+
+				"$mainMod, $jetbrainsIdeaKey, workspace, $jetbrainsIdeaWorkspace"
+				"$mainMod SHIFT, $jetbrainsIdeaKey, movetoworkspace, $jetbrainsIdeaWorkspace"
+
+				"$mainMod, $obsidianKey, exec, focus_or_launch \"obsidian\" \"obsidian\""
+				"$mainMod SHIFT, $obsidianKey, movetoworkspace, $obsidianWorkspace"
+
+				"$mainMod, E, exec, $fileManager"
+				# window management
+				"$mainMod SHIFT, F, togglefloating,"
+				"$mainMod, P, pseudo, # dwindle"
+				"$mainMod SHIFT, S, togglesplit, # dwindle"
+
+				# Move focus with mainMod + hjkl
+				"$mainMod, h, movefocus, l"
+				"$mainMod, j, movefocus, d"
+				"$mainMod, k, movefocus, u"
+				"$mainMod, l, movefocus, r"
+				# Switch workspaces with mainMod + [0-9]
+				"$mainMod, 1, workspace, 1"
+				"$mainMod, 2, workspace, 2"
+				"$mainMod, 3, workspace, 3"
+				"$mainMod, 4, workspace, 4"
+				"$mainMod, 5, workspace, 5"
+				"$mainMod, 6, workspace, 6"
+				"$mainMod, 7, workspace, 7"
+				"$mainMod, 8, workspace, 8"
+				"$mainMod, 9, workspace, 9"
+				"$mainMod, 0, workspace, 10"
+				# Move active window to a workspace with mainMod + secondaryMod + [0-9]
+				"$mainMod SHIFT, 1, movetoworkspace, 1"
+				"$mainMod SHIFT, 2, movetoworkspace, 2"
+				"$mainMod SHIFT, 3, movetoworkspace, 3"
+				"$mainMod SHIFT, 4, movetoworkspace, 4"
+				"$mainMod SHIFT, 5, movetoworkspace, 5"
+				"$mainMod SHIFT, 6, movetoworkspace, 6"
+				"$mainMod SHIFT, 7, movetoworkspace, 7"
+				"$mainMod SHIFT, 8, movetoworkspace, 8"
+				"$mainMod SHIFT, 9, movetoworkspace, 9"
+				"$mainMod SHIFT, 0, movetoworkspace, 10"
+				
+				### screenshot support
+				# Full screen → file
+				"SUPER SHIFT, 3, exec, grim ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png && notify-send \"📸 Screenshot saved\""
+				# Full screen → clipboard
+				"CTRL SUPER SHIFT, 3, exec, grim - | wl-copy && notify-send \"📋 Screenshot copied\""
+				# Selection → file
+				"SUPER SHIFT, 4, exec, grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png && notify-send \"📸 Region saved\""
+				# Selection → clipboard
+				"CTRL SHIFT, 4, exec, grim -g \"$(slurp)\" - | wl-copy && notify-send \"📋 Region copied\""
+
+				### color picking support
+				# hyprpicker to clipboard
+				"$hyper, K, exec, hyprpicker --autocopy --format=rgb && notify-send \"Color copied\""
+				"$hyper, H, exec, hyprpicker --autocopy --format=hex && notify-send \"Color copied\""
+			];
+
+			bindm = [
+				# Move/resize windows with mainMod + LMB/RMB and dragging
+				"$mainMod, mouse:272, movewindow"
+				"$mainMod, mouse:273, resizewindow"
+			];
+
+			bindel = [
+				# Laptop multimedia keys for volume and LCD brightness
+				",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+				",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+				",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+				",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+			];
+
+			bindeld = [
+				",XF86MonBrightnessUp, Brightness up, exec, $osdclient --brightness raise"
+				",XF86MonBrightnessDown, Brightness down, exec, $osdclient --brightness lower"
+			];
+
+
     };
 
     # Stuff Hyprland doesn't have a nice Nix schema for (variables, binds, etc.)
     extraConfig = ''
-      ###################
-      ### VARIABLES   ###
-      ###################
-      $osdclient = swayosd-client --monitor "$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')"
-
-      $terminal = ghostty
-      $chrome = google-chrome-stable
-      $brave = brave
-      $fileManager = nautilus
-      $menu = rofi -show drun
-
-      $mainMod = ALT
-      $hyper = SUPER CTRL ALT SHIFT
-
-      ################
-      ### MONITORS ###
-      ################
-      # Lid switch bindings
-      # Trigger when the switch is turning on.
-      bindl = , switch:on:Lid Switch, exec, hyprctl keyword monitor "eDP-1,disable"
-      # Trigger when the switch is turning off.
-      bindl = , switch:off:Lid Switch, exec, hyprctl keyword monitor "desc:AU Optronics 0x103D,preferred,auto,1"; hyprctl keyword monitor "desc:Samsung Display Corp. 0x4165,preferred,auto,2"
-
-      ###################
-      ### KEYBINDINGS ###
-      ###################
-
-      bind = $mainMod SHIFT, L, exec, hyprlock
-      bind = $mainMod SHIFT, Q, exit
-      bind = $mainMod SHIFT, C, killactive,
-
-      bind = $mainMod SHIFT, SPACE, exec, $terminal
-      bind = $mainMod, SPACE, workspace, 1
-      bind = $mainMod, A, workspace, 2
-      bind = $mainMod, S, exec, focus_or_launch "slack" "Slack"
-      bind = $mainMod, D, workspace, 4
-      bind = $mainMod, F, workspace, 5
-      bind = $mainMod, O, exec, focus_or_launch "obsidian" "obsidian"
-      bind = $mainMod, E, exec, $fileManager
-
-      bind = $mainMod SHIFT, F, togglefloating,
-      bind = $mainMod, R, exec, $menu
-      bind = $mainMod, P, pseudo, # dwindle
-      bind = $mainMod SHIFT, S, togglesplit, # dwindle
-
-      # Move focus with mainMod + hjkl
-      bind = $mainMod, h, movefocus, l
-      bind = $mainMod, l, movefocus, r
-      bind = $mainMod, k, movefocus, u
-      bind = $mainMod, j, movefocus, d
-
-      # Switch workspaces with mainMod + [0-9]
-      bind = $mainMod, 1, workspace, 1
-      bind = $mainMod, 2, workspace, 2
-      bind = $mainMod, 3, workspace, 3
-      bind = $mainMod, 4, workspace, 4
-      bind = $mainMod, 5, workspace, 5
-      bind = $mainMod, 6, workspace, 6
-      bind = $mainMod, 7, workspace, 7
-      bind = $mainMod, 8, workspace, 8
-      bind = $mainMod, 9, workspace, 9
-      bind = $mainMod, 0, workspace, 10
-
-      # Move active window to a workspace with mainMod + SHIFT + [0-9]
-      bind = $mainMod SHIFT, 1, movetoworkspace, 1
-      bind = $mainMod SHIFT, 2, movetoworkspace, 2
-      bind = $mainMod SHIFT, 3, movetoworkspace, 3
-      bind = $mainMod SHIFT, 4, movetoworkspace, 4
-      bind = $mainMod SHIFT, 5, movetoworkspace, 5
-      bind = $mainMod SHIFT, 6, movetoworkspace, 6
-      bind = $mainMod SHIFT, 7, movetoworkspace, 7
-      bind = $mainMod SHIFT, 8, movetoworkspace, 8
-      bind = $mainMod SHIFT, 9, movetoworkspace, 9
-      bind = $mainMod SHIFT, 0, movetoworkspace, 10
-
-      # Scroll through existing workspaces with mainMod + scroll
-      bind = $mainMod, mouse_down, workspace, e+1
-      bind = $mainMod, mouse_up, workspace, e-1
-
-      # Move/resize windows with mainMod + LMB/RMB and dragging
-      bindm = $mainMod, mouse:272, movewindow
-      bindm = $mainMod, mouse:273, resizewindow
-
-      # Laptop multimedia keys for volume and LCD brightness
-      bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
-      bindel = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-      bindel = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-      bindel = ,XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-
-      bindeld = ,XF86MonBrightnessUp, Brightness up, exec, $osdclient --brightness raise
-      bindeld = ,XF86MonBrightnessDown, Brightness down, exec, $osdclient --brightness lower
-
-      # Requires playerctl
-      bindl = , XF86AudioNext, exec, playerctl next
-      bindl = , XF86AudioPause, exec, playerctl play-pause
-      bindl = , XF86AudioPlay, exec, playerctl play-pause
-      bindl = , XF86AudioPrev, exec, playerctl previous
-
-      # --- Screenshots ---
-
-      # Full screen → file
-      bind = SUPER SHIFT, 3, exec, grim ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png && notify-send "📸 Screenshot saved"
-
-      # Full screen → clipboard
-      bind = CTRL SUPER SHIFT, 3, exec, grim - | wl-copy && notify-send "📋 Screenshot copied"
-
-      # Selection → file
-      bind = SUPER SHIFT, 4, exec, grim -g "$(slurp)" ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png && notify-send "📸 Region saved"
-
-      # Selection → clipboard
-      bind = CTRL SUPER SHIFT, 4, exec, grim -g "$(slurp)" - | wl-copy && notify-send "📋 Region copied"
-
-      # hyprpicker to clipboard
-      bind = CTRL SUPER SHIFT, K, exec, hyprpicker --autocopy --format=rgb && notify-send "Color copied"
-      bind = CTRL SUPER SHIFT, H, exec, hyprpicker --autocopy --format=hex && notify-send "Color copied"
     '';
   };
 
