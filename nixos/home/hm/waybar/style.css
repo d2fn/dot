@@ -12,6 +12,14 @@
   font-size: 15px;
 }
 
+#battery.bat0 {
+  color: #b12424; /* muted red */
+}
+
+#battery.bat1 {
+  color: #4444aa; /* subtle desaturated blue */
+}
+
 .modules-left {
   margin-left: 5px;
 }

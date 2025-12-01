@@ -28,6 +28,13 @@
 		LC_TIME = "en_US.UTF-8";
 	};
 
+
+	hardware.bluetooth = {
+		enable = true;
+		powerOnBoot = true;
+	};
+	services.blueman.enable = true;
+
 	services.pulseaudio.enable = false;
 	security.rtkit.enable = true;
 	services.pipewire = {

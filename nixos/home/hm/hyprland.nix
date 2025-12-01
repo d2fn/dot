@@ -14,6 +14,7 @@
     swaynotificationcenter
     swayosd
     wl-clipboard
+		nautilus
   ];
 
   wayland.windowManager.hyprland = {
@@ -21,27 +22,44 @@
 
     settings = {
 
+      ###################
+      ### VARIABLES   ###
+      ###################
+      "$osdclient" = "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
+
 			"$mainMod" = "ALT";
-			"$secondaryMod" = "CTRL";
+
+      "$hyper" = "SUPER CTRL ALT SHIFT";
+
+      "$fileManager" = "nautilus";
+      "$menu" = "rofi -show drun";
+
+			"$terminalKey" = "SPACE"; # shell
+      "$terminalCmd" = "ghostty";
+			"$terminalWorkspace" = "1";
+
+			"$obsidianKey" = "O";
+			"$obsidianCmd" = "focus_or_launch \"obsidian\" \"obsidian\"";
+			"$obsidianWorkspace" = "2";
+
+      "$browserKey" = "A";
+			"$browserCmd" = "brave";
+			"$browserWorkspace" = "2";
 
       # top-level flags
       "debug:disable_logs" = false;
 
-			# variables
-			"$osdclient" = "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
-			"$terminal" = "ghostty";
-			"$fileManager" = "nautilus";
-			"$menu" = "rofi -show drun";
-
       ################
       ### MONITORS ###
       ################
-      monitor = [
-        "eDP-1,preferred,auto,1"
-        "desc:BNQ BenQ RD280U L8R0071401Q,preferred,auto,2"
-        "desc:Dell Inc. DELL U3421WE 376L653,preferred,auto,1"
-        ",preferred,auto,1"
-      ];
+
+			monitor = [
+				# See https://wiki.hyprland.org/Configuring/Monitors/
+				"eDP-1,preferred,auto,1"
+				"desc:BNQ BenQ RD280U L8R0071401Q,preferred,auto,2"
+				"desc:Dell Inc. DELL U3421WE 376L653,preferred,auto,1"
+				",preferred,auto,1"
+			];
 
       #########################
       ### AUTOSTART / ENV   ###
@@ -150,8 +168,9 @@
       ];
 
       windowrulev2 = [
-        "workspace 2, class:^(brave-browser)$"
-        "workspace 3, class:^(obsidian)$"
+				"workspace $terminalWorkspace, class:^(ghostty)$"
+				"workspace $browserWorkspace, class:^(brave)$"
+				"workspace $obsidianWorkspace, class:^(obsidian)$"
       ];
 
       bindl = [
@@ -168,28 +187,33 @@
 
 			bind = [
 				# close / kill
-				"$mainMod SHIFT, L, exec, hyprlock"
-				"$mainMod SHIFT, Q, exit"
-				"$mainMod SHIFT, C, killactive,"
+				"$hyper, L, exec, hyprlock"
+				"$hyper, Q, exit"
+				"$hyper, C, killactive,"
 				# launchers
-				"$mainMod $secondaryMod, SPACE, exec, $terminal"
-				"$mainMod, SPACE, workspace, 1"
-				"$mainMod, A, workspace, 2"
-				"$mainMod, S, workspace, 3"
-				"$mainMod, D, workspace, 4"
-				"$mainMod, F, workspace, 5"
-				"$mainMod, O, exec, focus_or_launch \"obsidian\" \"obsidian\""
-				"$mainMod, E, exec, $fileManager"
 				"$mainMod, R, exec, $menu"
+
+				"$mainMod SHIFT, T, exec, $terminal"
+				"$mainMod, $terminalKey, workspace, $terminalWorkspace"
+				"$mainMod SHIFT, $terminalKey, movetoworkspace, $terminalWorkspace"
+
+				"$mainMod, $browserKey, workspace, $browserWorkspace"
+				"$mainMod SHIFT, $browserKey, movetoworkspace, $browserWorkspace"
+
+				"$mainMod, $obsidianKey, exec, focus_or_launch \"obsidian\" \"obsidian\""
+				"$mainMod SHIFT, $obsidianKey, movetoworkspace, $obsidianWorkspace"
+
+				"$mainMod, E, exec, $fileManager"
 				# window management
-				"$mainMod $secondaryMod, F, togglefloating,"
+				"$mainMod SHIFT, F, togglefloating,"
 				"$mainMod, P, pseudo, # dwindle"
-				"$mainMod $secondaryMod, S, togglesplit, # dwindle"
+				"$mainMod SHIFT, S, togglesplit, # dwindle"
+
 				# Move focus with mainMod + hjkl
-				"$mainMod $secondaryMod, h, movefocus, l"
-				"$mainMod $secondaryMod, j, movefocus, d"
-				"$mainMod $secondaryMod, k, movefocus, u"
-				"$mainMod $secondaryMod, l, movefocus, r"
+				"$mainMod, h, movefocus, l"
+				"$mainMod, j, movefocus, d"
+				"$mainMod, k, movefocus, u"
+				"$mainMod, l, movefocus, r"
 				# Switch workspaces with mainMod + [0-9]
 				"$mainMod, 1, workspace, 1"
 				"$mainMod, 2, workspace, 2"
@@ -202,16 +226,16 @@
 				"$mainMod, 9, workspace, 9"
 				"$mainMod, 0, workspace, 10"
 				# Move active window to a workspace with mainMod + secondaryMod + [0-9]
-				"$mainMod $secondaryMod, 1, movetoworkspace, 1"
-				"$mainMod $secondaryMod, 2, movetoworkspace, 2"
-				"$mainMod $secondaryMod, 3, movetoworkspace, 3"
-				"$mainMod $secondaryMod, 4, movetoworkspace, 4"
-				"$mainMod $secondaryMod, 5, movetoworkspace, 5"
-				"$mainMod $secondaryMod, 6, movetoworkspace, 6"
-				"$mainMod $secondaryMod, 7, movetoworkspace, 7"
-				"$mainMod $secondaryMod, 8, movetoworkspace, 8"
-				"$mainMod $secondaryMod, 9, movetoworkspace, 9"
-				"$mainMod $secondaryMod, 0, movetoworkspace, 10"
+				"$mainMod SHIFT, 1, movetoworkspace, 1"
+				"$mainMod SHIFT, 2, movetoworkspace, 2"
+				"$mainMod SHIFT, 3, movetoworkspace, 3"
+				"$mainMod SHIFT, 4, movetoworkspace, 4"
+				"$mainMod SHIFT, 5, movetoworkspace, 5"
+				"$mainMod SHIFT, 6, movetoworkspace, 6"
+				"$mainMod SHIFT, 7, movetoworkspace, 7"
+				"$mainMod SHIFT, 8, movetoworkspace, 8"
+				"$mainMod SHIFT, 9, movetoworkspace, 9"
+				"$mainMod SHIFT, 0, movetoworkspace, 10"
 				
 				### screenshot support
 				# Full screen → file
@@ -221,12 +245,12 @@
 				# Selection → file
 				"SUPER SHIFT, 4, exec, grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png && notify-send \"📸 Region saved\""
 				# Selection → clipboard
-				"CTRL SUPER SHIFT, 4, exec, grim -g \"$(slurp)\" - | wl-copy && notify-send \"📋 Region copied\""
+				"CTRL SHIFT, 4, exec, grim -g \"$(slurp)\" - | wl-copy && notify-send \"📋 Region copied\""
 
 				### color picking support
 				# hyprpicker to clipboard
-				"CTRL SUPER SHIFT, K, exec, hyprpicker --autocopy --format=rgb && notify-send \"Color copied\""
-				"CTRL SUPER SHIFT, H, exec, hyprpicker --autocopy --format=hex && notify-send \"Color copied\""
+				"$hyper, K, exec, hyprpicker --autocopy --format=rgb && notify-send \"Color copied\""
+				"$hyper, H, exec, hyprpicker --autocopy --format=hex && notify-send \"Color copied\""
 			];
 
 			bindm = [
@@ -248,11 +272,11 @@
 				",XF86MonBrightnessDown, Brightness down, exec, $osdclient --brightness lower"
 			];
 
+
     };
 
     # Stuff Hyprland doesn't have a nice Nix schema for (variables, binds, etc.)
     extraConfig = ''
-			### add extra config here
     '';
   };
 

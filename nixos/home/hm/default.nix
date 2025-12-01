@@ -16,8 +16,27 @@
 			celluloid
 			veracrypt
 			digikam
+			mpd
+			ncmpcpp
 		];
 	};
+
+	services.mpd = {
+		enable = true;
+		musicDirectory = "~/Dropbox/music";
+		extraConfig = ''
+			audio_output {
+				type "pulse"
+				name "Pulse Output"
+			}
+		'';
+	};
+
+	xdg.configFile."ncmpcpp/config".text = ''
+		ncmpcpp_directory = "~/.config/ncmpcpp"
+		mpd_host = "localhost"
+		mpd_port = "6600"
+	'';
 
   # udiskie is user-level automounter
   services.udiskie = {

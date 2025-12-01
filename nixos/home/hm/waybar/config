@@ -24,7 +24,8 @@
 			"cpu",
 			"memory",
 			"temperature",
-			"battery",
+			"battery#bat0",
+			"battery#bat1",
 			"tray",
 			"custom/power"
 		],
@@ -35,8 +36,8 @@
 			"format-icons": {
 				"default": "",
 				"1": "",
-				"2": "\uf488", // browser
-				"3": "\uee9c", // obsidian / brain
+				"2": "", // browser
+				"3": "", // obsidian / brain
 				"4": "4",
 				"5": "5",
 				"6": "6",
@@ -140,44 +141,90 @@
 				"format-icons": ["", "", "", "", "", "", "", "", ""]
 		},
 
-		"battery": {
-			"format": "{capacity}% {icon}",
-			"format-discharging": "{icon}",
-			"format-charging": "{icon}",
-			"format-plugged": "",
-				"format-icons": {
-					"charging": [
-						"󰢜",
-						"󰂆",
-						"󰂇",
-						"󰂈",
-						"󰢝",
-						"󰂉",
-						"󰢞",
-						"󰂊",
-						"󰂋",
-						"󰂅"
-					],
-					"default": [
-						"󰁺",
-						"󰁻",
-						"󰁼",
-						"󰁽",
-						"󰁾",
-						"󰁿",
-						"󰂀",
-						"󰂁",
-						"󰂂",
-						"󰁹"
-					]
-				},
-				"format-full": "󰂅",
-				"tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
-				"tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
-				"interval": 5,
-				"states": {
+		"battery#bat0": {
+			"bat": "BAT0",
+			"format": "{capacity}% ",
+			"format-charging": "{capacity}% ",
+			"format-full": "{capacity}% ",
+			"format-critical": "{capacity}% ",
+			"critical-threshold": 10,
+			"critical": 10,
+			"class": "bat0",
+			"tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+			"tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+			"interval": 5,
+			"states": {
 				"warning": 20,
 				"critical": 10
+			},
+			"format-icons": {
+				"charging": [
+					"󰢜",
+					"󰂆",
+					"󰂇",
+					"󰂈",
+					"󰢝",
+					"󰂉",
+					"󰢞",
+					"󰂊",
+					"󰂋",
+					"󰂅"
+				],
+				"default": [
+					"󰁺",
+					"󰁻",
+					"󰁼",
+					"󰁽",
+					"󰁾",
+					"󰁿",
+					"󰂀",
+					"󰂁",
+					"󰂂",
+					"󰁹"
+				]
+			}
+		},
+		"battery#bat1": {
+			"bat": "BAT1",
+			"format": "{capacity}% ",
+			"format-charging": "{capacity}% ",
+			"format-full": "{capacity}% ",
+			"format-critical": "{capacity}% ",
+			"critical-threshold": 10,
+			"critical": 10,
+			"class": "bat1",
+			"tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+			"tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+			"interval": 5,
+			"states": {
+				"warning": 20,
+				"critical": 10
+			},
+			"format-icons": {
+				"charging": [
+					"󰢜",
+					"󰂆",
+					"󰂇",
+					"󰂈",
+					"󰢝",
+					"󰂉",
+					"󰢞",
+					"󰂊",
+					"󰂋",
+					"󰂅"
+				],
+				"default": [
+					"󰁺",
+					"󰁻",
+					"󰁼",
+					"󰁽",
+					"󰁾",
+					"󰁿",
+					"󰂀",
+					"󰂁",
+					"󰂂",
+					"󰁹"
+				]
 			}
 		},
 
