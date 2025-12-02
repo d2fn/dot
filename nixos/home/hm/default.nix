@@ -50,6 +50,7 @@
 	imports = [
 		../../hm/gtk.nix
 		../../modules/focus_or_launch.nix
+		./digikam.nix
 		./dropbox.nix
 		./hyprland.nix
 		./waybar.nix
