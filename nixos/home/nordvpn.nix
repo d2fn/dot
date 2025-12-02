@@ -10,6 +10,14 @@ let
   };
 in
 {
+
+	# >>> DNS integration for wg-quick / resolvconf <<<
+  services.resolved.enable = true;
+
+  # If you're using NetworkManager (you almost certainly are),
+  # tell it to hand DNS to systemd-resolved:
+  networking.networkmanager.dns = "systemd-resolved";
+	
   # Install the CLI
   environment.systemPackages = [
     pkgs.wgnord
@@ -19,6 +27,7 @@ in
   # Make sure the state dir exists
   systemd.tmpfiles.rules = [
     "d /var/lib/wgnord 0755 root root -"
+    "d /etc/wireguard 0755 root root -"
   ];
 
   # Drop the template.conf into /var/lib/wgnord on each switch
