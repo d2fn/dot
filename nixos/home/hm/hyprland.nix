@@ -14,7 +14,6 @@
     swaynotificationcenter
     swayosd
     wl-clipboard
-		nautilus
   ];
 
   wayland.windowManager.hyprland = {
@@ -186,10 +185,12 @@
 			];
 
 			bind = [
+
 				# close / kill
-				"$hyper, L, exec, hyprlock"
+				"$mainMod SHIFT, L, exec, hyprlock"
+				"$mainMod, W, killactive,"
 				"$hyper, Q, exit"
-				"$hyper, C, killactive,"
+
 				# launchers
 				"$mainMod, R, exec, $menu"
 

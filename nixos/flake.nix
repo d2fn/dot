@@ -53,6 +53,7 @@
 					./modules/bin-symlinks.nix
 					./modules/code.nix
 					./modules/core-packages.nix
+					./modules/filemanagers.nix
 					./modules/fonts.nix
 					./modules/greetd.nix
 					./modules/obsidian.nix
