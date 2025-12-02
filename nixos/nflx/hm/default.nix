@@ -20,6 +20,7 @@
 	imports = [
 		../../hm/gtk.nix
 		../../modules/focus_or_launch.nix
+		./digikam.nix
 		./hyprland.nix
 		./waybar.nix
 	];

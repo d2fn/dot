@@ -14,7 +14,6 @@
     swaynotificationcenter
     swayosd
     wl-clipboard
-		nautilus
   ];
 
   wayland.windowManager.hyprland = {
@@ -27,11 +26,12 @@
       ###################
       "$osdclient" = "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
 
-			"$mainMod" = "ALT";
+			"$mainMod" = "SUPER";
 
       "$hyper" = "SUPER CTRL ALT SHIFT";
 
       "$brave" = "brave";
+			
       "$fileManager" = "nautilus";
       "$menu" = "rofi -show drun";
 
@@ -51,11 +51,15 @@
 			"$browserCmd" = "google-chrome-stable";
 			"$browserWorkspace" = "4";
 
+      "$digikamKey" = "F";
+			"$digikamCmd" = "digikam";
+			"$digikamWorkspace" = "9";
+
 			"$jetbrainsIdeaKey" = "I";
 			"$jetbrainsIdeaWorkspace" = "5";
 
 			"$jetbrainsGatewayWorkspace" = "6";
-			"$jetbrainsToolboxWorkspace" = "6";
+			"$jetbrainsToolboxWorkspace" = "7";
 			"$braveWorkspace" = "8";
 
       # top-level flags
@@ -94,7 +98,7 @@
         gaps_out = 10;
         border_size = 2;
 
-        "col.active_border" = "rgba(8a1c1cee) rgba(4f2b2bee) 45deg";
+        "col.active_border" = "rgba(ff8f66ee) rgba(e93f00ee) 45deg";
         "col.inactive_border" = "rgba(3a1a1aaa)";
 
         resize_on_border = false;
@@ -183,6 +187,8 @@
       windowrulev2 = [
 				"workspace $terminalWorkspace, class:^(ghostty)$"
 				"workspace $browserWorkspace, class:^(google-chrome)$"
+				"workspace $braveWorkspace, class:^(brave)$"
+				"workspace $digikamWorkspace, class:^(org.kde.digikam)$"
 				"workspace $slackWorkspace, class:^(Slack)$"
 				"workspace $jetbrainsIdeaWorkspace, class:^(jetbrains-idea)$"
 				"workspace $jetbrainsGatewayWorkspace, class:^(jetbrains-gateway)$"
@@ -207,14 +213,16 @@
 			];
 
 			bind = [
+
 				# close / kill
-				"$hyper, L, exec, hyprlock"
+				"$mainMod SHIFT, L, exec, hyprlock"
+				"$mainMod, W, killactive,"
 				"$hyper, Q, exit"
-				"$hyper, C, killactive,"
-				# launchers
+
+				# launcher
 				"$mainMod, R, exec, $menu"
 
-				"$mainMod SHIFT, T, exec, $terminal"
+				"$mainMod SHIFT, T, exec, $terminalCmd"
 				"$mainMod, $terminalKey, workspace, $terminalWorkspace"
 				"$mainMod SHIFT, $terminalKey, movetoworkspace, $terminalWorkspace"
 
@@ -229,6 +237,9 @@
 
 				"$mainMod, $obsidianKey, exec, focus_or_launch \"obsidian\" \"obsidian\""
 				"$mainMod SHIFT, $obsidianKey, movetoworkspace, $obsidianWorkspace"
+
+				"$mainMod, $digikamKey, exec, focus_or_launch \"digikam\" \"org.kde.digikam\""
+				"$mainMod SHIFT, $digikamKey, movetoworkspace, $digikamWorkspace"
 
 				"$mainMod, E, exec, $fileManager"
 				# window management
