@@ -38,13 +38,17 @@
       "$terminalCmd" = "ghostty";
 			"$terminalWorkspace" = "1";
 
-			"$obsidianKey" = "O";
-			"$obsidianCmd" = "focus_or_launch \"obsidian\" \"obsidian\"";
-			"$obsidianWorkspace" = "2";
-
       "$browserKey" = "A";
 			"$browserCmd" = "brave";
 			"$browserWorkspace" = "2";
+
+			"$obsidianKey" = "O";
+			"$obsidianCmd" = "focus_or_launch \"obsidian\" \"obsidian\"";
+			"$obsidianWorkspace" = "3";
+
+			"$digikamKey" = "F";
+			"$digikamCmd" = "focus_or_launch \"dk-home\" \"org.kde.digikam\"";
+			"$digikamWorkspace" = "4";
 
       # top-level flags
       "debug:disable_logs" = false;
@@ -171,6 +175,7 @@
 				"workspace $terminalWorkspace, class:^(ghostty)$"
 				"workspace $browserWorkspace, class:^(brave)$"
 				"workspace $obsidianWorkspace, class:^(obsidian)$"
+				"workspace $digikamWorkspace, class:^(org.kde.digikam)$"
       ];
 
       bindl = [
