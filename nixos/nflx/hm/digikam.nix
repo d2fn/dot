@@ -2,7 +2,7 @@
 
 {
   home.packages = [
-    digikam
+    pkgs.digikam
   ];
 }
 

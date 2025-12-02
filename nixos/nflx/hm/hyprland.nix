@@ -51,6 +51,10 @@
 			"$browserCmd" = "google-chrome-stable";
 			"$browserWorkspace" = "4";
 
+      "$digikamKey" = "F";
+			"$digikamCmd" = "digikam";
+			"$digikamWorkspace" = "9";
+
 			"$jetbrainsIdeaKey" = "I";
 			"$jetbrainsIdeaWorkspace" = "5";
 
@@ -184,6 +188,7 @@
 				"workspace $terminalWorkspace, class:^(ghostty)$"
 				"workspace $browserWorkspace, class:^(google-chrome)$"
 				"workspace $braveWorkspace, class:^(brave)$"
+				"workspace $digikamWorkspace, class:^(org.kde.digikam)$"
 				"workspace $slackWorkspace, class:^(Slack)$"
 				"workspace $jetbrainsIdeaWorkspace, class:^(jetbrains-idea)$"
 				"workspace $jetbrainsGatewayWorkspace, class:^(jetbrains-gateway)$"
@@ -232,6 +237,9 @@
 
 				"$mainMod, $obsidianKey, exec, focus_or_launch \"obsidian\" \"obsidian\""
 				"$mainMod SHIFT, $obsidianKey, movetoworkspace, $obsidianWorkspace"
+
+				"$mainMod, $digikamKey, exec, focus_or_launch \"digikam\" \"org.kde.digikam\""
+				"$mainMod SHIFT, $digikamKey, movetoworkspace, $digikamWorkspace"
 
 				"$mainMod, E, exec, $fileManager"
 				# window management
