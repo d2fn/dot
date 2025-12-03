@@ -16,6 +16,41 @@
     wl-clipboard
   ];
 
+	# 1) Hyprpaper daemon (user service)
+  services.hyprpaper = {
+    enable = true;
+    package = pkgs.hyprpaper;  # optional; defaults to pkgs.hyprpaper
+
+    # This maps directly to hyprpaper.conf keys
+    settings = {
+      ipc = "on";       # allow `hyprctl hyprpaper ...` :contentReference[oaicite:0]{index=0}
+      splash = false;   # no startup splash
+      splash_offset = 2.0;
+
+      # Preload wallpapers into RAM
+      preload = [
+				"${config.home.homeDirectory}/dot/backgrounds/0-ship-at-sea.jpg"
+				"${config.home.homeDirectory}/dot/backgrounds/1-everforest.jpg"
+				"${config.home.homeDirectory}/dot/backgrounds/1.jpg"
+				"${config.home.homeDirectory}/dot/backgrounds/1-matte-black.jpg"
+				"${config.home.homeDirectory}/dot/backgrounds/1-osaka-jade-bg.jpg"
+				"${config.home.homeDirectory}/dot/backgrounds/1-scenery-pink-lakeside-sunset-lake-landscape-scenic-panorama-7680x3215-144.png"
+				"${config.home.homeDirectory}/dot/backgrounds/2.jpg"
+				"${config.home.homeDirectory}/dot/backgrounds/2-matte-black-hands.jpg"
+				"${config.home.homeDirectory}/dot/backgrounds/2-osaka-jade-bg.jpg"
+				"${config.home.homeDirectory}/dot/backgrounds/3-osaka-jade-bg.jpg"
+				"${config.home.homeDirectory}/dot/backgrounds/3-ristretto.jpg"
+      ];
+
+      # Assign a wallpaper to a monitor:
+      #   "MONITOR,PATH"
+      # Use "," to mean "all monitors" :contentReference[oaicite:1]{index=1}
+      wallpaper = [
+        ",${config.home.homeDirectory}/dot/backgrounds/2-osaka-jade-bg.jpg"
+      ];
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -26,7 +61,7 @@
       ###################
       "$osdclient" = "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
 
-			"$mainMod" = "SUPER";
+			"$mainMod" = "ALT";
 
       "$hyper" = "SUPER CTRL ALT SHIFT";
 
@@ -83,6 +118,7 @@
       #########################
       exec-once = [
         "hypridle & hyprsunset & swaync & waybar & swayosd-server &"
+				"systemctl --user start hyprpaper.service"
       ];
 
       env = [
