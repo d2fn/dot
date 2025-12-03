@@ -1,34 +1,50 @@
 { config, pkgs, ... }:
 
-{
-  home.packages = with pkgs; [
-    brightnessctl
-    cmatrix
-    grim
-    hypridle
-    hyprlock
-    hyprpicker
-    hyprsunset
+let 
+	hyprpaper-shuffle = pkgs.writeShellScriptBin "hyprpaper-shuffle" ''
+		#!/usr/bin/env bash
+
+		WALLPAPER_DIR="$HOME/dot/backgrounds/"
+		CURRENT_WALL=$(hyprctl hyprpaper listloaded)
+
+		# Get a random wallpaper that is not the current one
+		WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
+
+		# Apply the selected wallpaper
+		hyprctl hyprpaper reload ,"$WALLPAPER"
+	'';
+in {
+	home.packages = with pkgs; [
+		brightnessctl
+		cmatrix
+		grim
+		hypridle
+		hyprlock
+		hyprpaper-shuffle
+		hyprpicker
+		hyprsunset
 		rofi-wayland
-    slurp
-    swaynotificationcenter
-    swayosd
-    wl-clipboard
-  ];
+		slurp
+		swaynotificationcenter
+		swayosd
+		wl-clipboard
+	];
 
 	# 1) Hyprpaper daemon (user service)
-  services.hyprpaper = {
-    enable = true;
-    package = pkgs.hyprpaper;  # optional; defaults to pkgs.hyprpaper
+	services.hyprpaper = {
+		enable = true;
+		package = pkgs.hyprpaper;	# optional; defaults to pkgs.hyprpaper
 
-    # This maps directly to hyprpaper.conf keys
-    settings = {
-      ipc = "on";       # allow `hyprctl hyprpaper ...` :contentReference[oaicite:0]{index=0}
-      splash = false;   # no startup splash
-      splash_offset = 2.0;
+		# This maps directly to hyprpaper.conf keys
+		settings = {
+			# allow `hyprctl hyprpaper ...` :contentReference[oaicite:0]{index=0}
+			ipc = "on";
+			# no startup splash
+			splash = false;
+			splash_offset = 2.0;
 
-      # Preload wallpapers into RAM
-      preload = [
+			# Preload wallpapers into RAM
+			preload = [
 				"${config.home.homeDirectory}/dot/backgrounds/0-ship-at-sea.jpg"
 				"${config.home.homeDirectory}/dot/backgrounds/1-everforest.jpg"
 				"${config.home.homeDirectory}/dot/backgrounds/1.jpg"
@@ -40,38 +56,36 @@
 				"${config.home.homeDirectory}/dot/backgrounds/2-osaka-jade-bg.jpg"
 				"${config.home.homeDirectory}/dot/backgrounds/3-osaka-jade-bg.jpg"
 				"${config.home.homeDirectory}/dot/backgrounds/3-ristretto.jpg"
-      ];
+			];
 
-      # Assign a wallpaper to a monitor:
-      #   "MONITOR,PATH"
-      # Use "," to mean "all monitors" :contentReference[oaicite:1]{index=1}
-      wallpaper = [
-        ",${config.home.homeDirectory}/dot/backgrounds/2-osaka-jade-bg.jpg"
-      ];
-    };
-  };
+			# Assign a wallpaper to a monitor:
+			wallpaper = [
+				",${config.home.homeDirectory}/dot/backgrounds/2-osaka-jade-bg.jpg"
+			];
+		};
+	};
 
-  wayland.windowManager.hyprland = {
-    enable = true;
+	wayland.windowManager.hyprland = {
+		enable = true;
 
-    settings = {
+		settings = {
 
-      ###################
-      ### VARIABLES   ###
-      ###################
-      "$osdclient" = "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
+			###################
+			### VARIABLES	 ###
+			###################
+			"$osdclient" = "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
 
-			"$mainMod" = "ALT";
+			"$mainMod" = "SUPER";
 
-      "$hyper" = "SUPER CTRL ALT SHIFT";
+			"$hyper" = "SUPER CTRL ALT SHIFT";
 
-      "$brave" = "brave";
+			"$brave" = "brave";
 			
-      "$fileManager" = "nautilus";
-      "$menu" = "rofi -show drun";
+			"$fileManager" = "nautilus";
+			"$menu" = "rofi -show drun";
 
 			"$terminalKey" = "SPACE"; # shell
-      "$terminalCmd" = "ghostty";
+			"$terminalCmd" = "ghostty";
 			"$terminalWorkspace" = "1";
 
 			"$obsidianKey" = "O";
@@ -82,11 +96,11 @@
 			"$slackCmd" = "focus_or_launch \"slack\" \"Slack\"";
 			"$slackWorkspace" = "3";
 
-      "$browserKey" = "A";
+			"$browserKey" = "A";
 			"$browserCmd" = "google-chrome-stable";
 			"$browserWorkspace" = "4";
 
-      "$digikamKey" = "F";
+			"$digikamKey" = "F";
 			"$digikamCmd" = "digikam";
 			"$digikamWorkspace" = "9";
 
@@ -97,12 +111,12 @@
 			"$jetbrainsToolboxWorkspace" = "7";
 			"$braveWorkspace" = "8";
 
-      # top-level flags
-      "debug:disable_logs" = false;
+			# top-level flags
+			"debug:disable_logs" = false;
 
-      ################
-      ### MONITORS ###
-      ################
+			################
+			### MONITORS ###
+			################
 
 			monitor = [
 				# See https://wiki.hyprland.org/Configuring/Monitors/
@@ -113,114 +127,115 @@
 				",preferred,auto,1"
 			];
 
-      #########################
-      ### AUTOSTART / ENV   ###
-      #########################
-      exec-once = [
-        "hypridle & hyprsunset & swaync & waybar & swayosd-server &"
+			#########################
+			### AUTOSTART / ENV	 ###
+			#########################
+			exec-once = [
+				"hypridle & hyprsunset & swaync & waybar & swayosd-server &"
 				"systemctl --user start hyprpaper.service"
-      ];
+				"hyprpaper-shuffle"
+			];
 
-      env = [
-        "XCURSOR_SIZE,24"
-        "HYPRCURSOR_SIZE,24"
-      ];
+			env = [
+				"XCURSOR_SIZE,24"
+				"HYPRCURSOR_SIZE,24"
+			];
 
-      #####################
-      ### LOOK AND FEEL ###
-      #####################
-      general = {
-        gaps_in = 5;
-        gaps_out = 10;
-        border_size = 2;
+			#####################
+			### LOOK AND FEEL ###
+			#####################
+			general = {
+				gaps_in = 5;
+				gaps_out = 10;
+				border_size = 2;
 
-        "col.active_border" = "rgba(ff8f66ee) rgba(e93f00ee) 45deg";
-        "col.inactive_border" = "rgba(3a1a1aaa)";
+				"col.active_border" = "rgba(ff8f66ee) rgba(e93f00ee) 45deg";
+				"col.inactive_border" = "rgba(3a1a1aaa)";
 
-        resize_on_border = false;
-        allow_tearing = false;
-        layout = "dwindle";
-      };
+				resize_on_border = false;
+				allow_tearing = false;
+				layout = "dwindle";
+			};
 
-      decoration = {
-        rounding = 4;
-        rounding_power = 2;
+			decoration = {
+				rounding = 4;
+				rounding_power = 2;
 
-        active_opacity = 1.0;
-        inactive_opacity = 1.0;
+				active_opacity = 1.0;
+				inactive_opacity = 1.0;
 
-        shadow = {
-          enabled = false;
-          range = 4;
-          render_power = 3;
-          color = "rgba(1a1a1aee)";
-        };
+				shadow = {
+					enabled = false;
+					range = 4;
+					render_power = 3;
+					color = "rgba(1a1a1aee)";
+				};
 
-        blur = {
-          enabled = true;
-          size = 4;
-          passes = 2;
-          vibrancy = 0.1696;
-        };
-      };
+				blur = {
+					enabled = true;
+					size = 4;
+					passes = 2;
+					vibrancy = 0.1696;
+				};
+			};
 
-      animations = {
-        enabled = false;
-        # rest of animations omitted since they’re unused while disabled
-      };
+			animations = {
+				enabled = false;
+				# rest of animations omitted since they’re unused while disabled
+			};
 
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-      };
+			dwindle = {
+				pseudotile = true;
+				preserve_split = true;
+			};
 
-      master = {
-        new_status = "master";
-      };
+			master = {
+				new_status = "master";
+			};
 
-      misc = {
-        force_default_wallpaper = -1;
-        disable_hyprland_logo = false;
-      };
+			misc = {
+				force_default_wallpaper = -1;
+				disable_hyprland_logo = false;
+			};
 
-      #############
-      ### INPUT ###
-      #############
-      input = {
-        kb_layout = "us";
-        kb_variant = "";
-        kb_model = "";
-        kb_options = "ctrl:nocaps";
-        kb_rules = "";
+			#############
+			### INPUT ###
+			#############
+			input = {
+				kb_layout = "us";
+				kb_variant = "";
+				kb_model = "";
+				kb_options = "ctrl:nocaps";
+				kb_rules = "";
 
-        follow_mouse = 1;
-        sensitivity = 0;
+				follow_mouse = 1;
+				sensitivity = 0;
 
-        touchpad = {
-          natural_scroll = false;
-        };
-      };
+				touchpad = {
+					natural_scroll = false;
+				};
+			};
 
-      gestures = {
-        workspace_swipe = false;
-      };
+			gestures = {
+				workspace_swipe = false;
+			};
 
-      device = [
-        {
-          name = "epic-mouse-v1";
-          sensitivity = -0.5;
-        }
-      ];
+			device = [
+				{
+					name = "epic-mouse-v1";
+					sensitivity = -0.5;
+				}
+			];
 
-      ##############################
-      ### WINDOWS / WORKSPACES   ###
-      ##############################
-      windowrule = [
-        "suppressevent maximize, class:.*"
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-      ];
+			##############################
+			### WINDOWS / WORKSPACES	 ###
+			##############################
+			windowrule = [
+				"suppressevent maximize, class:.*"
+				"nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+			];
 
-      windowrulev2 = [
+			windowrulev2 = [
 				"workspace $terminalWorkspace, class:^(ghostty)$"
 				"workspace $browserWorkspace, class:^(google-chrome)$"
 				"workspace $braveWorkspace, class:^(brave)$"
@@ -234,9 +249,9 @@
 				"workspace $braveWorkspace, class:^(brave-browser)$"
 				"workspace $obsidianWorkspace, class:^(obsidian)$"
 				# 0
-      ];
+			];
 
-      bindl = [
+			bindl = [
 				# Trigger when the switch is turning on.
 				", switch:on:Lid Switch, exec, hyprctl keyword monitor \"eDP-1,disable\""
 				# Trigger when the switch is turning off.
@@ -278,10 +293,14 @@
 				"$mainMod SHIFT, $digikamKey, movetoworkspace, $digikamWorkspace"
 
 				"$mainMod, E, exec, $fileManager"
+
 				# window management
 				"$mainMod SHIFT, F, togglefloating,"
 				"$mainMod, P, pseudo, # dwindle"
 				"$mainMod SHIFT, S, togglesplit, # dwindle"
+
+				# randomize wallpaper
+				"CTRL ALT SHIFT, R, exec, hyprpaper-shuffle"
 
 				# Move focus with mainMod + hjkl
 				"$mainMod, h, movefocus, l"
@@ -313,13 +332,13 @@
 				
 				### screenshot support
 				# Full screen → file
-				"SUPER SHIFT, 3, exec, grim ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png && notify-send \"📸 Screenshot saved\""
+				"CTRL SHIFT, 3, exec, grim ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png && notify-send \"📸 Screenshot saved\""
 				# Full screen → clipboard
-				"CTRL SUPER SHIFT, 3, exec, grim - | wl-copy && notify-send \"📋 Screenshot copied\""
+				"ALT CTRL SHIFT, 3, exec, grim - | wl-copy && notify-send \"📋 Screenshot copied\""
 				# Selection → file
-				"SUPER SHIFT, 4, exec, grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png && notify-send \"📸 Region saved\""
+				"CTRL SHIFT, 4, exec, grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png && notify-send \"📸 Region saved\""
 				# Selection → clipboard
-				"CTRL SHIFT, 4, exec, grim -g \"$(slurp)\" - | wl-copy && notify-send \"📋 Region copied\""
+				"ALT CTRL SHIFT, 4, exec, grim -g \"$(slurp)\" - | wl-copy && notify-send \"📋 Region copied\""
 
 				### color picking support
 				# hyprpicker to clipboard
@@ -347,12 +366,12 @@
 			];
 
 
-    };
+		};
 
-    # Stuff Hyprland doesn't have a nice Nix schema for (variables, binds, etc.)
-    extraConfig = ''
-    '';
-  };
+		# Stuff Hyprland doesn't have a nice Nix schema for (variables, binds, etc.)
+		extraConfig = ''
+		'';
+	};
 
 	xdg.configFile."hypr/hypridle.conf".source = ./hypr/hypridle.conf;
 	xdg.configFile."hypr/hyprsunset.conf".source = ./hypr/hyprsunset.conf;
