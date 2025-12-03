@@ -206,8 +206,11 @@
 				"$mainMod, $browserKey, workspace, $browserWorkspace"
 				"$mainMod SHIFT, $browserKey, movetoworkspace, $browserWorkspace"
 
-				"$mainMod, $obsidianKey, exec, focus_or_launch \"obsidian\" \"obsidian\""
+				"$mainMod, $obsidianKey, exec, $obsidianCmd"
 				"$mainMod SHIFT, $obsidianKey, movetoworkspace, $obsidianWorkspace"
+
+				"$mainMod, $digikamKey, exec, $digikamCmd"
+				"$mainMod SHIFT, $digikamKey, movetoworkspace, $digikamWorkspace"
 
 				"$mainMod, E, exec, $fileManager"
 				# window management
