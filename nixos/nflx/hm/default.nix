@@ -14,6 +14,8 @@
 		};
 		packages = with pkgs; [
 			jetbrains-toolbox
+			nil
+			nixfmt-rfc-style
 		];
 	};
 

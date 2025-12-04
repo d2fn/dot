@@ -41,4 +41,40 @@ vim.api.nvim_create_autocmd("FileType", {
 		require('lsp.jdtls').setup()
   end,
 })
+ 
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.nix",
+  callback = function() vim.lsp.buf.format() end,
+})
+--
+-- Native LSP setup for Nix using the new API
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "nix",
+  callback = function(args)
+    -- Avoid starting multiple clients for the same buffer
+    local clients = vim.lsp.get_clients({ bufnr = args.buf, name = "nil_ls" })
+    if #clients > 0 then
+      return
+    end
 
+    vim.lsp.start({
+      name = "nil_ls",
+      cmd = { "nil" },  -- the language server binary
+      root_dir = vim.fs.dirname(vim.fs.find({
+        "flake.nix",
+        "default.nix",
+        "shell.nix",
+        ".git",
+      }, { path = args.file, upward = true })[1]),
+
+      -- optional settings passed to nil
+      settings = {
+        ["nil"] = {
+          formatting = {
+            command = { "nixfmt" },  -- or "nixfmt-rfc-style", "alejandra", etc., if installed
+          },
+        },
+      },
+    })
+  end,
+})
