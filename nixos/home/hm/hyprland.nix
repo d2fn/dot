@@ -37,13 +37,17 @@
       "$terminalCmd" = "ghostty";
 			"$terminalWorkspace" = "1";
 
-			"$obsidianKey" = "O";
-			"$obsidianCmd" = "focus_or_launch \"obsidian\" \"obsidian\"";
-			"$obsidianWorkspace" = "2";
-
       "$browserKey" = "A";
 			"$browserCmd" = "brave";
 			"$browserWorkspace" = "2";
+
+			"$obsidianKey" = "O";
+			"$obsidianCmd" = "focus_or_launch \"obsidian\" \"obsidian\"";
+			"$obsidianWorkspace" = "3";
+
+			"$digikamKey" = "F";
+			"$digikamCmd" = "focus_or_launch \"dk-home\" \"org.kde.digikam\"";
+			"$digikamWorkspace" = "4";
 
       # top-level flags
       "debug:disable_logs" = false;
@@ -170,6 +174,7 @@
 				"workspace $terminalWorkspace, class:^(ghostty)$"
 				"workspace $browserWorkspace, class:^(brave)$"
 				"workspace $obsidianWorkspace, class:^(obsidian)$"
+				"workspace $digikamWorkspace, class:^(org.kde.digikam)$"
       ];
 
       bindl = [
@@ -201,8 +206,11 @@
 				"$mainMod, $browserKey, workspace, $browserWorkspace"
 				"$mainMod SHIFT, $browserKey, movetoworkspace, $browserWorkspace"
 
-				"$mainMod, $obsidianKey, exec, focus_or_launch \"obsidian\" \"obsidian\""
+				"$mainMod, $obsidianKey, exec, $obsidianCmd"
 				"$mainMod SHIFT, $obsidianKey, movetoworkspace, $obsidianWorkspace"
+
+				"$mainMod, $digikamKey, exec, $digikamCmd"
+				"$mainMod SHIFT, $digikamKey, movetoworkspace, $digikamWorkspace"
 
 				"$mainMod, E, exec, $fileManager"
 				# window management
