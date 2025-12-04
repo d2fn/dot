@@ -13,6 +13,7 @@ let
 		# Apply the selected wallpaper
 		hyprctl hyprpaper reload ,"$WALLPAPER"
 	'';
+
 in {
 	home.packages = with pkgs; [
 		brightnessctl
