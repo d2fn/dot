@@ -4,11 +4,11 @@ let
   hyprpaper-shuffle = pkgs.writeShellScriptBin "hyprpaper-shuffle" ''
     #!/usr/bin/env bash
 
-    WALLPAPER_DIR="$HOME/dot/backgrounds/"
-    CURRENT_WALL=$(hyprctl hyprpaper listloaded)
+    WALLPAPER_DIR="$HOME/dot/backgrounds"
+    CURRENT_WALL=$(hyprctl hyprpaper listactive | head -1 | cut -f3 -d' ')
 
     # Get a random wallpaper that is not the current one
-    WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
+    WALLPAPER=$(find "$WALLPAPER_DIR" -path $WALLPAPER_DIR/.dtrash -prune -o -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
 
     # Apply the selected wallpaper
     hyprctl hyprpaper reload ,"$WALLPAPER"
