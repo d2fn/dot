@@ -78,7 +78,7 @@ in
       "$osdclient" =
         "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
 
-      "$mainMod" = "SUPER";
+      "$mainMod" = "ALT";
 
       "$hyper" = "SUPER CTRL ALT SHIFT";
 
