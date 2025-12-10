@@ -19,6 +19,7 @@
     };
     packages = with pkgs; [
       jetbrains-toolbox
+      cmatrix
     ];
   };
 
