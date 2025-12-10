@@ -78,7 +78,7 @@ in
       "$osdclient" =
         "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
 
-      "$mainMod" = "ALT";
+      "$mainMod" = "SUPER";
 
       "$hyper" = "SUPER CTRL ALT SHIFT";
 
@@ -97,7 +97,7 @@ in
       "$obsidianCmd" = "focus_or_launch \"obsidian\" \"obsidian\"";
       "$obsidianWorkspace" = "3";
 
-      "$digikamKey" = "F";
+      "$digikamKey" = "P";
       "$digikamCmd" = "focus_or_launch \"dk-home\" \"org.kde.digikam\"";
       "$digikamWorkspace" = "4";
 
@@ -253,7 +253,7 @@ in
         # launchers
         "$mainMod, R, exec, $menu"
 
-        "$mainMod SHIFT, T, exec, $terminal"
+        "$mainMod SHIFT, T, exec, $terminalCmd"
         "$mainMod, $terminalKey, workspace, $terminalWorkspace"
         "$mainMod SHIFT, $terminalKey, movetoworkspace, $terminalWorkspace"
 
@@ -270,7 +270,6 @@ in
 
         # window management
         "$mainMod SHIFT, F, togglefloating,"
-        "$mainMod, P, pseudo, # dwindle"
         "$mainMod SHIFT, S, togglesplit, # dwindle"
 
         # randomize wallpaper
