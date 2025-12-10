@@ -63,5 +63,16 @@ in
         ];
       };
     };
+
+    wayland.windowManager.hyprland.settings = {
+      exec-once = mkAfter [
+        "systemctl --user start hyprpaper.service"
+        "hyprpaper-shuffle"
+      ];
+      bind = mkAfter [
+        # randomize wallpaper
+        "CTRL ALT SHIFT, R, exec, hyprpaper-shuffle"
+      ];
+    };
   };
 }

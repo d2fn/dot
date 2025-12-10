@@ -20,6 +20,7 @@
     packages = with pkgs; [
       jetbrains-toolbox
       digikam
+      cmatrix
     ];
   };
 
