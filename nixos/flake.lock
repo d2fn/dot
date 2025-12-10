@@ -40,7 +40,25 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "vpnManager": "vpnManager"
+      }
+    },
+    "vpnManager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1765238023,
+        "narHash": "sha256-0RPyNN3+2nog5Qs1JSPhRKGQjxXdCX3f6F5HqfknIzg=",
+        "path": "/home/d/git/vpn-manager",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/d/git/vpn-manager",
+        "type": "path"
       }
     }
   },

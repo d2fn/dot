@@ -46,6 +46,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.nix",
   callback = function() vim.lsp.buf.format() end,
 })
+
 --
 -- Native LSP setup for Nix using the new API
 vim.api.nvim_create_autocmd("FileType", {
