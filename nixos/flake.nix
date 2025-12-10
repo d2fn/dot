@@ -20,37 +20,20 @@
       home-manager,
       vpnManager,
       ...
-    }@inputs:
+    }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
     in
     {
 
       nixosConfigurations = {
-        t480 = nixpkgs.lib.nixosSystem {
+        adf-t480 = nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = {
+            inherit home-manager;
+          };
           modules = [
-            ./base.nix
-            ./t480-hardware-configuration.nix
-            ./home/configuration.nix
-            ./home/git.nix
-            ./home/nordvpn.nix
-            ./modules/bin-symlinks.nix
-            ./modules/code.nix
-            ./modules/core-packages.nix
-            ./modules/filemanagers.nix
-            ./modules/fonts.nix
-            ./modules/greetd.nix
-            ./modules/obsidian.nix
-            ./modules/reverse-eng.nix
-            ./modules/zsa.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.d = import ./home/hm;
-            }
+            ./hosts/adf-t480
           ];
         };
 
@@ -63,6 +46,7 @@
             ./hosts/nflx-dfeatherston-p16s
           ];
         };
+
       };
     };
 }

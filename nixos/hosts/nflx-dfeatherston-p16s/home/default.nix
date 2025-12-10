@@ -19,15 +19,15 @@
     };
     packages = with pkgs; [
       jetbrains-toolbox
+      digikam
     ];
   };
 
   imports = [
     vpnManager.homeManagerModules.vpnManager
-    ../../../hm/gtk.nix
-    ../../../hm/nix-lsp.nix
+    ../../../modules/gtk.nix
+    ../../../modules/nix-lsp.nix
     ../../../modules/focus_or_launch.nix
-    ./digikam.nix
     ./hyprland.nix
     ./waybar.nix
   ];

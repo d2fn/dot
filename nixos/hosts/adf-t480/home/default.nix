@@ -15,7 +15,6 @@
       mpv
       celluloid
       veracrypt
-      digikam
       mpd
       ncmpcpp
     ];
@@ -48,20 +47,14 @@
   };
 
   imports = [
-    ../../hm/gtk.nix
-    ../../hm/nix-lsp.nix
-    ../../modules/focus_or_launch.nix
-		../../hm/my-first-nix-module.nix
+    ../../../modules/gtk.nix
+    ../../../modules/nix-lsp.nix
+    ../../../modules/focus_or_launch.nix
     ./digikam.nix
     ./dropbox.nix
     ./electronics.nix
     ./hyprland.nix
     ./waybar.nix
   ];
-
-	myFirstNixModule = {
-		enable = true;
-		message = "Hello from my home manager config!";
-	};
 
 }
