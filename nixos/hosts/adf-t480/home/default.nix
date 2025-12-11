@@ -9,7 +9,7 @@
     stateVersion = "25.05";
     sessionVariables = {
       QT_QPA_PLATFORM = "wayland";
-      OBSIDIAN_REST_API_KEY = "890170f6ef90e5c9cd2be20746cb55d2a84e43b23467f54ed2005f25e79f5df2";
+      OBSIDIAN_REST_API_KEY = "1d9b49c84bca523b9654ae2e7cb78c077cbae7822836469aa70b5b01cdd789ba";
     };
     packages = with pkgs; [
       mpv

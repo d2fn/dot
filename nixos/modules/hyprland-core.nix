@@ -59,7 +59,7 @@ in
       settings = {
 
         ###################
-        ### VARIABLES	 ###
+        ### VARIABLES   ###
         ###################
         "$osdclient" =
           "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
@@ -85,10 +85,13 @@ in
         ];
 
         #########################
-        ### AUTOSTART / ENV	 ###
+        ### AUTOSTART / ENV   ###
         #########################
         exec-once = [
-          "hypridle & hyprsunset & swaync & waybar & swayosd-server &"
+          "swaync & swayosd-server &"
+          "systemctl --user start hyprsunset.service"
+          "systemctl --user start hypridle.service"
+          "systemctl --user start waybar.service"
         ];
 
         env = [
@@ -184,7 +187,7 @@ in
         ];
 
         ##############################
-        ### WINDOWS / WORKSPACES	 ###
+        ### WINDOWS / WORKSPACES   ###
         ##############################
         windowrule = [
           "suppressevent maximize, class:.*"
@@ -215,10 +218,10 @@ in
           "$mainMod, W, killactive,"
           "$hyper, Q, exit"
 
-          # launcher
-          "$mainMod, R, exec, $menu"
-          "$mainMod SHIFT, T, exec, $terminalCmd"
-          "$mainMod, E, exec, $fileManager"
+          # bare bones launchers hardcoded
+          "$mainMod, R, exec, rofi -show drun"
+          "$mainMod SHIFT, T, exec, ghostty"
+          "$mainMod, E, exec, nautilus"
 
           # window management
           "$mainMod SHIFT, F, togglefloating,"
@@ -230,7 +233,7 @@ in
           "$mainMod, k, movefocus, u"
           "$mainMod, l, movefocus, r"
 
-          # Switch workspaces with mainMod + [0-9]
+          # Switch workspaces with mainMod + [1-9]
           "$mainMod, 1, workspace, 1"
           "$mainMod, 2, workspace, 2"
           "$mainMod, 3, workspace, 3"
@@ -240,9 +243,8 @@ in
           "$mainMod, 7, workspace, 7"
           "$mainMod, 8, workspace, 8"
           "$mainMod, 9, workspace, 9"
-          "$mainMod, 0, workspace, 10"
 
-          # Move active window to a workspace with mainMod + secondaryMod + [0-9]
+          # Move active window to a workspace with mainMod + secondaryMod + [1-9]
           "$mainMod SHIFT, 1, movetoworkspace, 1"
           "$mainMod SHIFT, 2, movetoworkspace, 2"
           "$mainMod SHIFT, 3, movetoworkspace, 3"
@@ -252,7 +254,6 @@ in
           "$mainMod SHIFT, 7, movetoworkspace, 7"
           "$mainMod SHIFT, 8, movetoworkspace, 8"
           "$mainMod SHIFT, 9, movetoworkspace, 9"
-          "$mainMod SHIFT, 0, movetoworkspace, 10"
 
         ];
 
@@ -273,6 +274,18 @@ in
         bindeld = [
           ",XF86MonBrightnessUp, Brightness up, exec, $osdclient --brightness raise"
           ",XF86MonBrightnessDown, Brightness down, exec, $osdclient --brightness lower"
+        ];
+        # Persistent workspaces 1–10 (Hyprland uses 1-based by default)
+        "workspace" = [
+          "1, persistent:true"
+          "2, persistent:true"
+          "3, persistent:true"
+          "4, persistent:true"
+          "5, persistent:true"
+          "6, persistent:true"
+          "7, persistent:true"
+          "8, persistent:true"
+          "9, persistent:true"
         ];
       };
 
