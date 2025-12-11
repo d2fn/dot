@@ -1,33 +1,40 @@
 require('telescope').setup({
-	defaults = {
-		file_ignore_patterns = { "%.git/" },
-		path_display={"smart"},
-	},
-	pickers = {
+  defaults = {
+    file_ignore_patterns = { "%.git/" },
+    -- path_display = { "smart" },
+  },
+  pickers = {
+    find_files = {
+      hidden = true,
+      no_ignore = true,
+      follow = true,
+      theme = "dropdown",
+      layout_config = {
+        width = 0.95,       -- wider
+        preview_width = 0.6,
+      },
+    },
 
-		find_files = {
-			hidden = true,
-			no_ignore = true,
-			follow = true,
-			theme = "dropdown",
+    git_files = {
+      theme = "dropdown",
+      layout_config = {
+        width = 0.95,
+      },
+    },
 
-		},
-
-		git_files = {
-			theme = "dropdown"
-		},
-
-		live_grep = {
-			additional_args = function(_)
-				return {
-					"--hidden",         -- include hidden files
-					"--no-ignore-vcs",  -- ignore .gitignore and friends
-					"--glob", "!.git/*" -- still skip .git itself
-				}
-			end,
-			theme = "dropdown",
-		}
-
-	}
+    live_grep = {
+      additional_args = function(_)
+        return {
+          "--hidden",
+          "--no-ignore-vcs",
+          "--glob", "!.git/*"
+        }
+      end,
+      theme = "dropdown",
+      layout_config = {
+        width = 0.95,
+      },
+    },
+  }
 })
 
