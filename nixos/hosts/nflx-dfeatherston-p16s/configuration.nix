@@ -7,12 +7,19 @@
     isNormalUser = true;
     description = "Dietrich Featherston";
     extraGroups = [
-      "networkmanager"
-      "wheel"
-      "plugdev"
+      "kvm"
+      "libvirtd"
       "docker"
+      "networkmanager"
+      "plugdev"
       "tss"
+      "wheel"
     ];
+  };
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu.runAsRoot = false;
   };
 
   virtualisation.docker.enable = true;

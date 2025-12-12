@@ -7,16 +7,43 @@
     isNormalUser = true;
     description = "Dietrich Featherston";
     extraGroups = [
+      "kvm"
+      "libvirtd"
       "networkmanager"
-      "wheel"
       "plugdev"
-      "video"
       "render"
+      "video"
+      "wheel"
     ];
     packages = with pkgs; [
-      #	thunderbird
     ];
   };
+
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+# uncomment when my channel adds this
+			#networks.default = {
+			#	enable = true;
+			#	autostart = true;
+			#};
+      qemu = {
+        runAsRoot = true;
+        package = pkgs.qemu_kvm;
+      };
+    };
+    # Needed for booting modern VMs (UEFI)
+    spiceUSBRedirection.enable = true;
+  };
+
+  security.polkit.enable = true;
+
+  hardware.enableRedistributableFirmware = true;
+  boot.kernelModules = [
+    "kvm"
+    "kvm_intel"
+    "kvm_amd"
+  ];
 
   environment.pathsToLink = [
     "/share/applications"

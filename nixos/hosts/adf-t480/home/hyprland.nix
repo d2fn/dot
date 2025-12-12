@@ -57,7 +57,7 @@
           key = "P";
           workspace = "4";
           class = "org.kde.digikam";
-          cmd = ''focus_or_launch "digikam" "org.kde.digikam"'';
+          cmd = ''focus_or_launch "dk-home" "org.kde.digikam"'';
           icon = "";
         };
       };
