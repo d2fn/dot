@@ -27,6 +27,16 @@
     {
 
       nixosConfigurations = {
+        adf-shop-pc = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit home-manager;
+          };
+          modules = [
+            ./hosts/adf-shop-pc
+          ];
+        };
+
         adf-t480 = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
