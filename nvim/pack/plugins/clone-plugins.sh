@@ -32,6 +32,8 @@ repos=(
 	"https://github.com/everviolet/nvim.git"
 	"https://github.com/sainnhe/sonokai.git"
 	"https://github.com/rose-pine/neovim.git"
+	"https://github.com/f4z3r/gruvbox-material.nvim.git"
+	"https://github.com/ellisonleao/gruvbox.nvim.git"
 
 )
 

@@ -57,7 +57,6 @@ vim.api.nvim_create_autocmd("FileType", {
     if #clients > 0 then
       return
     end
-
     vim.lsp.start({
       name = "nil_ls",
       cmd = { "nil" },  -- the language server binary
@@ -79,3 +78,4 @@ vim.api.nvim_create_autocmd("FileType", {
     })
   end,
 })
+

@@ -1,18 +1,14 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+--
+-- (optional) customize gopls
+vim.lsp.config("gopls", {
+  cmd = { "gopls" },
+  root_dir = vim.fs.root(0, { "go.work", "go.mod", ".git" }),
+  -- settings = { gopls = { ... } },
+})
 
-vim.lsp.config['gopls'] = {
-	capabilities = capabilities,
-	settings = {
-		gopls = {
-			analyses = {
-				unusedparams = true,
-			},
-			staticcheck = true,
-			gofumpt = true,
-			semanticTokens = true,
-		},
-	},
-}
+-- enable it (it will attach automatically on Go buffers)
+vim.lsp.enable("gopls")
 
 -- Pass on_attach to pyright
 vim.lsp.config['pyright'] = {
