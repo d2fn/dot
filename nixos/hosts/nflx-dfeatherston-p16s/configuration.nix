@@ -16,19 +16,38 @@
       "wheel"
     ];
   };
+  users.groups.tss = { };
 
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu.runAsRoot = false;
+  virtualisation = {
+    docker.enable = true;
+    libvirtd = {
+      enable = true;
+      # uncomment when my channel adds this
+      #networks.default = {
+      #	enable = true;
+      #	autostart = true;
+      #};
+      qemu = {
+        runAsRoot = true;
+        package = pkgs.qemu_kvm;
+      };
+    };
+    # Needed for booting modern VMs (UEFI)
+    spiceUSBRedirection.enable = true;
   };
 
-  virtualisation.docker.enable = true;
+  hardware.enableRedistributableFirmware = true;
+  boot.kernelModules = [
+    "kvm"
+    "kvm_intel"
+    "kvm_amd"
+  ];
+
   security.tpm2 = {
     enable = true;
     abrmd.enable = false;
     tssUser = "tss";
   };
-  users.groups.tss = { };
 
   system.stateVersion = "25.05";
 
