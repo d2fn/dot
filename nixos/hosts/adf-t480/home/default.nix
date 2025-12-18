@@ -14,14 +14,13 @@
     packages = with pkgs; [
       celluloid
       cmatrix
-      vesktop
       mpd
       mpv
       ncmpcpp
       telegram-desktop
       veracrypt
+      vesktop
       virt-manager
-      virt-viewer
       vlc
     ];
   };
