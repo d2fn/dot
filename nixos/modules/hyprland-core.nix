@@ -18,6 +18,11 @@ in
 
   options.my.hypr.core = {
     enable = mkEnableOption "Core hyprland config";
+    mainModKey = mkOption {
+      type = types.str;
+      description = "Main mod key, e.g. SUPER or ALT";
+      default = "SUPER";
+    };
     laptopDisplayScale = mkOption {
       type = types.str;
       description = "Set to 1 for standard displays and 2 for retina class";
@@ -64,7 +69,7 @@ in
         "$osdclient" =
           "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
 
-        "$mainMod" = "ALT";
+        "$mainMod" = "${config.my.hypr.core.mainModKey}";
 
         "$hyper" = "SUPER CTRL ALT SHIFT";
 
