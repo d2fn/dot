@@ -1,0 +1,69 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-center": ["clock"],
+  "modules-right": ["tray", "battery#bat1", "battery#bat0", "pulseaudio", "cpu", "memory"],
+
+  "hyprland/workspaces": {
+    "format": "{id}",
+    "on-click": "activate",
+    "sort-by-name": true,
+    "active-only": false,
+		"ignore-workspaces": [
+			"^[1-9][0-9]+$"   // 10, 11, 12, ... (anything two digits or more starting with 1–9)
+		],
+		"format-icons": {
+			"1": "1",
+			"2": "2",
+			"3": "3",
+			"4": "4",
+			"5": "5",
+			"6": "6",
+			"7": "7",
+			"8": "8",
+			"9": "9"
+		}
+  },
+
+  "hyprland/window": {
+    "format": "{title}",
+		"icon": true,
+		"icon-size": 16,
+    "max-length": 60,
+    "separate-outputs": true
+  },
+
+  "clock": {
+    "format": "{:%b %d  %I:%M %p}",
+    "tooltip": false
+  },
+
+  "battery#bat0": {
+    "bat": "BAT0",
+    "format": "0:{capacity}% ",
+    "format-charging": "0:{capacity}% "
+  },
+
+  "battery#bat1": {
+    "bat": "BAT1",
+    "format": "1:{capacity}% ",
+    "format-charging": "1:{capacity}% "
+  },
+
+  "pulseaudio": {
+    "format": "{volume}% ",
+    "format-muted": "󰝟"
+  },
+
+  "cpu": {
+    "format": "{usage}% "
+  },
+
+  "memory": {
+    "format": "{}% "
+  }
+}
+

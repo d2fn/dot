@@ -47,6 +47,17 @@
           ];
         };
 
+        adf-x220 = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit home-manager;
+          };
+          modules = [
+            ./hosts/adf-x220
+          ];
+        };
+
+
         nflx = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {

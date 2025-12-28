@@ -23,6 +23,22 @@ in
       description = "Main mod key, e.g. SUPER or ALT";
       default = "SUPER";
     };
+
+    gapsIn = mkOption {
+      type = types.str;
+      description = "Interior gaps";
+      default = 5;
+    };
+    gapsOut = mkOption {
+      type = types.str;
+      description = "Outer gaps";
+      default = 10;
+    };
+    borderSize = mkOption {
+      type = types.str;
+      description = "Border size in pixels";
+      default = 2;
+    };
     laptopDisplayScale = mkOption {
       type = types.str;
       description = "Set to 1 for standard displays and 2 for retina class";
@@ -107,9 +123,9 @@ in
         ### LOOK AND FEEL ###
         #####################
         general = {
-          gaps_in = 5;
-          gaps_out = 10;
-          border_size = 2;
+          "gaps_in" = "${config.my.hypr.core.gapsIn}";
+          "gaps_out" = "${config.my.hypr.core.gapsOut}";
+          "border_size" = "${config.my.hypr.core.borderSize}";
 
           "col.active_border" =
             "${config.my.hypr.core.borderColor1} ${config.my.hypr.core.borderColor2} 45deg";
@@ -121,8 +137,8 @@ in
         };
 
         decoration = {
-          rounding = 4;
-          rounding_power = 2;
+          rounding = 0;
+          rounding_power = 0;
 
           active_opacity = 1.0;
           inactive_opacity = 1.0;
