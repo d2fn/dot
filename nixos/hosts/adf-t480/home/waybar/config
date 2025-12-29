@@ -31,7 +31,9 @@
     },
     "format-icons": {
       "default": "●",
-      "active": "◉"
+      "active": "●",
+      "empty": "○",
+      "urgent": "●"
     }
   },
 
@@ -57,7 +59,7 @@
 
   "memory": {
     "interval": 5,
-    "format": "MEM {used:0.1f}G",
+    "format": "MEM {percentage}%",
     "states": {
       "warning": 70,
       "critical": 90
@@ -81,8 +83,8 @@
     "format-charging": "INT {capacity}% ⚡",
     "format-plugged": "INT {capacity}% ⭘",
     "states": {
-      "warning": 25,
-      "critical": 12
+      "warning": 50,
+      "critical": 20
     },
     "tooltip-format": "Internal battery (BAT0)\n{capacity}% — {timeTo}\n{power} W"
   },
@@ -94,8 +96,8 @@
     "format-charging": "EXT {capacity}% ⚡",
     "format-plugged": "EXT {capacity}% ⭘",
     "states": {
-      "warning": 25,
-      "critical": 12
+      "warning": 50,
+      "critical": 20
     },
     "tooltip-format": "External battery (BAT1)\n{capacity}% — {timeTo}\n{power} W"
   },
@@ -110,3 +112,4 @@
     "spacing": 8
   }
 }
+
