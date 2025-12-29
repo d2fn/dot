@@ -2,28 +2,28 @@
 
 {
 
-	environment.systemPackages = with pkgs; [
-		greetd.tuigreet
-	];
+  environment.systemPackages = with pkgs; [
+    tuigreet
+  ];
 
-	environment.etc."issue".source = ./greetd-issue.txt;
+  environment.etc."issue".source = ./greetd-issue.txt;
 
-	services.greetd = {
-		enable = true;
+  services.greetd = {
+    enable = true;
     # start on tty2
-		vt = 2;
-		settings = {
-			default_session = {
-				command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-			};
-		};
-	};
+    # vt = 2;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+      };
+    };
+  };
 
-	services.xserver.enable = false;			# turn off the whole X11 stack if you’re on Wayland only
-	services.xserver.displayManager.gdm.enable = false;
-	services.displayManager.sddm.enable = false;
+  services.xserver.enable = false; # turn off the whole X11 stack if you’re on Wayland only
+  services.displayManager.gdm.enable = false;
+  services.displayManager.sddm.enable = false;
 
-	services.gnome.evolution-data-server.enable = false;
-	services.gnome.tinysparql.enable = false;
-	services.gnome.localsearch.enable = false;
+  services.gnome.evolution-data-server.enable = false;
+  services.gnome.tinysparql.enable = false;
+  services.gnome.localsearch.enable = false;
 }

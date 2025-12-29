@@ -27,17 +27,17 @@ in
     gapsIn = mkOption {
       type = types.str;
       description = "Interior gaps";
-      default = 5;
+      default = "5";
     };
     gapsOut = mkOption {
       type = types.str;
       description = "Outer gaps";
-      default = 10;
+      default = "10";
     };
     borderSize = mkOption {
       type = types.str;
       description = "Border size in pixels";
-      default = 2;
+      default = "2";
     };
     laptopDisplayScale = mkOption {
       type = types.str;
@@ -68,7 +68,7 @@ in
       hypridle
       hyprlock
       hyprsunset
-      rofi-wayland
+      rofi
       swaynotificationcenter
       swayosd
       wl-clipboard

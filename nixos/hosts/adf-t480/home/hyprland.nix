@@ -21,6 +21,7 @@
     core = {
       enable = true;
       laptopDisplayScale = "1";
+      mainModKey = "ALT";
     };
 
     apps = {

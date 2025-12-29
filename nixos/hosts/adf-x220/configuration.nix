@@ -22,11 +22,11 @@
   virtualisation = {
     libvirtd = {
       enable = true;
-# uncomment when my channel adds this
-			#networks.default = {
-			#	enable = true;
-			#	autostart = true;
-			#};
+      # uncomment when my channel adds this
+      #networks.default = {
+      #	enable = true;
+      #	autostart = true;
+      #};
       qemu = {
         runAsRoot = true;
         package = pkgs.qemu_kvm;
@@ -56,7 +56,7 @@
     enable32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      vaapiIntel
+      intel-vaapi-driver
       libvdpau-va-gl
     ];
   };
@@ -80,7 +80,8 @@
   ];
   nixpkgs.config.allowUnfree = true;
 
-  boot.initrd.luks.devices."luks-141bf220-dbc6-4e2e-b022-4f917dfba929".device = "/dev/disk/by-uuid/141bf220-dbc6-4e2e-b022-4f917dfba929";
+  boot.initrd.luks.devices."luks-141bf220-dbc6-4e2e-b022-4f917dfba929".device =
+    "/dev/disk/by-uuid/141bf220-dbc6-4e2e-b022-4f917dfba929";
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

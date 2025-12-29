@@ -22,11 +22,11 @@
   virtualisation = {
     libvirtd = {
       enable = true;
-# uncomment when my channel adds this
-			#networks.default = {
-			#	enable = true;
-			#	autostart = true;
-			#};
+      # uncomment when my channel adds this
+      #networks.default = {
+      #	enable = true;
+      #	autostart = true;
+      #};
       qemu = {
         runAsRoot = true;
         package = pkgs.qemu_kvm;
@@ -56,7 +56,7 @@
     enable32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      vaapiIntel
+      intel-vaapi-driver
       libvdpau-va-gl
     ];
   };

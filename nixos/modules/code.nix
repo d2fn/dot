@@ -1,23 +1,22 @@
 { config, pkgs, ... }:
 
 {
-	environment.systemPackages = with pkgs; [
-		# language runtimes
-		cargo
-		clang
-		clippy
-		gcc
-		go
-		gopls
-		jdk24
-		jdt-language-server
-		lua-language-server
-		nodejs
-		protobuf
-		rustc
-		rustfmt
-		sqlite
-		tree-sitter
-	];
+  environment.systemPackages = with pkgs; [
+    # language runtimes
+    cargo
+    clang
+    clippy
+    gcc
+    go
+    gopls
+    jdk25
+    jdt-language-server
+    lua-language-server
+    nodejs
+    protobuf
+    rustc
+    rustfmt
+    sqlite
+    tree-sitter
+  ];
 }
-

@@ -1,7 +1,5 @@
 {
-  pkgs,
   home-manager,
-  vpnManager,
   ...
 }:
 {
@@ -15,7 +13,7 @@
     ./configuration.nix
     ./hardware-configuration.nix
     ./git.nix
-    ./nordvpn.nix
+    ../../modules/nordvpn.nix
     ../../modules/bin-symlinks.nix
     ../../modules/code.nix
     ../../modules/core-packages.nix

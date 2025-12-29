@@ -1,64 +1,83 @@
+
 * {
-  font-family: "JetBrainsMono Nerd Font", sans-serif;
-  font-size: 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  min-height: 0;
 }
 
 window#waybar {
-  background: rgba(20,20,20,0.92);
-  color: #e0e0e0;
+  background: #0b0f14;
+  color: #cfd8dc;
+  border-bottom: 1px solid #1e2a33;
 }
 
+/* Workspaces */
 #workspaces button {
   padding: 0 6px;
-  color: #999;
+  color: #5eead4;
 }
+
 #workspaces button.active {
-  color: #00ff99;
+  color: #faff00;
 }
 
-#clock {
-  font-weight: 500;
-}
-
-#battery,
-#pulseaudio,
-#cpu,
-#memory {
-  padding: 0 8px;
-}
-
-#battery.bat0 {
-  padding-right: 6px;
-  color: #e0e0e0;
-}
-
-#battery.bat1 {
-  padding-right: 6px;
-  color: #e0e0e0;
-}
-
+/* Window title */
 #window {
-  margin-left: 8px;
-  color: #aaaaaa;
+  padding: 0 10px;
+  color: #9cdcfe;
 }
 
-#window image {
-  margin-right: 6px;
-  margin-left: 15px;
+/* Clock */
+#clock {
+  padding: 0 14px;
+  color: #e879f9;
 }
 
-#window.empty {
-  color: #555555;
+/* Base module styling */
+#cpu,
+#memory,
+#disk,
+#battery,
+#pulseaudio {
+  padding: 0 10px;
+  margin: 0 2px;
+  border-radius: 4px;
 }
 
+/* CPU */
+#cpu { color: #4ade80; }
+#cpu.warning { color: #facc15; }
+#cpu.critical { color: #fb7185; }
+
+/* Memory */
+#memory { color: #38bdf8; }
+#memory.warning { color: #fbbf24; }
+#memory.critical { color: #fb7185; }
+
+/* Disk */
+#disk { color: #a78bfa; }
+#disk.warning { color: #fbbf24; }
+#disk.critical { color: #fb7185; }
+
+/* Batteries */
+#battery.internal { color: #22d3ee; }   /* Internal = cyan */
+#battery.external { color: #c084fc; }   /* External = violet */
+
+#battery.internal.warning,
+#battery.external.warning {
+  color: #fbbf24;
+}
+
+#battery.internal.critical,
+#battery.external.critical {
+  color: #fb7185;
+}
+
+/* Volume */
+#pulseaudio { color: #5eead4; }
+#pulseaudio.muted { color: #64748b; }
+
+/* Tray */
 #tray {
-  padding: 0 6px;
-}
-
-#tray widget {
-  margin: 0 4px;
-}
-
-#tray > .tray-item {
-  padding: 0 4px;     /* adjust left/right padding */
+  padding: 0 8px;
 }
