@@ -55,6 +55,18 @@ window#waybar {
 #cpu.warning { color: #ffb000; }
 #cpu.critical { color: #ff3355; }
 
+/* Network activity */
+#network {
+  padding: 0 10px;
+  margin: 0 2px;
+  border-radius: 4px;
+  color: #00bfff; /* soft cyan-blue */
+}
+
+#network.disconnected {
+  color: #64748b;
+}
+
 /* Memory: electric blue -> amber -> red */
 #memory { color: #38bdf8; }
 #memory.warning { color: #ffb000; }

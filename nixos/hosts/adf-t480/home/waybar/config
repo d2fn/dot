@@ -13,6 +13,7 @@
   ],
 
   "modules-right": [
+		"network",
     "cpu",
     "memory",
     "disk",
@@ -47,6 +48,15 @@
     "format": "{:%Y-%m-%d  %H:%M}",
     "tooltip-format": "{:%A, %B %d}"
   },
+
+	"network": {
+		"interval": 2,
+		"format": "NET ↓{bandwidthDownBits} ↑{bandwidthUpBits}",
+		"format-wifi": "NET ↓{bandwidthDownBits} ↑{bandwidthUpBits}",
+		"format-ethernet": "NET ↓{bandwidthDownBits} ↑{bandwidthUpBits}",
+		"format-disconnected": "NET --",
+		"tooltip-format": "{ifname}\n↓ {bandwidthDownBytes}/s\n↑ {bandwidthUpBytes}/s\nIP: {ipaddr}"
+	},
 
   "cpu": {
     "interval": 2,
