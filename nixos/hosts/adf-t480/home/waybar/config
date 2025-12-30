@@ -81,7 +81,7 @@
     "interval": 10,
     "format": "INT {capacity}%",
     "format-charging": "INT {capacity}% ⚡",
-    "format-plugged": "INT {capacity}% ⭘",
+    "format-plugged": "INT {capacity}% ",
     "states": {
       "warning": 50,
       "critical": 20
@@ -94,7 +94,7 @@
     "interval": 10,
     "format": "EXT {capacity}%",
     "format-charging": "EXT {capacity}% ⚡",
-    "format-plugged": "EXT {capacity}% ⭘",
+    "format-plugged": "EXT {capacity}% ",
     "states": {
       "warning": 50,
       "critical": 20
