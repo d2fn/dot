@@ -52,11 +52,11 @@
   };
 
   imports = [
+    ../../../modules/digikam.nix
+    ../../../modules/focus_or_launch.nix
     ../../../modules/gtk.nix
     ../../../modules/nix-lsp.nix
-    ../../../modules/focus_or_launch.nix
-    ./digikam.nix
-    ./electronics.nix
+    ../../../modules/electronics.nix
   ];
 
 }
