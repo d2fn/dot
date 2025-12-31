@@ -50,4 +50,3 @@ alias noirrefresh="./gradlew updateLock saveLock -PdependencyLock.updateDependen
 alias newt-shell='nix shell mynewt-newt'
 
 
-
