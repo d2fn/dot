@@ -14,6 +14,8 @@
     };
     packages = with pkgs; [
       celluloid
+      alacritty
+      kitty
       cmatrix
       krita
       mpv
