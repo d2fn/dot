@@ -21,6 +21,7 @@
     core = {
       enable = true;
       mainModKey = "ALT";
+      terminal = "alacritty";
       laptopDisplayScale = "1";
       gapsIn = "1";
       gapsOut = "3";
@@ -34,7 +35,7 @@
         terminal = {
           key = "SPACE";
           workspace = "1";
-          class = "ghostty";
+          class = "alacritty";
           cmdType = "workspace";
           cmd = "1";
           icon = "";

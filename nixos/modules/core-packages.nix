@@ -27,7 +27,6 @@
     lsof
     neovim
     nethogs
-    openresolv
     p7zip
     parted
     pastel

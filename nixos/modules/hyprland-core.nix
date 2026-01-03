@@ -24,6 +24,12 @@ in
       default = "SUPER";
     };
 
+    terminal = mkOption {
+      type = types.str;
+      description = "Terminal app";
+      default = "ghostty";
+    };
+
     gapsIn = mkOption {
       type = types.str;
       description = "Interior gaps";
@@ -195,10 +201,6 @@ in
           };
         };
 
-        gestures = {
-          workspace_swipe = false;
-        };
-
         device = [
           {
             name = "epic-mouse-v1";
@@ -240,7 +242,7 @@ in
 
           # bare bones launchers hardcoded
           "$mainMod, R, exec, rofi -show drun"
-          "$mainMod SHIFT, T, exec, ghostty"
+          "$mainMod SHIFT, T, exec, ${config.my.hypr.core.terminal}"
           "$mainMod, E, exec, nautilus"
 
           # window management

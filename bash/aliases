@@ -49,5 +49,6 @@ alias commercerefresh="./gradlew updateLock saveLock -PdependencyLock.updateDepe
 alias noirrefresh="./gradlew updateLock saveLock -PdependencyLock.updateDependencies=com.netflix.page:noir-proto-definition && ./gradlew updateLock saveLock -PdependencyLock.updateDependencies=com.netflix.page:noir-page-proto-definition"
 alias newt-shell='nix shell mynewt-newt'
 
+alias wgcheck='curl https://ipinfo.io/json'
 
 

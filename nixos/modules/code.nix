@@ -11,6 +11,7 @@
     gopls
     jdk25
     jdt-language-server
+    lazygit
     lua-language-server
     nodejs
     protobuf

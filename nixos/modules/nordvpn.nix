@@ -14,17 +14,20 @@ let
 in
 {
 
-  # >>> DNS integration for wg-quick / resolvconf <<<
+  networking.resolvconf.enable = false;
   services.resolved.enable = true;
-
-  # If you're using NetworkManager (you almost certainly are),
-  # tell it to hand DNS to systemd-resolved:
   networking.networkmanager.dns = "systemd-resolved";
 
-  # Install the CLI
-  environment.systemPackages = [
-    pkgs.wgnord
-    pkgs.wireguard-tools
+  environment.systemPackages = with pkgs; [
+    wgnord
+    wireguard-tools
+
+    # wgnord insists on calling `resolvconf`. On NixOS we use systemd-resolved.
+    # Provide a no-op resolvconf so wgnord doesn't abort after bringing up wg.
+    (writeShellScriptBin "resolvconf" ''
+      #!/usr/bin/env bash
+      exit 0
+    '')
   ];
 
   # Make sure the state dir exists
