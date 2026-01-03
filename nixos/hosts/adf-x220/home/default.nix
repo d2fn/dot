@@ -15,6 +15,7 @@
     packages = with pkgs; [
       celluloid
       cmatrix
+      krita
       mpv
       veracrypt
       vesktop
@@ -38,9 +39,9 @@
     ../../../modules/gtk.nix
     ../../../modules/nix-lsp.nix
     ../../../modules/focus_or_launch.nix
-    ./digikam.nix
-    ./dropbox.nix
-    ./electronics.nix
+    ../../../modules/digikam.nix
+    ../../../modules/dropbox.nix
+    ../../../modules/electronics.nix
     ./hyprland.nix
     ./waybar.nix
   ];

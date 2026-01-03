@@ -1,69 +1,111 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 28,
+  "height": 27,
 
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["clock"],
-  "modules-right": ["tray", "battery#bat1", "battery#bat0", "pulseaudio", "cpu", "memory"],
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+
+  "modules-center": [
+    "clock"
+  ],
+
+  "modules-right": [
+		"network",
+    "cpu",
+    "memory",
+    "disk",
+    "battery",
+    "pulseaudio",
+    "tray"
+  ],
 
   "hyprland/workspaces": {
-    "format": "{id}",
+    "format": "{icon}",
     "on-click": "activate",
-    "sort-by-name": true,
-    "active-only": false,
-		"ignore-workspaces": [
-			"^[1-9][0-9]+$"   // 10, 11, 12, ... (anything two digits or more starting with 1–9)
-		],
-		"format-icons": {
-			"1": "1",
-			"2": "2",
-			"3": "3",
-			"4": "4",
-			"5": "5",
-			"6": "6",
-			"7": "7",
-			"8": "8",
-			"9": "9"
-		}
+    "all-outputs": true,
+    "persistent-workspaces": {
+      "*": [1,2,3,4,5,6,7,8,9]
+    },
+    "format-icons": {
+      "default": "●",
+      "active": "●",
+      "empty": "○",
+      "urgent": "●"
+    }
   },
 
   "hyprland/window": {
     "format": "{title}",
-		"icon": true,
-		"icon-size": 16,
     "max-length": 60,
     "separate-outputs": true
   },
 
   "clock": {
-    "format": "{:%b %d  %I:%M %p}",
-    "tooltip": false
+    "format": "{:%m-%d  %H:%M}",
+    "tooltip-format": "{:%A, %B %d}"
   },
 
-  "battery#bat0": {
-    "bat": "BAT0",
-    "format": "0:{capacity}% ",
-    "format-charging": "0:{capacity}% "
-  },
-
-  "battery#bat1": {
-    "bat": "BAT1",
-    "format": "1:{capacity}% ",
-    "format-charging": "1:{capacity}% "
-  },
-
-  "pulseaudio": {
-    "format": "{volume}% ",
-    "format-muted": "󰝟"
-  },
+	"network": {
+		"interval": 2,
+		"format": "NET ↓{bandwidthDownBits} ↑{bandwidthUpBits}",
+		"format-wifi": "NET ↓{bandwidthDownBits} ↑{bandwidthUpBits}",
+		"format-ethernet": "NET ↓{bandwidthDownBits} ↑{bandwidthUpBits}",
+		"format-disconnected": "NET --",
+		"tooltip-format": "{ifname}\n↓ {bandwidthDownBytes}/s\n↑ {bandwidthUpBytes}/s\nIP: {ipaddr}"
+	},
 
   "cpu": {
-    "format": "{usage}% "
+    "interval": 2,
+    "format": "CPU {usage}%",
+    "states": {
+      "warning": 60,
+      "critical": 85
+    }
   },
 
   "memory": {
-    "format": "{}% "
+    "interval": 5,
+    "format": "MEM {percentage}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+
+  "disk": {
+    "interval": 30,
+    "path": "/",
+    "format": "DISK {percentage_used}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+
+  "battery": {
+    "bat": "BAT0",
+    "interval": 10,
+    "format": "BAT {capacity}%",
+    "format-charging": "BAT {capacity}% ⚡",
+    "format-plugged": "BAT {capacity}% ",
+    "states": {
+      "warning": 50,
+      "critical": 20
+    },
+    "tooltip-format": "Battery (BAT0)\n{capacity}% — {timeTo}\n{power} W"
+  },
+
+  "pulseaudio": {
+    "format": "VOL {volume}%",
+    "format-muted": "MUTE",
+    "on-click": "pavucontrol"
+  },
+
+  "tray": {
+    "spacing": 8
   }
 }
 
