@@ -22,6 +22,7 @@
     ../../modules/greetd.nix
     ../../modules/obsidian.nix
     ../../modules/reverse-eng.nix
+    ../../modules/ssh.nix
     ../../modules/zsa.nix
     home-manager.nixosModules.home-manager
   ];
