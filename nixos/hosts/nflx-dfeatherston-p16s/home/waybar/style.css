@@ -1,76 +1,102 @@
-@define-color foreground #e6d9db;
-@define-color background #2c2525;
-
 * {
-  background-color: @background;
-  color: @foreground;
-
-  border: none;
-  border-radius: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
   min-height: 0;
-  font-family: JetBrains Mono Nerd Font;
-  font-size: 15px;
 }
 
-.modules-left {
-  margin-left: 5px;
+window#waybar {
+  background: #0b0f14;
+  color: #cfd8dc;
+  border-bottom: 1px solid #1e2a33;
 }
 
-.modules-right {
-  margin-right: 8px;
-}
-
+/* Workspaces:
+   - empty: muted gray
+   - occupied: soft white
+   - active: #00ff99
+   Same glyph everywhere (●).
+*/
 #workspaces button {
-  all: initial;
   padding: 0 6px;
-  margin: 0 1.5px;
-  min-width: 10px;
+  border-radius: 4px;
+  color: #5f6772;        /* empty baseline muted gray */
 }
 
-#workspaces button.empty {
-  opacity: 0.5;
+#workspaces button.occupied,
+#workspaces button.visible {
+  color: #e6e8ee;        /* soft white when something is there */
 }
 
-#tray,
-#cpu,
-#battery,
-#network,
-#bluetooth,
-#pulseaudio,
-#custom-omarchy,
-#custom-screenrecording-indicator,
-#custom-update {
-  min-width: 12px;
-  margin: 0 7.5px;
+#workspaces button.active {
+  color: #00ff99;        /* your specified active color */
 }
 
-#custom-expand-icon {
-  margin-right: 7px;
+/* Active window title matches active workspace */
+#window {
+  padding: 0 10px;
+  color: #00ff99;
 }
 
-tooltip {
-  padding: 2px;
-}
-
-#custom-update {
-  font-size: 10px;
-}
-
+/* Clock: soft white */
 #clock {
-  margin-left: 8.75px;
+  padding: 0 14px;
+  color: #e6e8ee;
 }
 
-.hidden {
-  opacity: 0;
+/* Module base */
+#cpu, #memory, #disk, #battery, #pulseaudio {
+  padding: 0 10px;
+  margin: 0 2px;
+  border-radius: 4px;
 }
 
-#custom-screenrecording-indicator {
-  min-width: 12px;
-  margin-left: 8.75px;
-  font-size: 10px;
+/* CPU: yellow */
+#cpu { color: #ffd500; }
+#cpu.warning { color: #ffb000; }
+#cpu.critical { color: #ff3355; }
+
+/* Network activity */
+#network {
+  padding: 0 10px;
+  margin: 0 2px;
+  border-radius: 4px;
+  color: #00bfff; /* soft cyan-blue */
 }
 
-#custom-screenrecording-indicator.active {
-  color: #a55555;
+#network.disconnected {
+  color: #64748b;
 }
 
+/* Memory: electric blue -> amber -> red */
+#memory { color: #38bdf8; }
+#memory.warning { color: #ffb000; }
+#memory.critical { color: #ff3355; }
+
+/* Disk: violet -> orange -> red */
+#disk { color: #a78bfa; }
+#disk.warning { color: #ff8a00; }
+#disk.critical { color: #ff3355; }
+
+/* Batteries: SAME base color for internal/external
+   - normal: green
+   - <50%: orange
+   - <20%: red
+*/
+#battery {
+  color: #34C759
+}
+
+#battery.warning {
+  color: #ff8a00;
+}
+
+#battery.critical {
+  color: #ff3355;
+}
+
+/* Volume: white */
+#pulseaudio { color: #e6e8ee; }
+#pulseaudio.muted { color: #64748b; }
+
+/* Tray */
+#tray { padding: 0 8px; }

@@ -20,7 +20,7 @@
 
     core = {
       enable = true;
-      mainModKey = "SUPER";
+      mainModKey = "ALT";
       laptopDisplayScale = "2";
       borderColor1 = "rgba(ff8f66ee)";
       borderColor2 = "rgba(e93f00ee)";
