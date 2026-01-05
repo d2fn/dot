@@ -7,6 +7,11 @@ k.set('n', '<leader>q', '<cmd>q<CR>', { noremap = true, desc = "Close Buffer" })
 k.set('n', '<leader>sv', '<cmd>vsplit<CR>', { noremap = true, desc = "Vertical Split" })
 k.set('n', '<leader>sh', '<cmd>split<CR>', { noremap = true, desc = "Horizontal Split" })
 k.set('n', '<leader>so', '<cmd>source ~/.config/nvim/init.lua<CR>', { noremap = true, desc = "Source" })
+
+vim.keymap.set("n", "<leader>R", function()
+  vim.cmd("source $MYVIMRC")
+end, { desc = "Reload Neovim config" })
+
 k.set("n", "<leader><leader>", "<C-^>", { desc = "Switch to last file" })
 
 k.set({'n','i','t'}, '<C-_>', '<cmd>ToggleTerm<CR>', {silent=true})
@@ -46,7 +51,7 @@ k.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 -- Telescope
 local telescope = require('telescope.builtin')
 
-k.set('n', '<leader>sa', telescope.find_files, {})
+k.set('n', '<leader>ff', telescope.find_files, {})
 k.set('n', '<leader>sf', telescope.git_files, {})
 k.set('n', '<leader>gs', telescope.git_status, {})
 k.set('n', '<leader>gf', telescope.live_grep, {})
