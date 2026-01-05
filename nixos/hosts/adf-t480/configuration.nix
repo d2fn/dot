@@ -30,6 +30,7 @@
       qemu = {
         runAsRoot = true;
         package = pkgs.qemu_kvm;
+        swtpm.enable = true;
       };
     };
     # Needed for booting modern VMs (UEFI)
@@ -44,6 +45,11 @@
     "kvm_intel"
     "kvm_amd"
   ];
+
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
+    "net.ipv6.conf.all.forwarding" = 1;
+  };
 
   environment.pathsToLink = [
     "/share/applications"
@@ -140,6 +146,7 @@
     defaultShared = true;
   };
 
+  networking.firewall.trustedInterfaces = [ "virbr0" ];
   networking.firewall.allowedTCPPorts = [ 631 ];
   networking.firewall.allowedUDPPorts = [ 5353 ];
 

@@ -6,7 +6,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    sysstat
     alsa-utils
     bat
     brave
@@ -20,6 +19,7 @@
     ghostty
     git
     gopher
+    home-manager
     jp2a
     jq
     kmod
@@ -28,8 +28,8 @@
     neovim
     nethogs
     p7zip
-    pastel
     parted
+    pastel
     pavucontrol
     playerctl
     pstree
@@ -39,6 +39,7 @@
     speedtest-cli
     starship
     stow
+    sysstat
     tmux
     traceroute
     unzip

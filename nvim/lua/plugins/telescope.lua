@@ -11,7 +11,6 @@ require('telescope').setup({
       theme = "dropdown",
       layout_config = {
         width = 0.95,       -- wider
-        preview_width = 0.6,
       },
     },
 
