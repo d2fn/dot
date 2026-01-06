@@ -56,6 +56,11 @@
     "flakes"
   ];
 
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/xdg-desktop-portal"
+  ];
+
   nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = true;
