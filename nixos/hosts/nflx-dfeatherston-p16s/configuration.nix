@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  networking.hostName = "nflx-dfeatherston-p16s";
+  networking.hostName = "nflx-p16s";
   time.timeZone = "America/Los_Angeles";
   users.users.d = {
     isNormalUser = true;
@@ -49,7 +49,7 @@
     tssUser = "tss";
   };
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -67,6 +67,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
+
   programs.ssh.startAgent = true;
   programs.ssh.askPassword = "";
 

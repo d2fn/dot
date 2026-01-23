@@ -104,7 +104,7 @@ in
         monitor = [
           # See https://wiki.hyprland.org/Configuring/Monitors/
           "desc:Samsung Display Corp. 0x4165,preferred,auto,2"
-          "desc:BNQ BenQ RD280U L8R0071401Q,preferred,auto,1"
+          "desc:BNQ BenQ RD280U L8R0071401Q,preferred,auto,2"
           "desc:Dell Inc. DELL U3421WE 376L653,preferred,auto,1"
           "eDP-1,preferred,auto,${config.my.hypr.core.laptopDisplayScale}"
           ",preferred,auto,1"
