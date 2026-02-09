@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   programs.home-manager.enable = true;
@@ -42,8 +46,9 @@
     ../../../modules/digikam.nix
     ../../../modules/dropbox.nix
     ../../../modules/electronics.nix
+    #./niri.nix
     ./hyprland.nix
-    ./waybar.nix
+    #./waybar.nix
   ];
 
 }

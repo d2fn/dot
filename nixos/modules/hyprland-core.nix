@@ -13,6 +13,18 @@ let
     attrValues
     mkAfter
     ;
+  # Helper: start user services via systemctl
+  mkStart = svc: "systemctl --user start ${svc}";
+  mkRestart = svc: "systemctl --user restart ${svc}";
+  # In DMS mode, make sure systemd-user has Wayland/session env,
+  # then start dms (and optionally stop classic stuff).
+  dmsExecOnce = [
+    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_SESSION_TYPE XDG_CURRENT_DESKTOP XDG_RUNTIME_DIR DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_SESSION_ID XDG_SEAT XDG_VTNR"
+    (mkRestart "hyprsunset.service")
+    (mkRestart "dms.service")
+    (mkStart "hyprland-session.target")
+  ];
+  classicExecOnce = map mkStart config.my.hypr.core.autostartUserServices;
 in
 {
 
@@ -22,6 +34,32 @@ in
       type = types.str;
       description = "Main mod key, e.g. SUPER or ALT";
       default = "SUPER";
+    };
+
+    uiMode = mkOption {
+      type = types.enum [
+        "classic"
+        "dms"
+      ];
+      default = "classic";
+      description = "UI stack to run: classic (waybar/swaync/etc) or dms (DankMaterialShell).";
+    };
+
+    autostartUserServices = mkOption {
+      type = types.listOf types.str;
+      default = [
+        "hypridle.service"
+        "hyprsunset.service"
+        "waybar.service"
+        "swaync.service"
+      ];
+      description = "User systemd services to start via exec-once when uiMode=classic.";
+    };
+
+    launcher = mkOption {
+      type = types.str;
+      description = "Launcher";
+      default = "rofi -show drun";
     };
 
     terminal = mkOption {
@@ -75,8 +113,6 @@ in
       hyprlock
       hyprsunset
       rofi
-      swaynotificationcenter
-      swayosd
       wl-clipboard
     ];
 
@@ -88,8 +124,6 @@ in
         ###################
         ### VARIABLES   ###
         ###################
-        "$osdclient" =
-          "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
 
         "$mainMod" = "${config.my.hypr.core.mainModKey}";
         "$hyper" = "SUPER CTRL ALT SHIFT";
@@ -104,7 +138,7 @@ in
         monitor = [
           # See https://wiki.hyprland.org/Configuring/Monitors/
           "desc:Samsung Display Corp. 0x4165,preferred,auto,2"
-          "desc:BNQ BenQ RD280U L8R0071401Q,preferred,auto,1"
+          "desc:BNQ BenQ RD280U L8R0071401Q,preferred,auto,2"
           "desc:Dell Inc. DELL U3421WE 376L653,preferred,auto,1"
           "eDP-1,preferred,auto,${config.my.hypr.core.laptopDisplayScale}"
           ",preferred,auto,1"
@@ -113,12 +147,15 @@ in
         #########################
         ### AUTOSTART / ENV   ###
         #########################
-        exec-once = [
-          "swaync & swayosd-server &"
-          "systemctl --user start hyprsunset.service"
-          "systemctl --user start hypridle.service"
-          "systemctl --user start waybar.service"
-        ];
+
+        exec-once = (if config.my.hypr.core.uiMode == "dms" then dmsExecOnce else classicExecOnce);
+
+        #exec-once = [
+        #"swaync & swayosd-server &"
+        #"systemctl --user start hyprsunset.service"
+        #"systemctl --user start hypridle.service"
+        #"systemctl --user start waybar.service"
+        #];
 
         env = [
           "XCURSOR_SIZE,24"
@@ -241,7 +278,7 @@ in
           "$hyper, Q, exit"
 
           # bare bones launchers hardcoded
-          "$mainMod, R, exec, rofi -show drun"
+          "$mainMod, R, exec, ${config.my.hypr.core.launcher}"
           "$mainMod SHIFT, T, exec, ${config.my.hypr.core.terminal}"
           "$mainMod, E, exec, nautilus"
 
@@ -294,8 +331,8 @@ in
         ];
 
         bindeld = [
-          ",XF86MonBrightnessUp, Brightness up, exec, $osdclient --brightness raise"
-          ",XF86MonBrightnessDown, Brightness down, exec, $osdclient --brightness lower"
+          ",XF86MonBrightnessUp, Brightness up, exec, brightnessctl set +5%"
+          ",XF86MonBrightnessDown, Brightness down, exec, brightnessctl set 5%-"
         ];
         # Persistent workspaces 1–10 (Hyprland uses 1-based by default)
         "workspace" = [
