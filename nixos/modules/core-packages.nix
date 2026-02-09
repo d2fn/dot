@@ -10,6 +10,7 @@
     bat
     brave
     btop
+    cheese
     copyq
     dig
     eza
