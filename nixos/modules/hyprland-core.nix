@@ -20,7 +20,7 @@ let
   # then start dms (and optionally stop classic stuff).
   dmsExecOnce = [
     "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_SESSION_TYPE XDG_CURRENT_DESKTOP XDG_RUNTIME_DIR DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_SESSION_ID XDG_SEAT XDG_VTNR"
-    (mkRestart "hyprsunset.service")
+    #(mkRestart "hyprsunset.service")
     (mkRestart "dms.service")
     (mkStart "hyprland-session.target")
   ];
@@ -108,12 +108,12 @@ in
   config = mkIf config.my.hypr.core.enable {
 
     home.packages = with pkgs; [
-      brightnessctl
-      hypridle
-      hyprlock
+      #brightnessctl
+      #hypridle
+      #hyprlock
       hyprsunset
-      rofi
-      wl-clipboard
+      #rofi
+      #wl-clipboard
     ];
 
     wayland.windowManager.hyprland = {
@@ -273,12 +273,19 @@ in
         bind = [
 
           # close / kill
-          "$mainMod SHIFT, L, exec, hyprlock"
+          "$mainMod SHIFT, L, exec, loginctl lock-session"
           "$mainMod, W, killactive,"
           "$hyper, Q, exit"
 
+          "$mainMod, V, exec, dms ipc call clipboard toggle"
+          "$mainMod, comma, exec, dms ipc call settings focusOrToggle"
+          "$mainMod, M, exec, dms ipc call processlist focusOrToggle"
+
+          "$mainMod, N, exec, dms ipc call notifications toggle"
+          "$mainMod, Y, exec, dms ipc call dankdash wallpaper"
+
           # bare bones launchers hardcoded
-          "$mainMod, R, exec, ${config.my.hypr.core.launcher}"
+          "$mainMod, R, exec, dms ipc call spotlight toggle"
           "$mainMod SHIFT, T, exec, ${config.my.hypr.core.terminal}"
           "$mainMod, E, exec, nautilus"
 
@@ -324,15 +331,15 @@ in
 
         bindel = [
           # Laptop multimedia keys for volume and LCD brightness
-          ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-          ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-          ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ",XF86AudioRaiseVolume, exec, dms ipc call audio increment 3"
+          ",XF86AudioLowerVolume, exec, dms ipc call audio decrement 3"
+          ",XF86AudioMute, exec, dms ipc call audio mute"
           ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ];
 
         bindeld = [
-          ",XF86MonBrightnessUp, Brightness up, exec, brightnessctl set +5%"
-          ",XF86MonBrightnessDown, Brightness down, exec, brightnessctl set 5%-"
+          ",XF86MonBrightnessUp, Brightness up, exec, dms ipc call brightness increment"
+          ",XF86MonBrightnessDown, Brightness down, exec, dms ipc call brightness decrement"
         ];
         # Persistent workspaces 1–10 (Hyprland uses 1-based by default)
         "workspace" = [
