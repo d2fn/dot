@@ -206,6 +206,11 @@ in
             name = "epic-mouse-v1";
             sensitivity = -0.5;
           }
+          {
+            name = "tpps/2-elan-trackpoint";
+            accel_profile = "adaptive";
+            sensitivity = -0.4;
+          }
         ];
 
         ##############################
@@ -313,6 +318,7 @@ in
 
       # Stuff Hyprland doesn't have a nice Nix schema for (variables, binds, etc.)
       extraConfig = '''';
+
     };
   };
 }

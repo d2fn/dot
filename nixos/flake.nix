@@ -57,7 +57,6 @@
           ];
         };
 
-
         nflx = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {

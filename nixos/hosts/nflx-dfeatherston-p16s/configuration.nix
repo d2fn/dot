@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  networking.hostName = "nflx-p16s";
+  networking.hostName = "adf-nflx-p16s";
   time.timeZone = "America/Los_Angeles";
   users.users.d = {
     isNormalUser = true;
