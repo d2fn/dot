@@ -6,13 +6,13 @@
     ../../../modules/hypr-apps.nix
     ../../../modules/hyprland-core.nix
     ../../../modules/hypr-screenshot.nix
-    ../../../modules/hyprpaper.nix
+    #../../../modules/hyprpaper.nix
   ];
 
-  xdg.configFile."hypr/hypridle.conf".source = ./hypr/hypridle.conf;
-  xdg.configFile."hypr/hyprsunset.conf".source = ./hypr/hyprsunset.conf;
+  #xdg.configFile."hypr/hypridle.conf".source = ./hypr/hypridle.conf;
+  #xdg.configFile."hypr/hyprsunset.conf".source = ./hypr/hyprsunset.conf;
 
-  my.hyprpaper.enable = true;
+  #my.hyprpaper.enable = true;
 
   my.hypr = {
 
@@ -21,6 +21,8 @@
     core = {
       enable = true;
       mainModKey = "ALT";
+      uiMode = "dms";
+      launcher = "dms ipc call spotlight toggle";
       laptopDisplayScale = "2";
       borderColor1 = "rgba(ff8f66ee)";
       borderColor2 = "rgba(e93f00ee)";

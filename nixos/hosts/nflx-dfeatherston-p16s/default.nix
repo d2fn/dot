@@ -1,11 +1,12 @@
 {
+  inputs,
   pkgs,
-  home-manager,
-  vpnManager,
+  config,
   ...
 }:
 let
   system = pkgs.system;
+  vpnManager = inputs.vpnManager;
 in
 {
 
@@ -29,21 +30,26 @@ in
     ../../modules/bin-symlinks.nix
     ../../modules/code.nix
     ../../modules/core-packages.nix
+    ../../modules/dms.nix
     ../../modules/filemanagers.nix
     ../../modules/fonts.nix
     ../../modules/greetd.nix
     ../../modules/obsidian.nix
     ../../modules/reverse-eng.nix
     ../../modules/zsa.nix
-    home-manager.nixosModules.home-manager
-    vpnManager.nixosModules.vpnManager
+    #inputs.nflx-nixcfg.nixosModules.ai
+    inputs.dms.nixosModules.dank-material-shell
+    inputs.home-manager.nixosModules.home-manager
+    inputs.vpnManager.nixosModules.vpnManager
+
   ];
 
   # vpn manager setup at system level
   vpnManager = {
     # ensure the system level module uses the same package as home
-    package = vpnManager.packages.${system}.vpnManager;
+    package = inputs.vpnManager.packages.${system}.vpnManager;
     # pass the user account managing vpn secrets
     user = "d";
   };
+
 }

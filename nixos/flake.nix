@@ -19,6 +19,7 @@
       url = "github:AvengeMedia/dgop";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    #nflx-nixcfg.url = "path:/home/d/git/nflx-nixcfg";
   };
 
   outputs =
@@ -70,7 +71,7 @@
         nflx = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit home-manager vpnManager;
+            inherit inputs;
           };
           modules = [
             ./hosts/nflx-dfeatherston-p16s
