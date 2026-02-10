@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   programs.home-manager.enable = true;
@@ -12,6 +16,8 @@
       OBSIDIAN_REST_API_KEY = "1d9b49c84bca523b9654ae2e7cb78c077cbae7822836469aa70b5b01cdd789ba";
     };
     packages = with pkgs; [
+      adwaita-icon-theme
+      papirus-icon-theme
       celluloid
       cmatrix
       krita
@@ -42,8 +48,9 @@
     ../../../modules/digikam.nix
     ../../../modules/dropbox.nix
     ../../../modules/electronics.nix
+    #./niri.nix
     ./hyprland.nix
-    ./waybar.nix
+    #./waybar.nix
   ];
 
 }

@@ -11,14 +11,24 @@
       url = "path:/home/d/git/vpn-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nixpkgs,
       home-manager,
       vpnManager,
+      dms,
+      dgop,
       ...
     }:
     let
@@ -40,7 +50,7 @@
         adf-t480 = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit home-manager;
+            inherit inputs;
           };
           modules = [
             ./hosts/adf-t480

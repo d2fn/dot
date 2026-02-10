@@ -9,10 +9,21 @@
     ../../../modules/hyprpaper.nix
   ];
 
-  xdg.configFile."hypr/hypridle.conf".source = ./hypr/hypridle.conf;
-  xdg.configFile."hypr/hyprsunset.conf".source = ./hypr/hyprsunset.conf;
+  #xdg.configFile."hypr/hypridle.conf".source = ./hypr/hypridle.conf;
+  #xdg.configFile."hypr/hyprsunset.conf".source = ./hypr/hyprsunset.conf;
 
-  my.hyprpaper.enable = true;
+  systemd.user.targets.hyprland-session = {
+    Unit = {
+      Requires = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+      Wants = [ "dms.service" ]; # pull DMS in
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ]; # optional; see note below
+    };
+  };
+
+  #my.hyprpaper.enable = true;
 
   my.hypr = {
 
@@ -21,7 +32,9 @@
     core = {
       enable = true;
       laptopDisplayScale = "1";
+      launcher = "dms ipc call spotlight toggle";
       mainModKey = "ALT";
+      uiMode = "dms";
     };
 
     apps = {

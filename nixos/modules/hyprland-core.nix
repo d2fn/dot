@@ -13,6 +13,18 @@ let
     attrValues
     mkAfter
     ;
+  # Helper: start user services via systemctl
+  mkStart = svc: "systemctl --user start ${svc}";
+  mkRestart = svc: "systemctl --user restart ${svc}";
+  # In DMS mode, make sure systemd-user has Wayland/session env,
+  # then start dms (and optionally stop classic stuff).
+  dmsExecOnce = [
+    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_SESSION_TYPE XDG_CURRENT_DESKTOP XDG_RUNTIME_DIR DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_SESSION_ID XDG_SEAT XDG_VTNR"
+    #(mkRestart "hyprsunset.service")
+    (mkRestart "dms.service")
+    (mkStart "hyprland-session.target")
+  ];
+  classicExecOnce = map mkStart config.my.hypr.core.autostartUserServices;
 in
 {
 
@@ -22,6 +34,32 @@ in
       type = types.str;
       description = "Main mod key, e.g. SUPER or ALT";
       default = "SUPER";
+    };
+
+    uiMode = mkOption {
+      type = types.enum [
+        "classic"
+        "dms"
+      ];
+      default = "classic";
+      description = "UI stack to run: classic (waybar/swaync/etc) or dms (DankMaterialShell).";
+    };
+
+    autostartUserServices = mkOption {
+      type = types.listOf types.str;
+      default = [
+        "hypridle.service"
+        "hyprsunset.service"
+        "waybar.service"
+        "swaync.service"
+      ];
+      description = "User systemd services to start via exec-once when uiMode=classic.";
+    };
+
+    launcher = mkOption {
+      type = types.str;
+      description = "Launcher";
+      default = "rofi -show drun";
     };
 
     terminal = mkOption {
@@ -70,14 +108,12 @@ in
   config = mkIf config.my.hypr.core.enable {
 
     home.packages = with pkgs; [
-      brightnessctl
-      hypridle
-      hyprlock
+      #brightnessctl
+      #hypridle
+      #hyprlock
       hyprsunset
-      rofi
-      swaynotificationcenter
-      swayosd
-      wl-clipboard
+      #rofi
+      #wl-clipboard
     ];
 
     wayland.windowManager.hyprland = {
@@ -88,8 +124,6 @@ in
         ###################
         ### VARIABLES   ###
         ###################
-        "$osdclient" =
-          "swayosd-client --monitor \"$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')\"";
 
         "$mainMod" = "${config.my.hypr.core.mainModKey}";
         "$hyper" = "SUPER CTRL ALT SHIFT";
@@ -113,12 +147,15 @@ in
         #########################
         ### AUTOSTART / ENV   ###
         #########################
-        exec-once = [
-          "swaync & swayosd-server &"
-          "systemctl --user start hyprsunset.service"
-          "systemctl --user start hypridle.service"
-          "systemctl --user start waybar.service"
-        ];
+
+        exec-once = (if config.my.hypr.core.uiMode == "dms" then dmsExecOnce else classicExecOnce);
+
+        #exec-once = [
+        #"swaync & swayosd-server &"
+        #"systemctl --user start hyprsunset.service"
+        #"systemctl --user start hypridle.service"
+        #"systemctl --user start waybar.service"
+        #];
 
         env = [
           "XCURSOR_SIZE,24"
@@ -241,12 +278,19 @@ in
         bind = [
 
           # close / kill
-          "$mainMod SHIFT, L, exec, hyprlock"
+          "$mainMod SHIFT, L, exec, loginctl lock-session"
           "$mainMod, W, killactive,"
           "$hyper, Q, exit"
 
+          "$mainMod, V, exec, dms ipc call clipboard toggle"
+          "$mainMod, comma, exec, dms ipc call settings focusOrToggle"
+          "$mainMod, M, exec, dms ipc call processlist focusOrToggle"
+
+          "$mainMod, N, exec, dms ipc call notifications toggle"
+          "$mainMod, Y, exec, dms ipc call dankdash wallpaper"
+
           # bare bones launchers hardcoded
-          "$mainMod, R, exec, rofi -show drun"
+          "$mainMod, R, exec, dms ipc call spotlight toggle"
           "$mainMod SHIFT, T, exec, ${config.my.hypr.core.terminal}"
           "$mainMod, E, exec, nautilus"
 
@@ -292,15 +336,15 @@ in
 
         bindel = [
           # Laptop multimedia keys for volume and LCD brightness
-          ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-          ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-          ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ",XF86AudioRaiseVolume, exec, dms ipc call audio increment 3"
+          ",XF86AudioLowerVolume, exec, dms ipc call audio decrement 3"
+          ",XF86AudioMute, exec, dms ipc call audio mute"
           ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ];
 
         bindeld = [
-          ",XF86MonBrightnessUp, Brightness up, exec, $osdclient --brightness raise"
-          ",XF86MonBrightnessDown, Brightness down, exec, $osdclient --brightness lower"
+          ",XF86MonBrightnessUp, Brightness up, exec, dms ipc call brightness increment"
+          ",XF86MonBrightnessDown, Brightness down, exec, dms ipc call brightness decrement"
         ];
         # Persistent workspaces 1–10 (Hyprland uses 1-based by default)
         "workspace" = [

@@ -41,14 +41,17 @@
     starship
     stow
     sysstat
+    systemd
     tmux
     traceroute
     unzip
+    vim # for xdd
     wget
     xclip
     xsel
     yazi
     zip
+    qpdf
     zoxide
   ];
 }

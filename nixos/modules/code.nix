@@ -8,6 +8,7 @@
     clippy
     gcc
     go
+    delve
     gopls
     jdk25
     jdt-language-server
