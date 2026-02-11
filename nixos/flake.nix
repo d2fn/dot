@@ -61,7 +61,7 @@
         adf-x220 = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit home-manager;
+            inherit inputs;
           };
           modules = [
             ./hosts/adf-x220

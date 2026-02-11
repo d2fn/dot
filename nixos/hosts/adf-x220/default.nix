@@ -1,5 +1,5 @@
 {
-  home-manager,
+  inputs,
   ...
 }:
 {
@@ -10,21 +10,23 @@
   home-manager.useUserPackages = true;
 
   imports = [
-    ./configuration.nix
-    ./hardware-configuration.nix
-    ./git.nix
-    ../../modules/nordvpn.nix
     ../../modules/bin-symlinks.nix
     ../../modules/code.nix
     ../../modules/core-packages.nix
+    ../../modules/dms.nix
     ../../modules/filemanagers.nix
     ../../modules/fonts.nix
     ../../modules/greetd.nix
+    ../../modules/nordvpn.nix
     ../../modules/obsidian.nix
     ../../modules/reverse-eng.nix
     ../../modules/ssh.nix
     ../../modules/zsa.nix
-    home-manager.nixosModules.home-manager
+    ./configuration.nix
+    ./git.nix
+    ./hardware-configuration.nix
+    inputs.dms.nixosModules.dank-material-shell
+    inputs.home-manager.nixosModules.home-manager
   ];
 
 }

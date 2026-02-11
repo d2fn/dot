@@ -45,7 +45,7 @@
     ../../../modules/dropbox.nix
     ../../../modules/electronics.nix
     ./hyprland.nix
-    ./waybar.nix
+    #./waybar.nix
   ];
 
 }

@@ -41,7 +41,7 @@ in
         "classic"
         "dms"
       ];
-      default = "classic";
+      default = "dms";
       description = "UI stack to run: classic (waybar/swaync/etc) or dms (DankMaterialShell).";
     };
 
@@ -59,7 +59,7 @@ in
     launcher = mkOption {
       type = types.str;
       description = "Launcher";
-      default = "rofi -show drun";
+      default = "dms ipc call spotlight toggle";
     };
 
     terminal = mkOption {
@@ -343,8 +343,8 @@ in
         ];
 
         bindeld = [
-          ",XF86MonBrightnessUp, Brightness up, exec, dms ipc call brightness increment"
-          ",XF86MonBrightnessDown, Brightness down, exec, dms ipc call brightness decrement"
+          ",XF86MonBrightnessUp, Brightness up, exec, dms ipc call brightness increment 5 \"\""
+          ",XF86MonBrightnessDown, Brightness down, exec, dms ipc call brightness decrement 5 \"\""
         ];
         # Persistent workspaces 1–10 (Hyprland uses 1-based by default)
         "workspace" = [
