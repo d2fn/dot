@@ -10,21 +10,16 @@ let
     mkEnableOption
     mkIf
     types
-    attrValues
-    mkAfter
     ;
   # Helper: start user services via systemctl
   mkStart = svc: "systemctl --user start ${svc}";
   mkRestart = svc: "systemctl --user restart ${svc}";
-  # In DMS mode, make sure systemd-user has Wayland/session env,
-  # then start dms (and optionally stop classic stuff).
+  # Make sure systemd-user has Wayland/session env,
   dmsExecOnce = [
     "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_SESSION_TYPE XDG_CURRENT_DESKTOP XDG_RUNTIME_DIR DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_SESSION_ID XDG_SEAT XDG_VTNR"
-    #(mkRestart "hyprsunset.service")
     (mkRestart "dms.service")
     (mkStart "hyprland-session.target")
   ];
-  classicExecOnce = map mkStart config.my.hypr.core.autostartUserServices;
 in
 {
 
@@ -34,32 +29,6 @@ in
       type = types.str;
       description = "Main mod key, e.g. SUPER or ALT";
       default = "SUPER";
-    };
-
-    uiMode = mkOption {
-      type = types.enum [
-        "classic"
-        "dms"
-      ];
-      default = "dms";
-      description = "UI stack to run: classic (waybar/swaync/etc) or dms (DankMaterialShell).";
-    };
-
-    autostartUserServices = mkOption {
-      type = types.listOf types.str;
-      default = [
-        "hypridle.service"
-        "hyprsunset.service"
-        "waybar.service"
-        "swaync.service"
-      ];
-      description = "User systemd services to start via exec-once when uiMode=classic.";
-    };
-
-    launcher = mkOption {
-      type = types.str;
-      description = "Launcher";
-      default = "dms ipc call spotlight toggle";
     };
 
     terminal = mkOption {
@@ -153,14 +122,7 @@ in
         ### AUTOSTART / ENV   ###
         #########################
 
-        exec-once = (if config.my.hypr.core.uiMode == "dms" then dmsExecOnce else classicExecOnce);
-
-        #exec-once = [
-        #"swaync & swayosd-server &"
-        #"systemctl --user start hyprsunset.service"
-        #"systemctl --user start hypridle.service"
-        #"systemctl --user start waybar.service"
-        #];
+        exec-once = dmsExecOnce;
 
         env = [
           "XCURSOR_SIZE,24"

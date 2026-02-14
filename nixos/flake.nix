@@ -41,7 +41,7 @@
         adf-shop-pc = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit home-manager;
+            inherit inputs;
           };
           modules = [
             ./hosts/adf-shop-pc

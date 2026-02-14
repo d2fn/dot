@@ -6,7 +6,7 @@
   home = {
     username = "d";
     homeDirectory = "/home/d";
-    stateVersion = "25.05";
+    stateVersion = "25.11";
     sessionVariables = {
       QT_QPA_PLATFORM = "wayland";
       OBSIDIAN_REST_API_KEY = "1d9b49c84bca523b9654ae2e7cb78c077cbae7822836469aa70b5b01cdd789ba";
@@ -57,6 +57,7 @@
     ../../../modules/gtk.nix
     ../../../modules/nix-lsp.nix
     ../../../modules/electronics.nix
+    ./hyprland.nix
   ];
 
 }
