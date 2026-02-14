@@ -8,17 +8,6 @@
     ../../../modules/hypr-screenshot.nix
   ];
 
-  systemd.user.targets.hyprland-session = {
-    Unit = {
-      Requires = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-      Wants = [ "dms.service" ]; # pull DMS in
-    };
-    Install = {
-      WantedBy = [ "graphical-session.target" ]; # optional; see note below
-    };
-  };
-
   my.hypr = {
 
     screenshot.enable = true;
@@ -26,9 +15,7 @@
     core = {
       enable = true;
       laptopDisplayScale = "1";
-      launcher = "dms ipc call spotlight toggle";
       mainModKey = "ALT";
-      uiMode = "dms";
     };
 
     apps = {

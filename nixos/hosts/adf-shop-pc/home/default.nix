@@ -57,6 +57,7 @@
     ../../../modules/gtk.nix
     ../../../modules/nix-lsp.nix
     ../../../modules/electronics.nix
+    ./hyprland.nix
   ];
 
 }

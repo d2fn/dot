@@ -15,16 +15,6 @@
       "video"
       "wheel"
     ];
-    packages = with pkgs; [
-    ];
-  };
-
-  services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
   };
 
   virtualisation = {
@@ -38,6 +28,7 @@
       qemu = {
         runAsRoot = true;
         package = pkgs.qemu_kvm;
+        swtpm.enable = true;
       };
     };
     # Needed for booting modern VMs (UEFI)
@@ -74,13 +65,7 @@
     NIXOS_OZONE_WL = "1"; # Wayland hint for Brave/Chromium
   };
 
-  networking.hosts = {
-    "127.0.0.1" = [
-      "adf-host"
-    ];
-  };
-
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 
   nix.settings.experimental-features = [
     "nix-command"

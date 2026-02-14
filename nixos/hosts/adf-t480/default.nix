@@ -10,10 +10,10 @@
   home-manager.useUserPackages = true;
 
   imports = [
-    ../../modules/dms.nix
     ../../modules/bin-symlinks.nix
     ../../modules/code.nix
     ../../modules/core-packages.nix
+    ../../modules/dms.nix
     ../../modules/filemanagers.nix
     ../../modules/fonts.nix
     ../../modules/greetd.nix

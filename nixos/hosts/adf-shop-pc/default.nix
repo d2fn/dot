@@ -1,5 +1,4 @@
 {
-  pkgs,
   inputs,
   ...
 }:
@@ -11,19 +10,21 @@
   home-manager.useUserPackages = true;
 
   imports = [
-    ./configuration.nix
-    ./hardware-configuration.nix
-    ./git.nix
-    ../../modules/dms.nix
-    ../../modules/nordvpn.nix
     ../../modules/bin-symlinks.nix
     ../../modules/code.nix
     ../../modules/core-packages.nix
+    ../../modules/dms.nix
     ../../modules/filemanagers.nix
     ../../modules/fonts.nix
+    ../../modules/greetd.nix
+    ../../modules/nordvpn.nix
     ../../modules/obsidian.nix
     ../../modules/reverse-eng.nix
+    ../../modules/ssh.nix
     ../../modules/zsa.nix
+    ./configuration.nix
+    ./git.nix
+    ./hardware-configuration.nix
     inputs.dms.nixosModules.dank-material-shell
     inputs.home-manager.nixosModules.home-manager
   ];
