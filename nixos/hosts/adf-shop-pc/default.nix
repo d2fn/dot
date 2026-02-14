@@ -1,7 +1,6 @@
 {
   pkgs,
-  home-manager,
-  vpnManager,
+  inputs,
   ...
 }:
 {
@@ -15,6 +14,7 @@
     ./configuration.nix
     ./hardware-configuration.nix
     ./git.nix
+    ../../modules/dms.nix
     ../../modules/nordvpn.nix
     ../../modules/bin-symlinks.nix
     ../../modules/code.nix
@@ -24,7 +24,8 @@
     ../../modules/obsidian.nix
     ../../modules/reverse-eng.nix
     ../../modules/zsa.nix
-    home-manager.nixosModules.home-manager
+    inputs.dms.nixosModules.dank-material-shell
+    inputs.home-manager.nixosModules.home-manager
   ];
 
 }
